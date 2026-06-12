@@ -125,7 +125,8 @@ def backtest_symbol(sym: str) -> pd.DataFrame:
         if pd.isna(sc):
             continue
         c0 = ss["close"].iloc[i]
-        rec = {"symbol": sym, "date": ss.index[i], "score": float(sc), "band": label_for(float(sc))}
+        rec = {"symbol": sym, "market": universe.market_of(sym), "date": ss.index[i],
+               "score": float(sc), "band": label_for(float(sc))}
         for h in HORIZONS:
             fwd = float(ss["close"].iloc[i + h] / c0 - 1.0)
             rec[f"fwd_{h}d"] = fwd
@@ -160,39 +161,53 @@ def _band_stats(g: pd.DataFrame) -> dict:
     return out
 
 
-def aggregate(all_rows: pd.DataFrame, split_date: pd.Timestamp) -> dict:
-    bands = ["STRONG_BUY", "BUY", "NEUTRAL", "SELL", "STRONG_SELL"]
+BANDS = ["STRONG_BUY", "BUY", "NEUTRAL", "SELL", "STRONG_SELL"]
 
-    def by_band(frame: pd.DataFrame) -> dict:
-        res = {}
-        for b in bands:
-            g = frame[frame["band"] == b]
-            res[b] = _band_stats(g) if len(g) else {"n": 0}
-        return res
 
-    ins = all_rows[all_rows["date"] <= split_date]
-    oos = all_rows[all_rows["date"] > split_date]
+def _by_band(frame: pd.DataFrame) -> dict:
+    return {b: (_band_stats(g) if len(g := frame[frame["band"] == b]) else {"n": 0}) for b in BANDS}
 
+
+def _edge(frame: pd.DataFrame) -> float | None:
     # Long/short edge: mean 15d EXCESS return of longs (score≥60) vs shorts (≤40).
     # On alpha, not absolute — the bull-market drift cancels, leaving the signal.
-    longs = all_rows[all_rows["score"] >= 60]["ex_15d"]
-    shorts = all_rows[all_rows["score"] <= 40]["ex_15d"]
-    edge_15d = round((longs.mean() - shorts.mean()) * 100, 2) if len(longs) and len(shorts) else None
+    longs = frame[frame["score"] >= 60]["ex_15d"]
+    shorts = frame[frame["score"] <= 40]["ex_15d"]
+    return round((longs.mean() - shorts.mean()) * 100, 2) if len(longs) and len(shorts) else None
 
+
+def aggregate_frame(frame: pd.DataFrame, split_date: pd.Timestamp) -> dict:
+    """In-/out-of-sample band stats + long/short edge for one slice (all, or one market)."""
+    return {
+        "samples": int(len(frame)),
+        "symbols": int(frame["symbol"].nunique()),
+        "long_short_edge_15d_pct": _edge(frame),
+        "in_sample": _by_band(frame[frame["date"] <= split_date]),
+        "out_of_sample": _by_band(frame[frame["date"] > split_date]),
+    }
+
+
+def aggregate(all_rows: pd.DataFrame, split_date: pd.Timestamp) -> dict:
+    overall = aggregate_frame(all_rows, split_date)
+    by_market = {
+        mkt: aggregate_frame(all_rows[all_rows["market"] == mkt], split_date)
+        for mkt in sorted(all_rows["market"].dropna().unique())
+    }
     return {
         "meta": {
-            "samples": int(len(all_rows)),
-            "symbols": int(all_rows["symbol"].nunique()),
+            "samples": overall["samples"],
+            "symbols": overall["symbols"],
             "date_range": [str(all_rows["date"].min().date()), str(all_rows["date"].max().date())],
             "oos_split": str(split_date.date()),
             "horizons": HORIZONS,
             "step_days": STEP,
-            "long_short_edge_15d_pct": edge_15d,
+            "long_short_edge_15d_pct": overall["long_short_edge_15d_pct"],
             "note": "Price-only technical score. Forward returns are point-in-time. "
                     "Most recent 12 months held out-of-sample. Not financial advice.",
         },
-        "in_sample": by_band(ins),
-        "out_of_sample": by_band(oos),
+        "in_sample": overall["in_sample"],
+        "out_of_sample": overall["out_of_sample"],
+        "by_market": by_market,
     }
 
 
@@ -212,6 +227,8 @@ def _print(result: dict) -> None:
     m = result["meta"]
     print(f"\nBacktest: {m['samples']} samples · {m['symbols']} names · {m['date_range'][0]}→{m['date_range'][1]}")
     print(f"Long/short 15d ALPHA edge: {m['long_short_edge_15d_pct']}%   (OOS split {m['oos_split']})")
+    for mkt, mv in result.get("by_market", {}).items():
+        print(f"   · {mkt}: edge {mv['long_short_edge_15d_pct']}% ({mv['samples']} samples, {mv['symbols']} names)")
     print("Hit-rate = beat (BUY) / lagged (SELL) the benchmark. Means: alpha vs index | absolute.\n")
     for split_name in ["in_sample", "out_of_sample"]:
         print(f"── {split_name.replace('_',' ').upper()} ──")

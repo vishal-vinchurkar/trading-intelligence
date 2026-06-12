@@ -199,5 +199,385 @@
         "mean_abs_pct": 1.46
       }
     }
+  },
+  "by_market": {
+    "India": {
+      "samples": 5388,
+      "symbols": 12,
+      "long_short_edge_15d_pct": -0.03,
+      "in_sample": {
+        "STRONG_BUY": {
+          "n": 1705,
+          "5d": {
+            "hit_rate": 49.9,
+            "mean_excess_pct": 0.05,
+            "mean_abs_pct": 0.25
+          },
+          "15d": {
+            "hit_rate": 49.9,
+            "mean_excess_pct": 0.1,
+            "mean_abs_pct": 0.63
+          },
+          "30d": {
+            "hit_rate": 50.3,
+            "mean_excess_pct": 0.25,
+            "mean_abs_pct": 1.31
+          }
+        },
+        "BUY": {
+          "n": 1058,
+          "5d": {
+            "hit_rate": 48.9,
+            "mean_excess_pct": 0.1,
+            "mean_abs_pct": 0.26
+          },
+          "15d": {
+            "hit_rate": 50.8,
+            "mean_excess_pct": 0.34,
+            "mean_abs_pct": 0.91
+          },
+          "30d": {
+            "hit_rate": 51.3,
+            "mean_excess_pct": 0.7,
+            "mean_abs_pct": 1.85
+          }
+        },
+        "NEUTRAL": {
+          "n": 924,
+          "5d": {
+            "hit_rate": null,
+            "mean_excess_pct": 0.08,
+            "mean_abs_pct": 0.34
+          },
+          "15d": {
+            "hit_rate": null,
+            "mean_excess_pct": 0.28,
+            "mean_abs_pct": 1.08
+          },
+          "30d": {
+            "hit_rate": null,
+            "mean_excess_pct": 0.35,
+            "mean_abs_pct": 2.03
+          }
+        },
+        "SELL": {
+          "n": 549,
+          "5d": {
+            "hit_rate": 50.3,
+            "mean_excess_pct": 0.12,
+            "mean_abs_pct": 0.55
+          },
+          "15d": {
+            "hit_rate": 50.1,
+            "mean_excess_pct": 0.28,
+            "mean_abs_pct": 1.7
+          },
+          "30d": {
+            "hit_rate": 48.5,
+            "mean_excess_pct": 0.78,
+            "mean_abs_pct": 3.43
+          }
+        },
+        "STRONG_SELL": {
+          "n": 552,
+          "5d": {
+            "hit_rate": 49.6,
+            "mean_excess_pct": 0.13,
+            "mean_abs_pct": 0.71
+          },
+          "15d": {
+            "hit_rate": 46.2,
+            "mean_excess_pct": 0.37,
+            "mean_abs_pct": 2.22
+          },
+          "30d": {
+            "hit_rate": 48.9,
+            "mean_excess_pct": 0.5,
+            "mean_abs_pct": 4.14
+          }
+        }
+      },
+      "out_of_sample": {
+        "STRONG_BUY": {
+          "n": 156,
+          "5d": {
+            "hit_rate": 52.6,
+            "mean_excess_pct": -0.1,
+            "mean_abs_pct": -0.15
+          },
+          "15d": {
+            "hit_rate": 48.7,
+            "mean_excess_pct": -0.37,
+            "mean_abs_pct": -0.68
+          },
+          "30d": {
+            "hit_rate": 46.2,
+            "mean_excess_pct": -0.24,
+            "mean_abs_pct": -1.04
+          }
+        },
+        "BUY": {
+          "n": 110,
+          "5d": {
+            "hit_rate": 40.9,
+            "mean_excess_pct": -0.06,
+            "mean_abs_pct": -0.04
+          },
+          "15d": {
+            "hit_rate": 46.4,
+            "mean_excess_pct": 0.02,
+            "mean_abs_pct": -0.02
+          },
+          "30d": {
+            "hit_rate": 52.7,
+            "mean_excess_pct": -0.04,
+            "mean_abs_pct": 0.18
+          }
+        },
+        "NEUTRAL": {
+          "n": 113,
+          "5d": {
+            "hit_rate": null,
+            "mean_excess_pct": -0.21,
+            "mean_abs_pct": -0.07
+          },
+          "15d": {
+            "hit_rate": null,
+            "mean_excess_pct": -0.16,
+            "mean_abs_pct": -0.2
+          },
+          "30d": {
+            "hit_rate": null,
+            "mean_excess_pct": -0.16,
+            "mean_abs_pct": -0.87
+          }
+        },
+        "SELL": {
+          "n": 91,
+          "5d": {
+            "hit_rate": 52.7,
+            "mean_excess_pct": -0.1,
+            "mean_abs_pct": -0.16
+          },
+          "15d": {
+            "hit_rate": 53.8,
+            "mean_excess_pct": -0.4,
+            "mean_abs_pct": -0.4
+          },
+          "30d": {
+            "hit_rate": 60.4,
+            "mean_excess_pct": -1.08,
+            "mean_abs_pct": -1.21
+          }
+        },
+        "STRONG_SELL": {
+          "n": 130,
+          "5d": {
+            "hit_rate": 52.3,
+            "mean_excess_pct": -0.04,
+            "mean_abs_pct": -0.01
+          },
+          "15d": {
+            "hit_rate": 52.3,
+            "mean_excess_pct": -0.51,
+            "mean_abs_pct": -0.59
+          },
+          "30d": {
+            "hit_rate": 60.0,
+            "mean_excess_pct": -1.57,
+            "mean_abs_pct": -2.03
+          }
+        }
+      }
+    },
+    "US": {
+      "samples": 9597,
+      "symbols": 21,
+      "long_short_edge_15d_pct": 0.36,
+      "in_sample": {
+        "STRONG_BUY": {
+          "n": 3279,
+          "5d": {
+            "hit_rate": 52.8,
+            "mean_excess_pct": 0.24,
+            "mean_abs_pct": 0.44
+          },
+          "15d": {
+            "hit_rate": 54.2,
+            "mean_excess_pct": 0.81,
+            "mean_abs_pct": 1.39
+          },
+          "30d": {
+            "hit_rate": 54.9,
+            "mean_excess_pct": 1.74,
+            "mean_abs_pct": 2.93
+          }
+        },
+        "BUY": {
+          "n": 1693,
+          "5d": {
+            "hit_rate": 49.7,
+            "mean_excess_pct": 0.08,
+            "mean_abs_pct": 0.35
+          },
+          "15d": {
+            "hit_rate": 50.3,
+            "mean_excess_pct": 0.27,
+            "mean_abs_pct": 1.01
+          },
+          "30d": {
+            "hit_rate": 51.5,
+            "mean_excess_pct": 0.47,
+            "mean_abs_pct": 1.93
+          }
+        },
+        "NEUTRAL": {
+          "n": 1474,
+          "5d": {
+            "hit_rate": null,
+            "mean_excess_pct": 0.27,
+            "mean_abs_pct": 0.52
+          },
+          "15d": {
+            "hit_rate": null,
+            "mean_excess_pct": 0.52,
+            "mean_abs_pct": 1.44
+          },
+          "30d": {
+            "hit_rate": null,
+            "mean_excess_pct": 0.63,
+            "mean_abs_pct": 2.33
+          }
+        },
+        "SELL": {
+          "n": 961,
+          "5d": {
+            "hit_rate": 50.7,
+            "mean_excess_pct": 0.04,
+            "mean_abs_pct": 0.39
+          },
+          "15d": {
+            "hit_rate": 51.7,
+            "mean_excess_pct": 0.1,
+            "mean_abs_pct": 1.08
+          },
+          "30d": {
+            "hit_rate": 49.9,
+            "mean_excess_pct": 0.41,
+            "mean_abs_pct": 2.31
+          }
+        },
+        "STRONG_SELL": {
+          "n": 1140,
+          "5d": {
+            "hit_rate": 48.2,
+            "mean_excess_pct": 0.08,
+            "mean_abs_pct": 0.34
+          },
+          "15d": {
+            "hit_rate": 48.4,
+            "mean_excess_pct": 0.43,
+            "mean_abs_pct": 1.35
+          },
+          "30d": {
+            "hit_rate": 46.7,
+            "mean_excess_pct": 1.18,
+            "mean_abs_pct": 3.1
+          }
+        }
+      },
+      "out_of_sample": {
+        "STRONG_BUY": {
+          "n": 350,
+          "5d": {
+            "hit_rate": 49.7,
+            "mean_excess_pct": 0.24,
+            "mean_abs_pct": 0.65
+          },
+          "15d": {
+            "hit_rate": 51.7,
+            "mean_excess_pct": 0.94,
+            "mean_abs_pct": 2.28
+          },
+          "30d": {
+            "hit_rate": 48.6,
+            "mean_excess_pct": 1.53,
+            "mean_abs_pct": 3.97
+          }
+        },
+        "BUY": {
+          "n": 186,
+          "5d": {
+            "hit_rate": 51.6,
+            "mean_excess_pct": 0.04,
+            "mean_abs_pct": 0.57
+          },
+          "15d": {
+            "hit_rate": 53.2,
+            "mean_excess_pct": 0.37,
+            "mean_abs_pct": 1.83
+          },
+          "30d": {
+            "hit_rate": 48.4,
+            "mean_excess_pct": 1.68,
+            "mean_abs_pct": 4.57
+          }
+        },
+        "NEUTRAL": {
+          "n": 222,
+          "5d": {
+            "hit_rate": null,
+            "mean_excess_pct": -0.2,
+            "mean_abs_pct": 0.33
+          },
+          "15d": {
+            "hit_rate": null,
+            "mean_excess_pct": -0.91,
+            "mean_abs_pct": 0.52
+          },
+          "30d": {
+            "hit_rate": null,
+            "mean_excess_pct": -1.2,
+            "mean_abs_pct": 1.66
+          }
+        },
+        "SELL": {
+          "n": 136,
+          "5d": {
+            "hit_rate": 52.2,
+            "mean_excess_pct": 0.31,
+            "mean_abs_pct": 0.83
+          },
+          "15d": {
+            "hit_rate": 45.6,
+            "mean_excess_pct": 0.68,
+            "mean_abs_pct": 2.33
+          },
+          "30d": {
+            "hit_rate": 52.9,
+            "mean_excess_pct": -0.5,
+            "mean_abs_pct": 3.28
+          }
+        },
+        "STRONG_SELL": {
+          "n": 156,
+          "5d": {
+            "hit_rate": 52.6,
+            "mean_excess_pct": 0.07,
+            "mean_abs_pct": 0.65
+          },
+          "15d": {
+            "hit_rate": 53.2,
+            "mean_excess_pct": 0.0,
+            "mean_abs_pct": 1.89
+          },
+          "30d": {
+            "hit_rate": 55.8,
+            "mean_excess_pct": 0.53,
+            "mean_abs_pct": 4.38
+          }
+        }
+      }
+    }
   }
 }

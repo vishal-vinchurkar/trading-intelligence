@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Disclaimer } from "@/components/Disclaimer";
-import { getSignal, scan, type Label } from "@/lib/scan";
+import { fmtPrice, getSignal, scan, type Label } from "@/lib/scan";
 
 const labelChip: Record<Label, string> = {
   STRONG_BUY: "bg-bull/20 text-bull",
@@ -27,7 +27,7 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
           <Link href="/" className="text-xs text-muted hover:text-white">← all signals</Link>
           <div className="mt-2 flex items-baseline gap-3">
             <h1 className="font-mono text-3xl font-bold">{s.symbol}</h1>
-            <span className="text-sm text-muted">{s.market} · {s.sector} · {s.last_close}</span>
+            <span className="text-sm text-muted">{s.market} · {s.sector} · {fmtPrice(s.market, s.last_close)}</span>
             {s.is_favourite && <span className="text-watch">★ watchlist</span>}
           </div>
         </div>
@@ -83,11 +83,11 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
           <div className="rounded-xl border border-border bg-panel p-5">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <Field label="Direction" value={s.trade.direction.toUpperCase()} />
-              <Field label="Entry" value={`${s.trade.entry}`} mono />
-              <Field label="Stop" value={`${s.trade.stop}`} mono />
-              <Field label="Target" value={`${s.trade.target}`} mono />
-              <Field label="Risk/share" value={`${s.trade.risk_per_share}`} mono />
-              <Field label="Reward/share" value={`${s.trade.reward_per_share}`} mono />
+              <Field label="Entry" value={fmtPrice(s.market, s.trade.entry)} mono />
+              <Field label="Stop" value={fmtPrice(s.market, s.trade.stop)} mono />
+              <Field label="Target" value={fmtPrice(s.market, s.trade.target)} mono />
+              <Field label="Risk/share" value={fmtPrice(s.market, s.trade.risk_per_share)} mono />
+              <Field label="Reward/share" value={fmtPrice(s.market, s.trade.reward_per_share)} mono />
               <Field label="R:R" value={`${s.trade.risk_reward}`} mono />
               <Field label="Actionable" value={s.trade.actionable ? "Yes" : "Watch"} />
             </div>
@@ -111,7 +111,7 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
                 <tr key={h} className="border-t border-border">
                   <td className="py-1.5 text-muted">{h}</td>
                   <td className="py-1.5 font-mono">±{s.expected_move[h].sigma_pct}%</td>
-                  <td className="py-1.5 font-mono text-muted">{s.expected_move[h].low} – {s.expected_move[h].high}</td>
+                  <td className="py-1.5 font-mono text-muted">{fmtPrice(s.market, s.expected_move[h].low)} – {fmtPrice(s.market, s.expected_move[h].high)}</td>
                 </tr>
               ))}
             </tbody>
@@ -120,9 +120,9 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         <div className="rounded-xl border border-border bg-panel p-5">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">Key levels</h3>
           <div className="mt-3 space-y-2 text-sm">
-            <div><span className="text-muted">Resistance: </span><span className="font-mono">{s.key_levels.resistance.join(", ") || "—"}</span></div>
-            <div><span className="text-muted">Support: </span><span className="font-mono">{s.key_levels.support.join(", ") || "—"}</span></div>
-            <div><span className="text-muted">ATR(14): </span><span className="font-mono">{s.volatility.atr_14} ({s.volatility.atr_pct}%)</span></div>
+            <div><span className="text-muted">Resistance: </span><span className="font-mono">{s.key_levels.resistance.map((r) => fmtPrice(s.market, r)).join(", ") || "—"}</span></div>
+            <div><span className="text-muted">Support: </span><span className="font-mono">{s.key_levels.support.map((r) => fmtPrice(s.market, r)).join(", ") || "—"}</span></div>
+            <div><span className="text-muted">ATR(14): </span><span className="font-mono">{fmtPrice(s.market, s.volatility.atr_14)} ({s.volatility.atr_pct}%)</span></div>
           </div>
         </div>
       </section>

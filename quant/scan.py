@@ -32,15 +32,19 @@ BACKTEST_PATH = Path(__file__).parent / "backtest_results.json"
 FAVOURITES = ["AAPL", "RELIANCE.NS"]
 
 
-def _calibration(band: str) -> dict:
-    """Pull the band's backtested 15d hit-rate / alpha (in- and out-of-sample)."""
-    if not BACKTEST_PATH.exists():
-        return {}
-    bt = json.loads(BACKTEST_PATH.read_text())
-    ins = bt.get("in_sample", {}).get(band, {})
-    oos = bt.get("out_of_sample", {}).get(band, {})
+def _backtest() -> dict:
+    return json.loads(BACKTEST_PATH.read_text()) if BACKTEST_PATH.exists() else {}
+
+
+def _calibration(band: str, market: str | None, bt: dict) -> dict:
+    """The band's backtested 15d hit-rate / alpha — validated on THIS market's own
+    history (US signals on US, India on India), falling back to the blended set."""
+    src = bt.get("by_market", {}).get(market) or bt
+    ins = src.get("in_sample", {}).get(band, {})
+    oos = src.get("out_of_sample", {}).get(band, {})
     return {
         "band": band,
+        "market": market,
         "hit_rate_15d": ins.get("15d", {}).get("hit_rate"),
         "alpha_15d_pct": ins.get("15d", {}).get("mean_excess_pct"),
         "samples": ins.get("n"),
@@ -49,10 +53,11 @@ def _calibration(band: str) -> dict:
     }
 
 
-def scan_one(symbol: str) -> dict | None:
+def scan_one(symbol: str, bt: dict) -> dict | None:
     df = load_cached(symbol)
     if df is None or len(df) < 200:
         return None
+    market = universe.market_of(symbol)
     bench = load_cached(universe.benchmark_for(symbol))
     bc = bench["close"] if bench is not None else None
 
@@ -65,7 +70,7 @@ def scan_one(symbol: str) -> dict | None:
     )
     return {
         "symbol": symbol,
-        "market": universe.market_of(symbol),
+        "market": market,
         "sector": universe.sector_of(symbol),
         "as_of": str(df.index[-1].date()),
         "last_close": ind["last_close"],
@@ -79,18 +84,28 @@ def scan_one(symbol: str) -> dict | None:
         "expected_move": ind["expected_move"],
         "key_levels": ind["key_levels"],
         "trade": trade,
-        "calibration": _calibration(sc["label"]),
+        "calibration": _calibration(sc["label"], market, bt),
         "is_favourite": symbol in FAVOURITES,
     }
 
 
 def run() -> dict:
-    signals = [s for s in (scan_one(sym) for sym in universe.symbols()) if s]
+    bt = _backtest()
+    signals = [s for s in (scan_one(sym, bt) for sym in universe.symbols()) if s]
     # Rank by conviction (distance from neutral): strongest longs and shorts float up.
     signals.sort(key=lambda s: s["conviction"], reverse=True)
     as_of = max((s["as_of"] for s in signals), default=None)
 
-    bt_meta = json.loads(BACKTEST_PATH.read_text())["meta"] if BACKTEST_PATH.exists() else {}
+    bt_meta = dict(bt.get("meta", {}))
+    # Per-market edge so the dashboard banner can show US vs India separately.
+    bt_meta["by_market"] = {
+        mkt: {
+            "long_short_edge_15d_pct": mv.get("long_short_edge_15d_pct"),
+            "samples": mv.get("samples"),
+            "symbols": mv.get("symbols"),
+        }
+        for mkt, mv in bt.get("by_market", {}).items()
+    }
     result = {
         "as_of": as_of,
         "universe_size": len(signals),

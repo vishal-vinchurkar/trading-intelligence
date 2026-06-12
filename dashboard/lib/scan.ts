@@ -70,10 +70,24 @@ export interface Scan {
     step_days: number;
     long_short_edge_15d_pct: number | null;
     note: string;
+    by_market: Record<string, { long_short_edge_15d_pct: number | null; samples: number; symbols: number }>;
   };
   favourites: string[];
   signals: Signal[];
 }
+
+export type MarketFilter = "All" | "US" | "India";
+
+/** Native currency symbol per market — keeps $295 and ₹1,269 unambiguous. */
+export function currencyFor(market: string): string {
+  return market === "India" ? "₹" : "$";
+}
+
+export function fmtPrice(market: string, value: number): string {
+  return `${currencyFor(market)}${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+}
+
+const inMarket = (m: MarketFilter) => (s: Signal) => m === "All" || s.market === m;
 
 export const scan = scanData as unknown as Scan;
 
@@ -84,27 +98,34 @@ export function getSignal(symbol: string): Signal | undefined {
 const isLong = (s: Signal) => s.label === "STRONG_BUY" || s.label === "BUY";
 const isShort = (s: Signal) => s.label === "STRONG_SELL" || s.label === "SELL";
 
-/** Strongest longs, highest score first. */
-export function topLongs(n = 6): Signal[] {
-  return scan.signals.filter(isLong).sort((a, b) => b.score - a.score).slice(0, n);
+/** Strongest longs in the selected market, highest score first. */
+export function topLongs(market: MarketFilter = "All", n = 6): Signal[] {
+  return scan.signals.filter(inMarket(market)).filter(isLong).sort((a, b) => b.score - a.score).slice(0, n);
 }
 
-/** Strongest shorts, lowest score first. */
-export function topShorts(n = 6): Signal[] {
-  return scan.signals.filter(isShort).sort((a, b) => a.score - b.score).slice(0, n);
+/** Strongest shorts in the selected market, lowest score first. */
+export function topShorts(market: MarketFilter = "All", n = 6): Signal[] {
+  return scan.signals.filter(inMarket(market)).filter(isShort).sort((a, b) => a.score - b.score).slice(0, n);
 }
 
-export function favourites(): Signal[] {
+export function favourites(market: MarketFilter = "All"): Signal[] {
   return scan.signals
+    .filter(inMarket(market))
     .filter((s) => s.is_favourite)
     .sort((a, b) => b.conviction - a.conviction);
 }
 
-/** The "book": net bias + sector/market mix for the scanned universe. */
-export function book() {
-  const longs = scan.signals.filter(isLong).length;
-  const shorts = scan.signals.filter(isShort).length;
-  const neutral = scan.signals.length - longs - shorts;
-  const actionable = scan.signals.filter((s) => s.trade?.actionable).length;
-  return { longs, shorts, neutral, actionable, total: scan.signals.length };
+/** The "book": net bias for the selected market. */
+export function book(market: MarketFilter = "All") {
+  const set = scan.signals.filter(inMarket(market));
+  const longs = set.filter(isLong).length;
+  const shorts = set.filter(isShort).length;
+  const actionable = set.filter((s) => s.trade?.actionable).length;
+  return { longs, shorts, neutral: set.length - longs - shorts, actionable, total: set.length };
+}
+
+/** Backtested long/short alpha edge for the selected market (or blended for "All"). */
+export function edgeFor(market: MarketFilter): number | null {
+  if (market === "All") return scan.backtest_meta.long_short_edge_15d_pct;
+  return scan.backtest_meta.by_market?.[market]?.long_short_edge_15d_pct ?? null;
 }

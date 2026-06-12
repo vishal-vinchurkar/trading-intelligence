@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Label, Signal } from "@/lib/scan";
+import { fmtPrice, type Label, type Signal } from "@/lib/scan";
 
 const labelStyle: Record<Label, { chip: string; ring: string; bar: string }> = {
   STRONG_BUY: { chip: "bg-bull/20 text-bull", ring: "ring-bull/40", bar: "bg-bull" },
@@ -27,7 +27,7 @@ export function QuantCard({ s }: { s: Signal }) {
             <span className="font-mono text-base font-semibold">{s.symbol}</span>
             {s.is_favourite && <span className="text-watch text-xs">★</span>}
           </div>
-          <div className="text-[11px] text-muted">{s.market} · {s.sector}</div>
+          <div className="text-[11px] text-muted">{s.market} · {s.sector} · {fmtPrice(s.market, s.last_close)}</div>
         </div>
         <span className={`rounded-md px-2 py-0.5 text-xs font-bold ${st.chip}`}>
           {s.label.replace("_", " ")}
