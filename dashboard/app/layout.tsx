@@ -24,15 +24,9 @@ export default function RootLayout({
               </span>
               <span className="text-xs text-muted">US · India</span>
             </Link>
-            <span className="text-xs text-muted">free-tier models · $0 inference</span>
           </div>
         </header>
         <main className="mx-auto max-w-6xl px-6 py-8">{children}</main>
-        <footer className="mx-auto max-w-6xl px-6 py-10 text-xs text-muted">
-          Two AI analysts run in parallel — one blind to fundamentals, one blind to
-          price — and a larger model arbitrates the final verdict. Experimental
-          research tooling. Not financial advice.
-        </footer>
       </body>
     </html>
   );
