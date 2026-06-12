@@ -12,6 +12,10 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 
+# Backtest feature store — bulky and fully regenerable via `python -m data.backfill`.
+# (The dashboard ships quant/scan.json + dashboard/data/scan.json instead.)
+data/cache/
+
 # Node / Next.js (dashboard, added in Phase 3)
 node_modules/
 .next/

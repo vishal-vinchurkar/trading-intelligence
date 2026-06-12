@@ -1,210 +1,140 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AgentOutputPanel } from "@/components/AgentOutputPanel";
 import { Disclaimer } from "@/components/Disclaimer";
-import {
-  alignmentChip,
-  confidencePct,
-  directionArrow,
-  directionColor,
-  formatWhen,
-  signalChip,
-  verdictStyles,
-} from "@/lib/display";
-import {
-  fetchLatestAgentOutputs,
-  fetchTickerHistory,
-  isSupabaseConfigured,
-} from "@/lib/supabase";
+import { getSignal, scan, type Label } from "@/lib/scan";
 
-export const dynamic = "force-dynamic";
+const labelChip: Record<Label, string> = {
+  STRONG_BUY: "bg-bull/20 text-bull",
+  BUY: "bg-bull/15 text-bull",
+  NEUTRAL: "bg-neutral/15 text-neutral",
+  SELL: "bg-bear/15 text-bear",
+  STRONG_SELL: "bg-bear/20 text-bear",
+};
 
-// Per-ticker detail: the latest verdict in full (prediction legs, invalidation,
-// risk/reward, reasoning), the three raw agent outputs (the isolation story),
-// and the prediction history below.
-export default async function TickerPage({
-  params,
-}: {
-  params: Promise<{ symbol: string }>;
-}) {
-  const { symbol: rawSymbol } = await params;
-  const symbol = decodeURIComponent(rawSymbol);
+export function generateStaticParams() {
+  return scan.signals.map((s) => ({ symbol: s.symbol }));
+}
 
-  if (!isSupabaseConfigured) {
-    return (
-      <div className="space-y-4">
-        <BackLink />
-        <p className="text-sm text-muted">
-          Supabase is not configured, so per-ticker data is unavailable.
-        </p>
-      </div>
-    );
-  }
-
-  const { ticker, predictions } = await fetchTickerHistory(symbol);
-  if (!ticker || predictions.length === 0) notFound();
-
-  const latest = predictions[0];
-  const agentOutputs = await fetchLatestAgentOutputs(ticker.id);
-  const v = verdictStyles[latest.verdict] ?? verdictStyles.WATCH;
-
-  const legs = [
-    { label: "5 day", leg: latest.prediction_5d },
-    { label: "15 day", leg: latest.prediction_15d },
-    { label: "30 day", leg: latest.prediction_30d },
-  ];
+export default async function TickerPage({ params }: { params: Promise<{ symbol: string }> }) {
+  const { symbol: raw } = await params;
+  const s = getSignal(decodeURIComponent(raw));
+  if (!s) notFound();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-7">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <BackLink />
+          <Link href="/" className="text-xs text-muted hover:text-white">← all signals</Link>
           <div className="mt-2 flex items-baseline gap-3">
-            <h1 className="font-mono text-3xl font-bold tracking-tight">
-              {ticker.symbol}
-            </h1>
-            <span className="text-sm text-muted">
-              {ticker.name ? `${ticker.name} · ` : ""}
-              {ticker.market}
-              {ticker.exchange ? `/${ticker.exchange}` : ""}
-            </span>
+            <h1 className="font-mono text-3xl font-bold">{s.symbol}</h1>
+            <span className="text-sm text-muted">{s.market} · {s.sector} · {s.last_close}</span>
+            {s.is_favourite && <span className="text-watch">★ watchlist</span>}
           </div>
         </div>
         <Disclaimer />
       </div>
 
-      {/* Verdict block */}
-      <section className={`rounded-xl border border-border bg-panel p-6 ring-1 ${v.ring}`}>
+      {/* Headline: score + label + backtested confidence */}
+      <section className="rounded-xl border border-border bg-panel p-5">
         <div className="flex flex-wrap items-center gap-3">
-          <span className={`rounded-lg px-3 py-1.5 text-xl font-bold ${v.chip}`}>
-            {latest.verdict}
+          <span className={`rounded-lg px-3 py-1.5 text-lg font-bold ${labelChip[s.label]}`}>
+            {s.label.replace("_", " ")}
           </span>
-          <span className="text-sm text-muted">
-            confidence{" "}
-            <span className={`font-mono ${v.text}`}>
-              {confidencePct(latest.confidence)}
-            </span>
-          </span>
-          {latest.signal_alignment && (
-            <span className={`rounded px-2 py-0.5 text-xs ${alignmentChip(latest.signal_alignment)}`}>
-              {latest.signal_alignment}
-            </span>
-          )}
-          <span className={`rounded px-2 py-0.5 text-xs ${signalChip(latest.technical_signal)}`}>
-            T·{latest.technical_signal ?? "—"}
-          </span>
-          <span className={`rounded px-2 py-0.5 text-xs ${signalChip(latest.fundamental_signal)}`}>
-            F·{latest.fundamental_signal ?? "—"}
-          </span>
-          <span className="ml-auto text-xs text-muted">{formatWhen(latest.created_at)}</span>
+          <span className="font-mono text-2xl">{s.score.toFixed(0)}<span className="text-sm text-muted">/100</span></span>
+          <span className="ml-auto text-xs text-muted">as of {s.as_of}</span>
         </div>
+        <p className="mt-3 text-sm text-muted">
+          Confidence here is <span className="text-white">not</span> a model's feeling — it's the{" "}
+          <span className="text-white">backtested 15-day hit-rate</span> for this signal band:{" "}
+          <span className="font-mono text-white">{s.calibration.hit_rate_15d ?? "—"}%</span>
+          {s.calibration.oos_hit_rate_15d != null && (
+            <> in-sample, <span className="font-mono text-white">{s.calibration.oos_hit_rate_15d}%</span> out-of-sample</>
+          )}
+          {s.calibration.samples != null && <> across {s.calibration.samples.toLocaleString()} historical setups.</>}
+        </p>
+      </section>
 
-        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {legs.map(({ label, leg }) => (
-            <div key={label} className="rounded-lg border border-border bg-bg/50 p-4">
-              <div className="text-xs uppercase tracking-wide text-muted">{label}</div>
-              <div className={`mt-1 text-lg ${directionColor(leg?.direction)}`}>
-                {directionArrow(leg?.direction)} {leg?.direction ?? "—"}
+      {/* Score components — why the engine thinks what it thinks */}
+      <section>
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">Why — score components</h2>
+        <div className="space-y-2">
+          {Object.entries(s.components).map(([name, c]) => (
+            <div key={name} className="rounded-lg border border-border bg-panel p-3">
+              <div className="flex items-center justify-between text-sm">
+                <span className="capitalize">{name.replace("_", " ")} <span className="text-[11px] text-muted">({Math.round(c.weight * 100)}%)</span></span>
+                <span className="font-mono">{c.score.toFixed(0)}</span>
               </div>
-              <div className="text-sm text-muted">{leg?.magnitude ?? "—"}</div>
+              <div className="mt-1.5 h-1 rounded-full bg-border">
+                <div className={`h-1 rounded-full ${c.score >= 50 ? "bg-bull" : "bg-bear"}`} style={{ width: `${c.score}%` }} />
+              </div>
+              <div className="mt-1 text-[11px] text-muted">{c.reason}</div>
             </div>
           ))}
-        </div>
-
-        {latest.reasoning && (
-          <p className="mt-5 text-sm leading-relaxed text-white/90">{latest.reasoning}</p>
-        )}
-
-        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {latest.invalidation && (
-            <Field label="Invalidation" value={latest.invalidation} />
-          )}
-          {latest.risk_reward && (
-            <Field label="Risk / reward" value={latest.risk_reward} mono />
-          )}
+          <div className="text-[11px] text-muted">
+            Timing modifier: {s.timing.adjustment > 0 ? "+" : ""}{s.timing.adjustment} ({s.timing.reason})
+          </div>
         </div>
       </section>
 
-      {/* Raw agent outputs */}
+      {/* The trade */}
       <section>
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
-          Agent reports — show the work
-        </h2>
-        {agentOutputs.length === 0 ? (
-          <p className="text-sm text-muted">
-            Raw agent outputs weren&apos;t persisted for this run.
-          </p>
-        ) : (
-          <div className="space-y-3">
-            {agentOutputs
-              .sort((a, b) => order(a.agent) - order(b.agent))
-              .map((o) => (
-                <AgentOutputPanel key={o.id} output={o} />
-              ))}
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">The trade</h2>
+        {s.trade ? (
+          <div className="rounded-xl border border-border bg-panel p-5">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <Field label="Direction" value={s.trade.direction.toUpperCase()} />
+              <Field label="Entry" value={`${s.trade.entry}`} mono />
+              <Field label="Stop" value={`${s.trade.stop}`} mono />
+              <Field label="Target" value={`${s.trade.target}`} mono />
+              <Field label="Risk/share" value={`${s.trade.risk_per_share}`} mono />
+              <Field label="Reward/share" value={`${s.trade.reward_per_share}`} mono />
+              <Field label="R:R" value={`${s.trade.risk_reward}`} mono />
+              <Field label="Actionable" value={s.trade.actionable ? "Yes" : "Watch"} />
+            </div>
+            <p className={`mt-3 text-xs ${s.trade.actionable ? "text-bull" : "text-muted"}`}>{s.trade.note}</p>
           </div>
+        ) : (
+          <p className="text-sm text-muted">NEUTRAL — no directional setup. The engine sees no edge worth risking here.</p>
         )}
       </section>
 
-      {/* History */}
-      {predictions.length > 1 && (
-        <section>
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
-            Prediction history
-          </h2>
-          <div className="overflow-hidden rounded-lg border border-border">
-            <table className="w-full text-sm">
-              <thead className="bg-panel text-left text-xs text-muted">
-                <tr>
-                  <th className="px-4 py-2 font-medium">When</th>
-                  <th className="px-4 py-2 font-medium">Verdict</th>
-                  <th className="px-4 py-2 font-medium">Conf.</th>
-                  <th className="px-4 py-2 font-medium">Alignment</th>
-                  <th className="px-4 py-2 font-medium">5d / 15d / 30d</th>
+      {/* Volatility-scaled expected move + levels */}
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="rounded-xl border border-border bg-panel p-5">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">Expected move (1σ)</h3>
+          <p className="mb-3 mt-1 text-[11px] text-muted">
+            Sized to realised volatility ({s.volatility.annual_vol_pct}% annualised), not guessed.
+          </p>
+          <table className="w-full text-sm">
+            <tbody>
+              {(["5d", "15d", "30d"] as const).map((h) => (
+                <tr key={h} className="border-t border-border">
+                  <td className="py-1.5 text-muted">{h}</td>
+                  <td className="py-1.5 font-mono">±{s.expected_move[h].sigma_pct}%</td>
+                  <td className="py-1.5 font-mono text-muted">{s.expected_move[h].low} – {s.expected_move[h].high}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {predictions.map((p) => {
-                  const pv = verdictStyles[p.verdict] ?? verdictStyles.WATCH;
-                  return (
-                    <tr key={p.id} className="border-t border-border">
-                      <td className="px-4 py-2 text-muted">{formatWhen(p.created_at)}</td>
-                      <td className={`px-4 py-2 font-semibold ${pv.text}`}>{p.verdict}</td>
-                      <td className="px-4 py-2 font-mono">{confidencePct(p.confidence)}</td>
-                      <td className="px-4 py-2 text-muted">{p.signal_alignment ?? "—"}</td>
-                      <td className="px-4 py-2 font-mono text-xs text-muted">
-                        {directionArrow(p.prediction_5d?.direction)}{" "}
-                        {directionArrow(p.prediction_15d?.direction)}{" "}
-                        {directionArrow(p.prediction_30d?.direction)}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="rounded-xl border border-border bg-panel p-5">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">Key levels</h3>
+          <div className="mt-3 space-y-2 text-sm">
+            <div><span className="text-muted">Resistance: </span><span className="font-mono">{s.key_levels.resistance.join(", ") || "—"}</span></div>
+            <div><span className="text-muted">Support: </span><span className="font-mono">{s.key_levels.support.join(", ") || "—"}</span></div>
+            <div><span className="text-muted">ATR(14): </span><span className="font-mono">{s.volatility.atr_14} ({s.volatility.atr_pct}%)</span></div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </div>
-  );
-}
-
-function order(agent: string): number {
-  return { technical: 0, fundamental: 1, arbitrator: 2 }[agent] ?? 9;
-}
-
-function BackLink() {
-  return (
-    <Link href="/" className="text-xs text-muted hover:text-white">
-      ← all signals
-    </Link>
   );
 }
 
 function Field({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
-    <div className="rounded-lg border border-border bg-bg/50 p-4">
-      <div className="text-xs uppercase tracking-wide text-muted">{label}</div>
-      <div className={`mt-1 text-sm text-white/90 ${mono ? "font-mono" : ""}`}>{value}</div>
+    <div>
+      <div className="text-[11px] uppercase tracking-wide text-muted">{label}</div>
+      <div className={`mt-0.5 ${mono ? "font-mono" : ""}`}>{value}</div>
     </div>
   );
 }

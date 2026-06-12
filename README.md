@@ -90,10 +90,39 @@ Enable browser read access once per project by running
 SELECT only — anon can never write). Deploys to Vercel as-is; set the two
 `NEXT_PUBLIC_*` env vars in the Vercel project.
 
+## Quant engine + backtest (the executional core)
+
+Beyond the LLM agents, a **deterministic conviction score (0–100)** ranks every
+name in the scan universe from price action alone — trend, 6-month momentum,
+relative strength vs the benchmark, and volume flow, with an RSI entry-timing
+modifier. Because it uses only price, it is computed **point-in-time across 10
+years** and **backtested**: each signal carries its real, out-of-sample 15-day
+hit-rate and alpha-vs-index, so the dashboard's "confidence" is an empirical
+track record, not a model's feeling. Every actionable signal becomes a **trade**
+— entry, 2×ATR stop, structural target, and a computed R:R gated at 1.5.
+
+```bash
+PYTHONPATH=. python -m data.backfill      # 10y daily history → data/cache/ (yfinance, free)
+PYTHONPATH=. python -m quant.backtest     # point-in-time backtest → quant/backtest_results.json
+PYTHONPATH=. python -m quant.scan         # rank the universe → quant/scan.json + dashboard/data/scan.json
+```
+
+Honest limits (by design): the backtested score is **price-only** — free data has
+no clean point-in-time fundamental history, so fundamentals stay a current-state
+LLM overlay we don't claim to have backtested. Edges are **modest** (long side
+~52–53% 15d hit, holds out-of-sample; short side ~noise in a secular bull) — which
+is the truthful result for a price-only signal on liquid large-caps.
+
+The dashboard (`dashboard/`) renders **Top Signals** (ranked conviction) + **My
+Watchlist** (pinned favourites) from the bundled `scan.json` — no DB needed to
+demo. Edit the universe in `data/universe.py` and favourites in `quant/scan.py`.
+
 ## Status
 
 - ✅ Phase 1 — data pipeline (US + India) and indicators
 - ✅ Phase 2 — agents 1/2/3 + async orchestrator
-- ✅ Phase 3 — Next.js dashboard (Vercel + Supabase)
-- ⬜ Phase 4 — Cloudflare cron + accuracy tracking
+- ✅ Phase 3 — Next.js dashboard (Vercel)
+- ✅ Quant engine — deterministic score, 10y point-in-time backtest, trade construct, scan/watchlist dashboard
+- ◻ Phase B (next) — real macro (FRED) + wider fundamentals + earnings/event flag, fed into a hybrid LLM arbitrator
+- ⬜ Phase 4 — cron refresh + forward outcome tracking (+ optional Telegram push)
 - ⬜ Phase 5 — Polymarket inputs

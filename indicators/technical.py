@@ -56,6 +56,43 @@ def support_resistance(df: pd.DataFrame, lookback: int = 90, n_levels: int = 2):
     return sorted(lows.tolist(), reverse=True), sorted(highs.tolist())
 
 
+def atr(df: pd.DataFrame, period: int = 14) -> pd.Series:
+    """Average True Range (Wilder). The stop/target unit of measure — a stop set
+    at N×ATR adapts to each name's actual range instead of an arbitrary %."""
+    high, low, prev_close = df["high"], df["low"], df["close"].shift(1)
+    tr = pd.concat(
+        [high - low, (high - prev_close).abs(), (low - prev_close).abs()], axis=1
+    ).max(axis=1)
+    return tr.ewm(alpha=1 / period, min_periods=period, adjust=False).mean()
+
+
+def realized_vol(close: pd.Series, lookback: int = 20):
+    """Daily and annualised realised volatility from log returns.
+
+    This is what makes a predicted move *mean* something: a 2% call is noise on
+    a 1%-vol name and a real thesis on a 5%-vol name. Expected moves are sized
+    off this, not guessed.
+    """
+    rets = np.log(close / close.shift(1)).dropna()
+    daily = float(rets.tail(lookback).std())
+    return daily, float(daily * np.sqrt(252))
+
+
+def expected_move(last_close: float, daily_vol: float, horizon_days: int) -> dict:
+    """1-sigma expected move over a horizon: price × σ_daily × √days.
+
+    Returns both the % band and the absolute price band. A trade's predicted
+    magnitude should live inside this band — if the model claims a 10% move on a
+    name whose 1σ/30d is 4%, that's a flag, not a forecast.
+    """
+    sigma_pct = float(daily_vol * np.sqrt(horizon_days))
+    return {
+        "sigma_pct": round(sigma_pct * 100, 2),
+        "low": round(last_close * (1 - sigma_pct), 2),
+        "high": round(last_close * (1 + sigma_pct), 2),
+    }
+
+
 # ── Signal interpretation helpers ─────────────────────────────────────
 
 def _rsi_signal(value: float) -> str:
@@ -141,8 +178,22 @@ def compute_all(df: pd.DataFrame) -> dict:
 
     support, resistance = support_resistance(df)
 
+    atr_v = float(atr(df).iloc[-1])
+    daily_vol, annual_vol = realized_vol(close)
+
     return {
         "last_close": round(last_close, 2),
+        "volatility": {
+            "atr_14": round(atr_v, 2),
+            "atr_pct": round(atr_v / last_close * 100, 2),
+            "daily_vol_pct": round(daily_vol * 100, 2),
+            "annual_vol_pct": round(annual_vol * 100, 1),
+        },
+        "expected_move": {
+            "5d": expected_move(last_close, daily_vol, 5),
+            "15d": expected_move(last_close, daily_vol, 15),
+            "30d": expected_move(last_close, daily_vol, 30),
+        },
         "rsi": {"value": round(rsi_v, 1), "signal": _rsi_signal(rsi_v)},
         "macd": {
             "value": round(macd_v, 3),
