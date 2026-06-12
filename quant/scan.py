@@ -20,6 +20,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from agents import narrate as narrate_mod
 from data import events as ev_mod
 from data import fetcher_india  # yfinance fundamentals — keyless, works for US tickers too
 from data import fetcher_macro
@@ -129,7 +130,7 @@ def scan_one(symbol: str, rules: dict, enrich: bool = False) -> dict | None:
         ind["last_close"], ind["volatility"]["atr_14"],
         ind["key_levels"]["support"], ind["key_levels"]["resistance"], direction,
     )
-    return {
+    signal = {
         "symbol": symbol,
         "market": market,
         "sector": universe.sector_of(symbol),
@@ -148,9 +149,16 @@ def scan_one(symbol: str, rules: dict, enrich: bool = False) -> dict | None:
         "calibration": cal,
         "quality": quality,   # Phase B: current-state fundamental overlay (None if not enriched)
         "events": events,     # Phase B: earnings/event-risk flag (None if not enriched)
+        "narration": None,    # hybrid LLM thesis — attached below for tradeable + favourites only
         "history": history,
         "is_favourite": symbol in FAVOURITES,
     }
+    # Hybrid LLM narration — plain-English thesis over the quant verdict + overlays.
+    # Bounded to the names you'd act on (tradeable or pinned) so Groq calls stay
+    # small; it's subordinate to the score and degrades to None on any failure.
+    if enrich and (cal["tradeable"] or symbol in FAVOURITES):
+        signal["narration"] = narrate_mod.narrate(signal)
+    return signal
 
 
 def run(enrich: bool = True) -> dict:

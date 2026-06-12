@@ -48,7 +48,7 @@ Built via two parallel sub-agents (contract-first, disjoint files) + integration
 - `quant/quality.py` — current-state 0–100 fundamental quality score.
 - `data/events.py` — next-earnings / event-within-horizon flag.
 - `quant/scan.py` enriches tradeable + watchlist names (keyless, no AV-quota hit) with quality + events; macro per market. **All current-state overlays — NOT in the backtested score.** Surfaced on the dashboard detail page + ⚠ earnings chip on cards.
-- Hybrid LLM narration: `agents/narrate.py` (Groq) — built + tested, produces thesis+caution subordinate to the quant verdict. **Last wiring step pending:** call `narrate()` in `quant/scan.py` for tradeable+favourites (bounded Groq calls), store `narration` on the signal, surface on the dashboard detail page.
+- Hybrid LLM narration: `agents/narrate.py` (Groq) — produces thesis+caution subordinate to the quant verdict. **WIRED (2026-06-12):** `quant/scan.py` calls `narrate()` for tradeable+favourites only (bounded Groq calls, ~18 names), stores `narration={thesis,caution}` on the signal; surfaced as a "Thesis" card under the headline on the dashboard detail page (`Narration` type in `lib/scan.ts`). Degrades to None on any Groq failure — never breaks the scan.
 
 ## Automation (live)
 - `scripts/daily.sh` (backfill→scan→ledger record→reconcile→telegram) + `scripts/weekly.sh` (re-backtest). **Cron installed** (weekdays 07:30 local, Sun 09:00). `logs/` gitignored.

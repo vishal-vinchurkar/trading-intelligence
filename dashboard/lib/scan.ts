@@ -60,8 +60,14 @@ export interface Signal {
   calibration: Calibration;
   quality: Quality | null;
   events: Events | null;
+  narration: Narration | null;
   history: PricePoint[];
   is_favourite: boolean;
+}
+
+export interface Narration {
+  thesis: string | null;
+  caution: string | null;
 }
 
 export interface Quality {

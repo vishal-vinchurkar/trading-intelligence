@@ -64,6 +64,25 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         </div>
       </section>
 
+      {/* Hybrid LLM thesis — explains the quant verdict in plain English. It is
+          subordinate to the score: it never changes the verdict, only narrates it
+          and surfaces context the price model can't see (the caution line). */}
+      {s.narration?.thesis && (
+        <section className="rounded-xl border border-border bg-panel p-5">
+          <div className="mb-2 flex items-center gap-2">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">Thesis</h2>
+            <span className="rounded bg-border px-1.5 py-0.5 text-[10px] text-muted">LLM narration · explains, doesn&apos;t decide</span>
+          </div>
+          <p className="text-sm leading-relaxed text-white/90">{s.narration.thesis}</p>
+          {s.narration.caution && (
+            <p className="mt-3 flex gap-2 text-sm text-neutral">
+              <span className="shrink-0">⚠</span>
+              <span>{s.narration.caution}</span>
+            </p>
+          )}
+        </section>
+      )}
+
       {/* Price chart — 120d close + 50DMA with the trade levels drawn on it */}
       <section className="rounded-xl border border-border bg-panel p-5">
         <div className="mb-2 flex items-center justify-between">

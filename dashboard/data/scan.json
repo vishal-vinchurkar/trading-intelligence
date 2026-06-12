@@ -10,7 +10,7 @@
       "curve_slope_bps": null,
       "fx": {
         "pair": "USDINR",
-        "level": 95.055,
+        "level": 95.03,
         "trend": "WEAKER"
       },
       "as_of": "2026-06-12",
@@ -155,6 +155,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -882,6 +883,10 @@
         "days_to_earnings": 54,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears favorable due to AMD's strong trend (price above 50/200 DMA) and momentum (6m return +120.4%), coupled with high relative strength (3m vs index +136.3%), indicating robust price performance. However, the flow component is neutral at 70, suggesting accumulation but not overly conclusive.",
+        "caution": "Despite the technical setup, caution is warranted due to AMD's expensive valuation (PE 163.9, P/B 12.4) and upcoming earnings (2026-08-05), which could introduce volatility."
       },
       "history": [
         {
@@ -1611,6 +1616,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and high momentum (6m return of 188.8%), with relative strength also showing significant outperformance (3m vs index +147.7%). However, the flow component is more neutral at 70, indicating some accumulation but not overly conclusive. These technical factors collectively contribute to the model's bullish assessment.",
+        "caution": "The expensive valuation (P/B 5.3, EV/EBITDA 43.3) and weak profitability (ROE -2.9%, net margin -5.9%) could pose risks if not addressed by upcoming earnings (in 42 days)."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -2337,6 +2346,10 @@
         "days_to_earnings": 34,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA), robust momentum (6m return +25.3%, MACD positive), and significant relative strength (3m vs index +35.6%).",
+        "caution": "The trade setup faces potential headwinds from expensive valuation (PE 30.6, P/B 3.8) and an earnings event on 2026-07-16."
       },
       "history": [
         {
@@ -3065,6 +3078,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears attractive due to C's strong trend and momentum, as evidenced by its stacked price/50/200DMA above, 6m return of +26.2%, and positive MACD. Additionally, the stock has shown relative strength with a 3m outperformance of +20.1% vs the index.",
+        "caution": "C's valuation appears cheap but earnings growth may be scrutinized at the upcoming event on 2026-07-14."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -3791,6 +3808,10 @@
         "days_to_earnings": 48,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears attractive due to CVS's strong technicals, including a bullish price/50/200DMA stack, significant 6m return of +28.4%, and relative outperformance of +21.3% over 3 months, which collectively suggest a favorable trend and momentum environment. The stock also exhibits cheap valuation multiples, such as a low PEG of 0.28 and EV/EBITDA of 12.6, alongside growth in revenue and earnings.",
+        "caution": "Despite the attractive setup, caution is warranted due to CVS's weak profitability metrics, including a low ROE of 3.8%, net margin of 0.7%, and operating margin of 4.1%."
       },
       "history": [
         {
@@ -4519,6 +4540,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears favorable due to a strong uptrend (price above 50/200 DMA) and significant momentum (6m return +53.2%), with relative strength also impressive at +45.9% over 3 months, despite neutral flow.",
+        "caution": "The trade setup may be impacted by expensive valuation (PE 40.6, P/B 9.8) and upcoming earnings (2026-08-13, 62d from now), which could introduce event risk."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -5216,6 +5241,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -5825,11 +5851,11 @@
       "market": "India",
       "sector": "Technology",
       "as_of": "2026-06-12",
-      "last_close": 2157.0,
-      "score": 8.4,
+      "last_close": 2153.7,
+      "score": 8.2,
       "label": "STRONG_SELL",
-      "core": 8.4,
-      "conviction": 41.6,
+      "core": 8.2,
+      "conviction": 41.8,
       "components": {
         "trend": {
           "score": 0.0,
@@ -5837,14 +5863,14 @@
           "reason": "price/50/200DMA stack below"
         },
         "momentum": {
-          "score": 1.8,
+          "score": 1.7,
           "weight": 0.3,
-          "reason": "6m return -32.8%, MACD \u2212"
+          "reason": "6m return -32.9%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 11.4,
+          "score": 10.8,
           "weight": 0.25,
-          "reason": "3m vs index -10.3%"
+          "reason": "3m vs index -10.6%"
         },
         "flow": {
           "score": 50.0,
@@ -5854,29 +5880,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 37 neutral"
+        "reason": "RSI 36 neutral"
       },
       "volatility": {
         "atr_14": 61.31,
-        "atr_pct": 2.84,
-        "daily_vol_pct": 2.68,
+        "atr_pct": 2.85,
+        "daily_vol_pct": 2.67,
         "annual_vol_pct": 42.5
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 5.99,
-          "low": 2027.84,
-          "high": 2286.16
+          "sigma_pct": 5.98,
+          "low": 2024.91,
+          "high": 2282.49
         },
         "15d": {
-          "sigma_pct": 10.37,
-          "low": 1933.3,
-          "high": 2380.7
+          "sigma_pct": 10.36,
+          "low": 1930.63,
+          "high": 2376.77
         },
         "30d": {
-          "sigma_pct": 14.67,
-          "low": 1840.63,
-          "high": 2473.37
+          "sigma_pct": 14.65,
+          "low": 1838.23,
+          "high": 2469.17
         }
       },
       "key_levels": {
@@ -5890,9 +5916,9 @@
       },
       "trade": {
         "direction": "short",
-        "entry": 2157.0,
-        "stop": 2279.62,
-        "target": 1911.76,
+        "entry": 2153.7,
+        "stop": 2276.32,
+        "target": 1908.46,
         "risk_per_share": 122.62,
         "reward_per_share": 245.24,
         "risk_reward": 2.0,
@@ -5912,6 +5938,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -6510,8 +6537,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 2157.0,
-          "m": 2380.39
+          "c": 2153.7,
+          "m": 2380.32
         }
       ],
       "is_favourite": false
@@ -6521,11 +6548,11 @@
       "market": "India",
       "sector": "Technology",
       "as_of": "2026-06-12",
-      "last_close": 1118.7,
-      "score": 8.9,
+      "last_close": 1117.6,
+      "score": 8.8,
       "label": "STRONG_SELL",
-      "core": 8.9,
-      "conviction": 41.1,
+      "core": 8.8,
+      "conviction": 41.2,
       "components": {
         "trend": {
           "score": 0.0,
@@ -6535,12 +6562,12 @@
         "momentum": {
           "score": 3.3,
           "weight": 0.3,
-          "reason": "6m return -30.0%, MACD \u2212"
+          "reason": "6m return -30.1%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 11.7,
+          "score": 11.1,
           "weight": 0.25,
-          "reason": "3m vs index -10.1%"
+          "reason": "3m vs index -10.4%"
         },
         "flow": {
           "score": 50.0,
@@ -6556,23 +6583,23 @@
         "atr_14": 31.83,
         "atr_pct": 2.85,
         "daily_vol_pct": 2.37,
-        "annual_vol_pct": 37.7
+        "annual_vol_pct": 37.6
       },
       "expected_move": {
         "5d": {
           "sigma_pct": 5.3,
-          "low": 1059.37,
-          "high": 1178.03
+          "low": 1058.34,
+          "high": 1176.86
         },
         "15d": {
-          "sigma_pct": 9.19,
-          "low": 1015.94,
-          "high": 1221.46
+          "sigma_pct": 9.18,
+          "low": 1014.97,
+          "high": 1220.23
         },
         "30d": {
           "sigma_pct": 12.99,
-          "low": 973.37,
-          "high": 1264.03
+          "low": 972.45,
+          "high": 1262.75
         }
       },
       "key_levels": {
@@ -6586,9 +6613,9 @@
       },
       "trade": {
         "direction": "short",
-        "entry": 1118.7,
-        "stop": 1182.36,
-        "target": 991.38,
+        "entry": 1117.6,
+        "stop": 1181.26,
+        "target": 990.28,
         "risk_per_share": 63.66,
         "reward_per_share": 127.32,
         "risk_reward": 2.0,
@@ -6608,6 +6635,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -7206,8 +7234,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1118.7,
-          "m": 1206.73
+          "c": 1117.6,
+          "m": 1206.71
         }
       ],
       "is_favourite": false
@@ -7217,11 +7245,11 @@
       "market": "India",
       "sector": "Technology",
       "as_of": "2026-06-12",
-      "last_close": 178.8,
-      "score": 9.2,
+      "last_close": 179.4,
+      "score": 9.3,
       "label": "STRONG_SELL",
-      "core": 9.2,
-      "conviction": 40.8,
+      "core": 9.3,
+      "conviction": 40.7,
       "components": {
         "trend": {
           "score": 0.0,
@@ -7229,14 +7257,14 @@
           "reason": "price/50/200DMA stack below"
         },
         "momentum": {
-          "score": 3.0,
+          "score": 3.1,
           "weight": 0.3,
-          "reason": "6m return -30.5%, MACD \u2212"
+          "reason": "6m return -30.3%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 13.3,
+          "score": 13.6,
           "weight": 0.25,
-          "reason": "3m vs index -9.4%"
+          "reason": "3m vs index -9.2%"
         },
         "flow": {
           "score": 50.0,
@@ -7246,29 +7274,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 31 neutral"
+        "reason": "RSI 32 neutral"
       },
       "volatility": {
         "atr_14": 5.46,
-        "atr_pct": 3.06,
-        "daily_vol_pct": 2.47,
-        "annual_vol_pct": 39.3
+        "atr_pct": 3.05,
+        "daily_vol_pct": 2.48,
+        "annual_vol_pct": 39.4
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 5.53,
-          "low": 168.91,
-          "high": 188.69
+          "sigma_pct": 5.55,
+          "low": 169.44,
+          "high": 189.36
         },
         "15d": {
-          "sigma_pct": 9.58,
-          "low": 161.67,
-          "high": 195.93
+          "sigma_pct": 9.62,
+          "low": 162.15,
+          "high": 196.65
         },
         "30d": {
-          "sigma_pct": 13.55,
-          "low": 154.57,
-          "high": 203.03
+          "sigma_pct": 13.6,
+          "low": 155.0,
+          "high": 203.8
         }
       },
       "key_levels": {
@@ -7282,9 +7310,9 @@
       },
       "trade": {
         "direction": "short",
-        "entry": 178.8,
-        "stop": 189.72,
-        "target": 156.96,
+        "entry": 179.4,
+        "stop": 190.32,
+        "target": 157.56,
         "risk_per_share": 10.92,
         "reward_per_share": 21.84,
         "risk_reward": 2.0,
@@ -7304,6 +7332,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -7902,8 +7931,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 178.8,
-          "m": 198.63
+          "c": 179.4,
+          "m": 198.65
         }
       ],
       "is_favourite": false
@@ -8000,6 +8029,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -8697,6 +8727,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -9307,10 +9338,10 @@
       "sector": "Consumer Staples",
       "as_of": "2026-06-12",
       "last_close": 284.4,
-      "score": 12.2,
+      "score": 12.0,
       "label": "STRONG_SELL",
-      "core": 12.2,
-      "conviction": 37.8,
+      "core": 12.0,
+      "conviction": 38.0,
       "components": {
         "trend": {
           "score": 0.0,
@@ -9323,9 +9354,9 @@
           "reason": "6m return -29.1%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 24.1,
+          "score": 23.5,
           "weight": 0.25,
-          "reason": "3m vs index -5.7%"
+          "reason": "3m vs index -5.9%"
         },
         "flow": {
           "score": 50.0,
@@ -9393,6 +9424,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -10090,6 +10122,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -10695,712 +10728,15 @@
       "is_favourite": false
     },
     {
-      "symbol": "HDFCBANK.NS",
-      "market": "India",
-      "sector": "Financials",
-      "as_of": "2026-06-12",
-      "last_close": 765.9,
-      "score": 16.4,
-      "label": "STRONG_SELL",
-      "core": 16.4,
-      "conviction": 33.6,
-      "components": {
-        "trend": {
-          "score": 0.0,
-          "weight": 0.35,
-          "reason": "price/50/200DMA stack below"
-        },
-        "momentum": {
-          "score": 18.5,
-          "weight": 0.3,
-          "reason": "6m return -23.2%, MACD +"
-        },
-        "relative_strength": {
-          "score": 23.4,
-          "weight": 0.25,
-          "reason": "3m vs index -5.9%"
-        },
-        "flow": {
-          "score": 50.0,
-          "weight": 0.1,
-          "reason": "neutral"
-        }
-      },
-      "timing": {
-        "adjustment": 0.0,
-        "reason": "RSI 53 neutral"
-      },
-      "volatility": {
-        "atr_14": 16.21,
-        "atr_pct": 2.12,
-        "daily_vol_pct": 1.31,
-        "annual_vol_pct": 20.8
-      },
-      "expected_move": {
-        "5d": {
-          "sigma_pct": 2.93,
-          "low": 743.44,
-          "high": 788.36
-        },
-        "15d": {
-          "sigma_pct": 5.08,
-          "low": 727.0,
-          "high": 804.8
-        },
-        "30d": {
-          "sigma_pct": 7.18,
-          "low": 710.89,
-          "high": 820.91
-        }
-      },
-      "key_levels": {
-        "support": [
-          762.25,
-          747.0
-        ],
-        "resistance": [
-          781.9,
-          790.85
-        ]
-      },
-      "trade": {
-        "direction": "short",
-        "entry": 765.9,
-        "stop": 798.32,
-        "target": 747.0,
-        "risk_per_share": 32.42,
-        "reward_per_share": 18.9,
-        "risk_reward": 0.58,
-        "actionable": false,
-        "note": "R:R 0.6 below 1.5 \u2014 structure doesn't justify the trade; watch only"
-      },
-      "calibration": {
-        "band": "STRONG_SELL",
-        "market": "India",
-        "tradeable": false,
-        "reason": "Shorts were net-negative in backtest \u2014 informational only",
-        "win_rate": 44.5,
-        "expectancy_pct": -0.235,
-        "profit_factor": 0.9,
-        "samples": 546,
-        "avg_hold_days": 10.6
-      },
-      "quality": null,
-      "events": null,
-      "history": [
-        {
-          "d": "2025-12-18",
-          "c": 979.7,
-          "m": 994.12
-        },
-        {
-          "d": "2025-12-19",
-          "c": 985.5,
-          "m": 994.26
-        },
-        {
-          "d": "2025-12-22",
-          "c": 987.7,
-          "m": 994.47
-        },
-        {
-          "d": "2025-12-23",
-          "c": 996.6,
-          "m": 994.78
-        },
-        {
-          "d": "2025-12-24",
-          "c": 997.2,
-          "m": 995.19
-        },
-        {
-          "d": "2025-12-26",
-          "c": 992.1,
-          "m": 995.49
-        },
-        {
-          "d": "2025-12-29",
-          "c": 991.7,
-          "m": 995.75
-        },
-        {
-          "d": "2025-12-30",
-          "c": 990.9,
-          "m": 995.69
-        },
-        {
-          "d": "2025-12-31",
-          "c": 991.2,
-          "m": 995.46
-        },
-        {
-          "d": "2026-01-01",
-          "c": 991.15,
-          "m": 995.22
-        },
-        {
-          "d": "2026-01-02",
-          "c": 1001.6,
-          "m": 995.1
-        },
-        {
-          "d": "2026-01-05",
-          "c": 977.5,
-          "m": 994.47
-        },
-        {
-          "d": "2026-01-06",
-          "c": 962.2,
-          "m": 993.82
-        },
-        {
-          "d": "2026-01-07",
-          "c": 949.05,
-          "m": 992.75
-        },
-        {
-          "d": "2026-01-08",
-          "c": 946.7,
-          "m": 991.61
-        },
-        {
-          "d": "2026-01-09",
-          "c": 939.0,
-          "m": 990.23
-        },
-        {
-          "d": "2026-01-12",
-          "c": 936.95,
-          "m": 989.01
-        },
-        {
-          "d": "2026-01-13",
-          "c": 937.35,
-          "m": 988.01
-        },
-        {
-          "d": "2026-01-14",
-          "c": 925.45,
-          "m": 986.66
-        },
-        {
-          "d": "2026-01-15",
-          "c": 925.45,
-          "m": 985.47
-        },
-        {
-          "d": "2026-01-16",
-          "c": 931.1,
-          "m": 984.4
-        },
-        {
-          "d": "2026-01-19",
-          "c": 927.9,
-          "m": 983.31
-        },
-        {
-          "d": "2026-01-20",
-          "c": 931.2,
-          "m": 982.24
-        },
-        {
-          "d": "2026-01-21",
-          "c": 920.35,
-          "m": 980.82
-        },
-        {
-          "d": "2026-01-22",
-          "c": 918.7,
-          "m": 979.4
-        },
-        {
-          "d": "2026-01-23",
-          "c": 916.1,
-          "m": 977.99
-        },
-        {
-          "d": "2026-01-27",
-          "c": 926.4,
-          "m": 976.73
-        },
-        {
-          "d": "2026-01-28",
-          "c": 932.7,
-          "m": 975.45
-        },
-        {
-          "d": "2026-01-29",
-          "c": 935.5,
-          "m": 974.31
-        },
-        {
-          "d": "2026-01-30",
-          "c": 929.25,
-          "m": 973.0
-        },
-        {
-          "d": "2026-02-02",
-          "c": 928.1,
-          "m": 971.39
-        },
-        {
-          "d": "2026-02-03",
-          "c": 948.7,
-          "m": 970.4
-        },
-        {
-          "d": "2026-02-04",
-          "c": 953.1,
-          "m": 969.48
-        },
-        {
-          "d": "2026-02-05",
-          "c": 949.7,
-          "m": 968.68
-        },
-        {
-          "d": "2026-02-06",
-          "c": 941.1,
-          "m": 967.42
-        },
-        {
-          "d": "2026-02-09",
-          "c": 937.25,
-          "m": 965.98
-        },
-        {
-          "d": "2026-02-10",
-          "c": 932.4,
-          "m": 964.47
-        },
-        {
-          "d": "2026-02-11",
-          "c": 927.1,
-          "m": 962.97
-        },
-        {
-          "d": "2026-02-12",
-          "c": 920.6,
-          "m": 961.59
-        },
-        {
-          "d": "2026-02-13",
-          "c": 903.9,
-          "m": 959.66
-        },
-        {
-          "d": "2026-02-16",
-          "c": 925.8,
-          "m": 958.23
-        },
-        {
-          "d": "2026-02-17",
-          "c": 925.7,
-          "m": 956.68
-        },
-        {
-          "d": "2026-02-18",
-          "c": 924.7,
-          "m": 955.11
-        },
-        {
-          "d": "2026-02-19",
-          "c": 915.6,
-          "m": 953.48
-        },
-        {
-          "d": "2026-02-20",
-          "c": 911.85,
-          "m": 951.92
-        },
-        {
-          "d": "2026-02-23",
-          "c": 923.6,
-          "m": 950.39
-        },
-        {
-          "d": "2026-02-24",
-          "c": 910.5,
-          "m": 948.57
-        },
-        {
-          "d": "2026-02-25",
-          "c": 907.6,
-          "m": 946.8
-        },
-        {
-          "d": "2026-02-26",
-          "c": 898.6,
-          "m": 944.88
-        },
-        {
-          "d": "2026-02-27",
-          "c": 887.75,
-          "m": 942.96
-        },
-        {
-          "d": "2026-03-02",
-          "c": 879.4,
-          "m": 940.95
-        },
-        {
-          "d": "2026-03-04",
-          "c": 868.65,
-          "m": 938.61
-        },
-        {
-          "d": "2026-03-05",
-          "c": 877.75,
-          "m": 936.41
-        },
-        {
-          "d": "2026-03-06",
-          "c": 857.05,
-          "m": 933.62
-        },
-        {
-          "d": "2026-03-09",
-          "c": 840.7,
-          "m": 930.49
-        },
-        {
-          "d": "2026-03-10",
-          "c": 849.45,
-          "m": 927.64
-        },
-        {
-          "d": "2026-03-11",
-          "c": 833.95,
-          "m": 924.49
-        },
-        {
-          "d": "2026-03-12",
-          "c": 832.75,
-          "m": 921.32
-        },
-        {
-          "d": "2026-03-13",
-          "c": 817.0,
-          "m": 917.84
-        },
-        {
-          "d": "2026-03-16",
-          "c": 840.6,
-          "m": 914.83
-        },
-        {
-          "d": "2026-03-17",
-          "c": 845.35,
-          "m": 911.7
-        },
-        {
-          "d": "2026-03-18",
-          "c": 843.05,
-          "m": 909.01
-        },
-        {
-          "d": "2026-03-19",
-          "c": 798.2,
-          "m": 905.73
-        },
-        {
-          "d": "2026-03-20",
-          "c": 780.45,
-          "m": 902.36
-        },
-        {
-          "d": "2026-03-23",
-          "c": 744.15,
-          "m": 898.31
-        },
-        {
-          "d": "2026-03-24",
-          "c": 764.9,
-          "m": 894.83
-        },
-        {
-          "d": "2026-03-25",
-          "c": 782.3,
-          "m": 891.74
-        },
-        {
-          "d": "2026-03-27",
-          "c": 756.2,
-          "m": 888.11
-        },
-        {
-          "d": "2026-03-30",
-          "c": 731.55,
-          "m": 884.23
-        },
-        {
-          "d": "2026-04-01",
-          "c": 742.25,
-          "m": 880.57
-        },
-        {
-          "d": "2026-04-02",
-          "c": 750.9,
-          "m": 876.97
-        },
-        {
-          "d": "2026-04-06",
-          "c": 771.0,
-          "m": 873.83
-        },
-        {
-          "d": "2026-04-07",
-          "c": 772.0,
-          "m": 870.64
-        },
-        {
-          "d": "2026-04-08",
-          "c": 816.1,
-          "m": 868.56
-        },
-        {
-          "d": "2026-04-09",
-          "c": 797.7,
-          "m": 866.14
-        },
-        {
-          "d": "2026-04-10",
-          "c": 810.3,
-          "m": 864.02
-        },
-        {
-          "d": "2026-04-13",
-          "c": 794.7,
-          "m": 861.39
-        },
-        {
-          "d": "2026-04-15",
-          "c": 809.9,
-          "m": 858.93
-        },
-        {
-          "d": "2026-04-16",
-          "c": 795.45,
-          "m": 856.13
-        },
-        {
-          "d": "2026-04-17",
-          "c": 799.9,
-          "m": 853.55
-        },
-        {
-          "d": "2026-04-20",
-          "c": 795.45,
-          "m": 850.89
-        },
-        {
-          "d": "2026-04-21",
-          "c": 811.75,
-          "m": 848.15
-        },
-        {
-          "d": "2026-04-22",
-          "c": 799.9,
-          "m": 845.09
-        },
-        {
-          "d": "2026-04-23",
-          "c": 784.35,
-          "m": 841.78
-        },
-        {
-          "d": "2026-04-24",
-          "c": 784.85,
-          "m": 838.66
-        },
-        {
-          "d": "2026-04-27",
-          "c": 789.8,
-          "m": 835.71
-        },
-        {
-          "d": "2026-04-28",
-          "c": 782.55,
-          "m": 832.71
-        },
-        {
-          "d": "2026-04-29",
-          "c": 779.0,
-          "m": 829.75
-        },
-        {
-          "d": "2026-04-30",
-          "c": 771.7,
-          "m": 826.77
-        },
-        {
-          "d": "2026-05-01",
-          "c": 771.7,
-          "m": 824.13
-        },
-        {
-          "d": "2026-05-04",
-          "c": 779.4,
-          "m": 821.2
-        },
-        {
-          "d": "2026-05-05",
-          "c": 772.3,
-          "m": 818.13
-        },
-        {
-          "d": "2026-05-06",
-          "c": 796.55,
-          "m": 815.57
-        },
-        {
-          "d": "2026-05-07",
-          "c": 796.05,
-          "m": 813.18
-        },
-        {
-          "d": "2026-05-08",
-          "c": 780.85,
-          "m": 810.56
-        },
-        {
-          "d": "2026-05-11",
-          "c": 763.65,
-          "m": 807.36
-        },
-        {
-          "d": "2026-05-12",
-          "c": 750.45,
-          "m": 804.16
-        },
-        {
-          "d": "2026-05-13",
-          "c": 749.6,
-          "m": 801.0
-        },
-        {
-          "d": "2026-05-14",
-          "c": 769.55,
-          "m": 798.42
-        },
-        {
-          "d": "2026-05-15",
-          "c": 767.5,
-          "m": 796.01
-        },
-        {
-          "d": "2026-05-18",
-          "c": 768.65,
-          "m": 793.8
-        },
-        {
-          "d": "2026-05-19",
-          "c": 762.45,
-          "m": 791.67
-        },
-        {
-          "d": "2026-05-20",
-          "c": 759.5,
-          "m": 789.31
-        },
-        {
-          "d": "2026-05-21",
-          "c": 759.15,
-          "m": 787.35
-        },
-        {
-          "d": "2026-05-22",
-          "c": 766.8,
-          "m": 785.87
-        },
-        {
-          "d": "2026-05-25",
-          "c": 786.85,
-          "m": 784.62
-        },
-        {
-          "d": "2026-05-26",
-          "c": 778.9,
-          "m": 783.52
-        },
-        {
-          "d": "2026-05-27",
-          "c": 758.65,
-          "m": 782.04
-        },
-        {
-          "d": "2026-05-28",
-          "c": 758.65,
-          "m": 780.87
-        },
-        {
-          "d": "2026-05-29",
-          "c": 744.55,
-          "m": 778.95
-        },
-        {
-          "d": "2026-06-01",
-          "c": 742.7,
-          "m": 776.9
-        },
-        {
-          "d": "2026-06-02",
-          "c": 748.25,
-          "m": 775.0
-        },
-        {
-          "d": "2026-06-03",
-          "c": 753.65,
-          "m": 774.11
-        },
-        {
-          "d": "2026-06-04",
-          "c": 754.2,
-          "m": 773.58
-        },
-        {
-          "d": "2026-06-05",
-          "c": 747.05,
-          "m": 773.64
-        },
-        {
-          "d": "2026-06-08",
-          "c": 738.65,
-          "m": 773.12
-        },
-        {
-          "d": "2026-06-09",
-          "c": 738.35,
-          "m": 772.24
-        },
-        {
-          "d": "2026-06-10",
-          "c": 746.85,
-          "m": 772.05
-        },
-        {
-          "d": "2026-06-11",
-          "c": 744.6,
-          "m": 772.31
-        },
-        {
-          "d": "2026-06-12",
-          "c": 765.9,
-          "m": 772.79
-        }
-      ],
-      "is_favourite": false
-    },
-    {
       "symbol": "AXISBANK.NS",
       "market": "India",
       "sector": "Financials",
       "as_of": "2026-06-12",
-      "last_close": 1343.5,
-      "score": 83.2,
+      "last_close": 1347.5,
+      "score": 83.5,
       "label": "STRONG_BUY",
-      "core": 83.2,
-      "conviction": 33.2,
+      "core": 83.5,
+      "conviction": 33.5,
       "components": {
         "trend": {
           "score": 100.0,
@@ -11408,14 +10744,14 @@
           "reason": "price/50/200DMA stack above"
         },
         "momentum": {
-          "score": 65.4,
+          "score": 66.0,
           "weight": 0.3,
-          "reason": "6m return +5.3%, MACD +"
+          "reason": "6m return +5.6%, MACD +"
         },
         "relative_strength": {
-          "score": 86.3,
+          "score": 86.7,
           "weight": 0.25,
-          "reason": "3m vs index +9.2%"
+          "reason": "3m vs index +9.4%"
         },
         "flow": {
           "score": 70.0,
@@ -11425,29 +10761,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 66 neutral"
+        "reason": "RSI 67 neutral"
       },
       "volatility": {
-        "atr_14": 27.81,
+        "atr_14": 27.87,
         "atr_pct": 2.07,
-        "daily_vol_pct": 1.23,
-        "annual_vol_pct": 19.6
+        "daily_vol_pct": 1.26,
+        "annual_vol_pct": 19.9
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 2.76,
-          "low": 1306.43,
-          "high": 1380.57
+          "sigma_pct": 2.81,
+          "low": 1309.67,
+          "high": 1385.33
         },
         "15d": {
-          "sigma_pct": 4.78,
-          "low": 1279.3,
-          "high": 1407.7
+          "sigma_pct": 4.86,
+          "low": 1281.97,
+          "high": 1413.03
         },
         "30d": {
-          "sigma_pct": 6.76,
-          "low": 1252.71,
-          "high": 1434.29
+          "sigma_pct": 6.88,
+          "low": 1254.83,
+          "high": 1440.17
         }
       },
       "key_levels": {
@@ -11462,12 +10798,12 @@
       },
       "trade": {
         "direction": "long",
-        "entry": 1343.5,
-        "stop": 1287.88,
+        "entry": 1347.5,
+        "stop": 1291.76,
         "target": 1384.5,
-        "risk_per_share": 55.62,
-        "reward_per_share": 41.0,
-        "risk_reward": 0.74,
+        "risk_per_share": 55.74,
+        "reward_per_share": 37.0,
+        "risk_reward": 0.66,
         "actionable": false,
         "note": "R:R 0.7 below 1.5 \u2014 structure doesn't justify the trade; watch only"
       },
@@ -11484,6 +10820,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -12082,8 +11419,706 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1343.5,
-          "m": 1293.96
+          "c": 1347.5,
+          "m": 1294.04
+        }
+      ],
+      "is_favourite": false
+    },
+    {
+      "symbol": "HDFCBANK.NS",
+      "market": "India",
+      "sector": "Financials",
+      "as_of": "2026-06-12",
+      "last_close": 769.45,
+      "score": 16.7,
+      "label": "STRONG_SELL",
+      "core": 16.7,
+      "conviction": 33.3,
+      "components": {
+        "trend": {
+          "score": 0.0,
+          "weight": 0.35,
+          "reason": "price/50/200DMA stack below"
+        },
+        "momentum": {
+          "score": 18.9,
+          "weight": 0.3,
+          "reason": "6m return -22.8%, MACD +"
+        },
+        "relative_strength": {
+          "score": 24.3,
+          "weight": 0.25,
+          "reason": "3m vs index -5.7%"
+        },
+        "flow": {
+          "score": 50.0,
+          "weight": 0.1,
+          "reason": "neutral"
+        }
+      },
+      "timing": {
+        "adjustment": 0.0,
+        "reason": "RSI 54 neutral"
+      },
+      "volatility": {
+        "atr_14": 16.49,
+        "atr_pct": 2.14,
+        "daily_vol_pct": 1.37,
+        "annual_vol_pct": 21.7
+      },
+      "expected_move": {
+        "5d": {
+          "sigma_pct": 3.06,
+          "low": 745.94,
+          "high": 792.96
+        },
+        "15d": {
+          "sigma_pct": 5.29,
+          "low": 728.72,
+          "high": 810.18
+        },
+        "30d": {
+          "sigma_pct": 7.49,
+          "low": 711.85,
+          "high": 827.05
+        }
+      },
+      "key_levels": {
+        "support": [
+          762.25,
+          747.0
+        ],
+        "resistance": [
+          781.9,
+          790.85
+        ]
+      },
+      "trade": {
+        "direction": "short",
+        "entry": 769.45,
+        "stop": 802.43,
+        "target": 747.0,
+        "risk_per_share": 32.98,
+        "reward_per_share": 22.45,
+        "risk_reward": 0.68,
+        "actionable": false,
+        "note": "R:R 0.7 below 1.5 \u2014 structure doesn't justify the trade; watch only"
+      },
+      "calibration": {
+        "band": "STRONG_SELL",
+        "market": "India",
+        "tradeable": false,
+        "reason": "Shorts were net-negative in backtest \u2014 informational only",
+        "win_rate": 44.5,
+        "expectancy_pct": -0.235,
+        "profit_factor": 0.9,
+        "samples": 546,
+        "avg_hold_days": 10.6
+      },
+      "quality": null,
+      "events": null,
+      "narration": null,
+      "history": [
+        {
+          "d": "2025-12-18",
+          "c": 979.7,
+          "m": 994.12
+        },
+        {
+          "d": "2025-12-19",
+          "c": 985.5,
+          "m": 994.26
+        },
+        {
+          "d": "2025-12-22",
+          "c": 987.7,
+          "m": 994.47
+        },
+        {
+          "d": "2025-12-23",
+          "c": 996.6,
+          "m": 994.78
+        },
+        {
+          "d": "2025-12-24",
+          "c": 997.2,
+          "m": 995.19
+        },
+        {
+          "d": "2025-12-26",
+          "c": 992.1,
+          "m": 995.49
+        },
+        {
+          "d": "2025-12-29",
+          "c": 991.7,
+          "m": 995.75
+        },
+        {
+          "d": "2025-12-30",
+          "c": 990.9,
+          "m": 995.69
+        },
+        {
+          "d": "2025-12-31",
+          "c": 991.2,
+          "m": 995.46
+        },
+        {
+          "d": "2026-01-01",
+          "c": 991.15,
+          "m": 995.22
+        },
+        {
+          "d": "2026-01-02",
+          "c": 1001.6,
+          "m": 995.1
+        },
+        {
+          "d": "2026-01-05",
+          "c": 977.5,
+          "m": 994.47
+        },
+        {
+          "d": "2026-01-06",
+          "c": 962.2,
+          "m": 993.82
+        },
+        {
+          "d": "2026-01-07",
+          "c": 949.05,
+          "m": 992.75
+        },
+        {
+          "d": "2026-01-08",
+          "c": 946.7,
+          "m": 991.61
+        },
+        {
+          "d": "2026-01-09",
+          "c": 939.0,
+          "m": 990.23
+        },
+        {
+          "d": "2026-01-12",
+          "c": 936.95,
+          "m": 989.01
+        },
+        {
+          "d": "2026-01-13",
+          "c": 937.35,
+          "m": 988.01
+        },
+        {
+          "d": "2026-01-14",
+          "c": 925.45,
+          "m": 986.66
+        },
+        {
+          "d": "2026-01-15",
+          "c": 925.45,
+          "m": 985.47
+        },
+        {
+          "d": "2026-01-16",
+          "c": 931.1,
+          "m": 984.4
+        },
+        {
+          "d": "2026-01-19",
+          "c": 927.9,
+          "m": 983.31
+        },
+        {
+          "d": "2026-01-20",
+          "c": 931.2,
+          "m": 982.24
+        },
+        {
+          "d": "2026-01-21",
+          "c": 920.35,
+          "m": 980.82
+        },
+        {
+          "d": "2026-01-22",
+          "c": 918.7,
+          "m": 979.4
+        },
+        {
+          "d": "2026-01-23",
+          "c": 916.1,
+          "m": 977.99
+        },
+        {
+          "d": "2026-01-27",
+          "c": 926.4,
+          "m": 976.73
+        },
+        {
+          "d": "2026-01-28",
+          "c": 932.7,
+          "m": 975.45
+        },
+        {
+          "d": "2026-01-29",
+          "c": 935.5,
+          "m": 974.31
+        },
+        {
+          "d": "2026-01-30",
+          "c": 929.25,
+          "m": 973.0
+        },
+        {
+          "d": "2026-02-02",
+          "c": 928.1,
+          "m": 971.39
+        },
+        {
+          "d": "2026-02-03",
+          "c": 948.7,
+          "m": 970.4
+        },
+        {
+          "d": "2026-02-04",
+          "c": 953.1,
+          "m": 969.48
+        },
+        {
+          "d": "2026-02-05",
+          "c": 949.7,
+          "m": 968.68
+        },
+        {
+          "d": "2026-02-06",
+          "c": 941.1,
+          "m": 967.42
+        },
+        {
+          "d": "2026-02-09",
+          "c": 937.25,
+          "m": 965.98
+        },
+        {
+          "d": "2026-02-10",
+          "c": 932.4,
+          "m": 964.47
+        },
+        {
+          "d": "2026-02-11",
+          "c": 927.1,
+          "m": 962.97
+        },
+        {
+          "d": "2026-02-12",
+          "c": 920.6,
+          "m": 961.59
+        },
+        {
+          "d": "2026-02-13",
+          "c": 903.9,
+          "m": 959.66
+        },
+        {
+          "d": "2026-02-16",
+          "c": 925.8,
+          "m": 958.23
+        },
+        {
+          "d": "2026-02-17",
+          "c": 925.7,
+          "m": 956.68
+        },
+        {
+          "d": "2026-02-18",
+          "c": 924.7,
+          "m": 955.11
+        },
+        {
+          "d": "2026-02-19",
+          "c": 915.6,
+          "m": 953.48
+        },
+        {
+          "d": "2026-02-20",
+          "c": 911.85,
+          "m": 951.92
+        },
+        {
+          "d": "2026-02-23",
+          "c": 923.6,
+          "m": 950.39
+        },
+        {
+          "d": "2026-02-24",
+          "c": 910.5,
+          "m": 948.57
+        },
+        {
+          "d": "2026-02-25",
+          "c": 907.6,
+          "m": 946.8
+        },
+        {
+          "d": "2026-02-26",
+          "c": 898.6,
+          "m": 944.88
+        },
+        {
+          "d": "2026-02-27",
+          "c": 887.75,
+          "m": 942.96
+        },
+        {
+          "d": "2026-03-02",
+          "c": 879.4,
+          "m": 940.95
+        },
+        {
+          "d": "2026-03-04",
+          "c": 868.65,
+          "m": 938.61
+        },
+        {
+          "d": "2026-03-05",
+          "c": 877.75,
+          "m": 936.41
+        },
+        {
+          "d": "2026-03-06",
+          "c": 857.05,
+          "m": 933.62
+        },
+        {
+          "d": "2026-03-09",
+          "c": 840.7,
+          "m": 930.49
+        },
+        {
+          "d": "2026-03-10",
+          "c": 849.45,
+          "m": 927.64
+        },
+        {
+          "d": "2026-03-11",
+          "c": 833.95,
+          "m": 924.49
+        },
+        {
+          "d": "2026-03-12",
+          "c": 832.75,
+          "m": 921.32
+        },
+        {
+          "d": "2026-03-13",
+          "c": 817.0,
+          "m": 917.84
+        },
+        {
+          "d": "2026-03-16",
+          "c": 840.6,
+          "m": 914.83
+        },
+        {
+          "d": "2026-03-17",
+          "c": 845.35,
+          "m": 911.7
+        },
+        {
+          "d": "2026-03-18",
+          "c": 843.05,
+          "m": 909.01
+        },
+        {
+          "d": "2026-03-19",
+          "c": 798.2,
+          "m": 905.73
+        },
+        {
+          "d": "2026-03-20",
+          "c": 780.45,
+          "m": 902.36
+        },
+        {
+          "d": "2026-03-23",
+          "c": 744.15,
+          "m": 898.31
+        },
+        {
+          "d": "2026-03-24",
+          "c": 764.9,
+          "m": 894.83
+        },
+        {
+          "d": "2026-03-25",
+          "c": 782.3,
+          "m": 891.74
+        },
+        {
+          "d": "2026-03-27",
+          "c": 756.2,
+          "m": 888.11
+        },
+        {
+          "d": "2026-03-30",
+          "c": 731.55,
+          "m": 884.23
+        },
+        {
+          "d": "2026-04-01",
+          "c": 742.25,
+          "m": 880.57
+        },
+        {
+          "d": "2026-04-02",
+          "c": 750.9,
+          "m": 876.97
+        },
+        {
+          "d": "2026-04-06",
+          "c": 771.0,
+          "m": 873.83
+        },
+        {
+          "d": "2026-04-07",
+          "c": 772.0,
+          "m": 870.64
+        },
+        {
+          "d": "2026-04-08",
+          "c": 816.1,
+          "m": 868.56
+        },
+        {
+          "d": "2026-04-09",
+          "c": 797.7,
+          "m": 866.14
+        },
+        {
+          "d": "2026-04-10",
+          "c": 810.3,
+          "m": 864.02
+        },
+        {
+          "d": "2026-04-13",
+          "c": 794.7,
+          "m": 861.39
+        },
+        {
+          "d": "2026-04-15",
+          "c": 809.9,
+          "m": 858.93
+        },
+        {
+          "d": "2026-04-16",
+          "c": 795.45,
+          "m": 856.13
+        },
+        {
+          "d": "2026-04-17",
+          "c": 799.9,
+          "m": 853.55
+        },
+        {
+          "d": "2026-04-20",
+          "c": 795.45,
+          "m": 850.89
+        },
+        {
+          "d": "2026-04-21",
+          "c": 811.75,
+          "m": 848.15
+        },
+        {
+          "d": "2026-04-22",
+          "c": 799.9,
+          "m": 845.09
+        },
+        {
+          "d": "2026-04-23",
+          "c": 784.35,
+          "m": 841.78
+        },
+        {
+          "d": "2026-04-24",
+          "c": 784.85,
+          "m": 838.66
+        },
+        {
+          "d": "2026-04-27",
+          "c": 789.8,
+          "m": 835.71
+        },
+        {
+          "d": "2026-04-28",
+          "c": 782.55,
+          "m": 832.71
+        },
+        {
+          "d": "2026-04-29",
+          "c": 779.0,
+          "m": 829.75
+        },
+        {
+          "d": "2026-04-30",
+          "c": 771.7,
+          "m": 826.77
+        },
+        {
+          "d": "2026-05-01",
+          "c": 771.7,
+          "m": 824.13
+        },
+        {
+          "d": "2026-05-04",
+          "c": 779.4,
+          "m": 821.2
+        },
+        {
+          "d": "2026-05-05",
+          "c": 772.3,
+          "m": 818.13
+        },
+        {
+          "d": "2026-05-06",
+          "c": 796.55,
+          "m": 815.57
+        },
+        {
+          "d": "2026-05-07",
+          "c": 796.05,
+          "m": 813.18
+        },
+        {
+          "d": "2026-05-08",
+          "c": 780.85,
+          "m": 810.56
+        },
+        {
+          "d": "2026-05-11",
+          "c": 763.65,
+          "m": 807.36
+        },
+        {
+          "d": "2026-05-12",
+          "c": 750.45,
+          "m": 804.16
+        },
+        {
+          "d": "2026-05-13",
+          "c": 749.6,
+          "m": 801.0
+        },
+        {
+          "d": "2026-05-14",
+          "c": 769.55,
+          "m": 798.42
+        },
+        {
+          "d": "2026-05-15",
+          "c": 767.5,
+          "m": 796.01
+        },
+        {
+          "d": "2026-05-18",
+          "c": 768.65,
+          "m": 793.8
+        },
+        {
+          "d": "2026-05-19",
+          "c": 762.45,
+          "m": 791.67
+        },
+        {
+          "d": "2026-05-20",
+          "c": 759.5,
+          "m": 789.31
+        },
+        {
+          "d": "2026-05-21",
+          "c": 759.15,
+          "m": 787.35
+        },
+        {
+          "d": "2026-05-22",
+          "c": 766.8,
+          "m": 785.87
+        },
+        {
+          "d": "2026-05-25",
+          "c": 786.85,
+          "m": 784.62
+        },
+        {
+          "d": "2026-05-26",
+          "c": 778.9,
+          "m": 783.52
+        },
+        {
+          "d": "2026-05-27",
+          "c": 758.65,
+          "m": 782.04
+        },
+        {
+          "d": "2026-05-28",
+          "c": 758.65,
+          "m": 780.87
+        },
+        {
+          "d": "2026-05-29",
+          "c": 744.55,
+          "m": 778.95
+        },
+        {
+          "d": "2026-06-01",
+          "c": 742.7,
+          "m": 776.9
+        },
+        {
+          "d": "2026-06-02",
+          "c": 748.25,
+          "m": 775.0
+        },
+        {
+          "d": "2026-06-03",
+          "c": 753.65,
+          "m": 774.11
+        },
+        {
+          "d": "2026-06-04",
+          "c": 754.2,
+          "m": 773.58
+        },
+        {
+          "d": "2026-06-05",
+          "c": 747.05,
+          "m": 773.64
+        },
+        {
+          "d": "2026-06-08",
+          "c": 738.65,
+          "m": 773.12
+        },
+        {
+          "d": "2026-06-09",
+          "c": 738.35,
+          "m": 772.24
+        },
+        {
+          "d": "2026-06-10",
+          "c": 746.85,
+          "m": 772.05
+        },
+        {
+          "d": "2026-06-11",
+          "c": 744.6,
+          "m": 772.31
+        },
+        {
+          "d": "2026-06-12",
+          "c": 769.45,
+          "m": 772.86
         }
       ],
       "is_favourite": false
@@ -12211,6 +12246,10 @@
         "days_to_earnings": 48,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears favorable due to a strong trend (price above 50/200 DMA) and high relative strength (3m outperformance of +11.4% vs index), despite slightly negative momentum indicated by MACD. The price/50/200DMA stack suggests a bullish trend, while the 6m return of +12.5% indicates positive price movement.",
+        "caution": "The stock's expensive valuation (P/B 1.6, PEG 8.48, EV/EBITDA 25.9) and high leverage (D/E 4.26x) may pose risks, with earnings expected in 48 days potentially impacting the stock's performance."
       },
       "history": [
         {
@@ -12908,6 +12947,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -13517,11 +13557,11 @@
       "market": "India",
       "sector": "Energy",
       "as_of": "2026-06-12",
-      "last_close": 1279.2,
-      "score": 17.9,
+      "last_close": 1284.0,
+      "score": 18.2,
       "label": "STRONG_SELL",
-      "core": 17.9,
-      "conviction": 32.1,
+      "core": 18.2,
+      "conviction": 31.8,
       "components": {
         "trend": {
           "score": 0.0,
@@ -13529,14 +13569,14 @@
           "reason": "price/50/200DMA stack below"
         },
         "momentum": {
-          "score": 16.3,
+          "score": 16.7,
           "weight": 0.3,
-          "reason": "6m return -16.4%, MACD \u2212"
+          "reason": "6m return -16.0%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 24.0,
+          "score": 24.6,
           "weight": 0.25,
-          "reason": "3m vs index -5.8%"
+          "reason": "3m vs index -5.6%"
         },
         "flow": {
           "score": 70.0,
@@ -13546,29 +13586,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 36 neutral"
+        "reason": "RSI 38 neutral"
       },
       "volatility": {
-        "atr_14": 25.78,
-        "atr_pct": 2.02,
-        "daily_vol_pct": 1.12,
-        "annual_vol_pct": 17.8
+        "atr_14": 26.1,
+        "atr_pct": 2.03,
+        "daily_vol_pct": 1.15,
+        "annual_vol_pct": 18.2
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 2.5,
-          "low": 1247.19,
-          "high": 1311.21
+          "sigma_pct": 2.57,
+          "low": 1251.04,
+          "high": 1316.96
         },
         "15d": {
-          "sigma_pct": 4.33,
-          "low": 1223.76,
-          "high": 1334.64
+          "sigma_pct": 4.45,
+          "low": 1226.91,
+          "high": 1341.09
         },
         "30d": {
-          "sigma_pct": 6.13,
-          "low": 1200.8,
-          "high": 1357.6
+          "sigma_pct": 6.29,
+          "low": 1203.26,
+          "high": 1364.74
         }
       },
       "key_levels": {
@@ -13582,14 +13622,14 @@
       },
       "trade": {
         "direction": "short",
-        "entry": 1279.2,
-        "stop": 1330.76,
+        "entry": 1284.0,
+        "stop": 1336.2,
         "target": 1253.2,
-        "risk_per_share": 51.56,
-        "reward_per_share": 26.0,
-        "risk_reward": 0.5,
+        "risk_per_share": 52.2,
+        "reward_per_share": 30.8,
+        "risk_reward": 0.59,
         "actionable": false,
-        "note": "R:R 0.5 below 1.5 \u2014 structure doesn't justify the trade; watch only"
+        "note": "R:R 0.6 below 1.5 \u2014 structure doesn't justify the trade; watch only"
       },
       "calibration": {
         "band": "STRONG_SELL",
@@ -13603,10 +13643,10 @@
         "avg_hold_days": 10.6
       },
       "quality": {
-        "score": 55.6,
+        "score": 55.5,
         "components": {
           "valuation": {
-            "score": 77.6,
+            "score": 77.5,
             "reason": "attractive multiples (PE 21.5, P/B 1.9, EV/EBITDA 11.8)"
           },
           "profitability": {
@@ -13634,6 +13674,10 @@
         "days_to_earnings": 35,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears bearish due to a stacked trend indicator (price below 50 and 200 DMA), negative momentum (6m return -16.0%, MACD \u2212), and weak relative strength (3m vs index -5.6%). Despite some accumulation flow, overall metrics suggest a downward bias.",
+        "caution": "The trade's risk-reward ratio of 0.59 is below 1, and with earnings expected in 35 days, there may be event-driven volatility that could impact the trade's performance."
       },
       "history": [
         {
@@ -14233,8 +14277,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1279.2,
-          "m": 1350.72
+          "c": 1284.0,
+          "m": 1350.82
         }
       ],
       "is_favourite": true
@@ -14332,6 +14376,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -15029,6 +15074,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -15757,6 +15803,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and relative strength (outperforming index by 6.3% over 3 months), despite neutral flow and modest momentum (6m return +3.0%). The attractive valuation multiples (PE 13.7, P/B 1.4, PEG 0.99) and strong profitability metrics (ROE 10.6%, net margin 29.0%, op margin 36.0%) support the bullish case.",
+        "caution": "The trade's risk-reward ratio of 0.62 is below the typical threshold of 1.5, which may limit the trade's potential."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -16362,6 +16412,704 @@
       "is_favourite": false
     },
     {
+      "symbol": "LT.NS",
+      "market": "India",
+      "sector": "Industrials",
+      "as_of": "2026-06-12",
+      "last_close": 4017.0,
+      "score": 75.6,
+      "label": "STRONG_BUY",
+      "core": 75.6,
+      "conviction": 25.6,
+      "components": {
+        "trend": {
+          "score": 100.0,
+          "weight": 0.35,
+          "reason": "price/50/200DMA stack above"
+        },
+        "momentum": {
+          "score": 46.0,
+          "weight": 0.3,
+          "reason": "6m return +0.5%, MACD \u2212"
+        },
+        "relative_strength": {
+          "score": 79.2,
+          "weight": 0.25,
+          "reason": "3m vs index +6.7%"
+        },
+        "flow": {
+          "score": 70.0,
+          "weight": 0.1,
+          "reason": "accumulation"
+        }
+      },
+      "timing": {
+        "adjustment": 0.0,
+        "reason": "RSI 55 neutral"
+      },
+      "volatility": {
+        "atr_14": 79.73,
+        "atr_pct": 1.98,
+        "daily_vol_pct": 1.34,
+        "annual_vol_pct": 21.3
+      },
+      "expected_move": {
+        "5d": {
+          "sigma_pct": 3.0,
+          "low": 3896.65,
+          "high": 4137.35
+        },
+        "15d": {
+          "sigma_pct": 5.19,
+          "low": 3808.56,
+          "high": 4225.44
+        },
+        "30d": {
+          "sigma_pct": 7.34,
+          "low": 3722.22,
+          "high": 4311.78
+        }
+      },
+      "key_levels": {
+        "support": [
+          4006.2,
+          3990.0
+        ],
+        "resistance": [
+          4032.0,
+          4122.0
+        ]
+      },
+      "trade": {
+        "direction": "long",
+        "entry": 4017.0,
+        "stop": 3857.54,
+        "target": 4122.0,
+        "risk_per_share": 159.46,
+        "reward_per_share": 105.0,
+        "risk_reward": 0.66,
+        "actionable": false,
+        "note": "R:R 0.7 below 1.5 \u2014 structure doesn't justify the trade; watch only"
+      },
+      "calibration": {
+        "band": "STRONG_BUY",
+        "market": "India",
+        "tradeable": false,
+        "reason": "India price signal had no net edge \u2014 informational only",
+        "win_rate": 48.6,
+        "expectancy_pct": -0.506,
+        "profit_factor": 0.73,
+        "samples": 329,
+        "avg_hold_days": 9.5
+      },
+      "quality": null,
+      "events": null,
+      "narration": null,
+      "history": [
+        {
+          "d": "2025-12-18",
+          "c": 4031.1,
+          "m": 3960.94
+        },
+        {
+          "d": "2025-12-19",
+          "c": 4073.5,
+          "m": 3967.81
+        },
+        {
+          "d": "2025-12-22",
+          "c": 4072.4,
+          "m": 3973.88
+        },
+        {
+          "d": "2025-12-23",
+          "c": 4058.8,
+          "m": 3979.37
+        },
+        {
+          "d": "2025-12-24",
+          "c": 4053.6,
+          "m": 3985.06
+        },
+        {
+          "d": "2025-12-26",
+          "c": 4047.3,
+          "m": 3991.12
+        },
+        {
+          "d": "2025-12-29",
+          "c": 4038.7,
+          "m": 3995.32
+        },
+        {
+          "d": "2025-12-30",
+          "c": 4052.0,
+          "m": 3999.12
+        },
+        {
+          "d": "2025-12-31",
+          "c": 4083.5,
+          "m": 4004.0
+        },
+        {
+          "d": "2026-01-01",
+          "c": 4140.4,
+          "m": 4009.36
+        },
+        {
+          "d": "2026-01-02",
+          "c": 4163.4,
+          "m": 4014.86
+        },
+        {
+          "d": "2026-01-05",
+          "c": 4150.4,
+          "m": 4019.49
+        },
+        {
+          "d": "2026-01-06",
+          "c": 4140.6,
+          "m": 4024.21
+        },
+        {
+          "d": "2026-01-07",
+          "c": 4157.0,
+          "m": 4028.87
+        },
+        {
+          "d": "2026-01-08",
+          "c": 4028.4,
+          "m": 4029.98
+        },
+        {
+          "d": "2026-01-09",
+          "c": 4025.2,
+          "m": 4031.33
+        },
+        {
+          "d": "2026-01-12",
+          "c": 4019.0,
+          "m": 4031.96
+        },
+        {
+          "d": "2026-01-13",
+          "c": 3887.4,
+          "m": 4029.09
+        },
+        {
+          "d": "2026-01-14",
+          "c": 3865.8,
+          "m": 4026.79
+        },
+        {
+          "d": "2026-01-15",
+          "c": 3865.8,
+          "m": 4025.62
+        },
+        {
+          "d": "2026-01-16",
+          "c": 3856.4,
+          "m": 4025.12
+        },
+        {
+          "d": "2026-01-19",
+          "c": 3869.8,
+          "m": 4024.86
+        },
+        {
+          "d": "2026-01-20",
+          "c": 3810.5,
+          "m": 4022.7
+        },
+        {
+          "d": "2026-01-21",
+          "c": 3766.5,
+          "m": 4018.93
+        },
+        {
+          "d": "2026-01-22",
+          "c": 3793.8,
+          "m": 4015.72
+        },
+        {
+          "d": "2026-01-23",
+          "c": 3743.8,
+          "m": 4010.54
+        },
+        {
+          "d": "2026-01-27",
+          "c": 3787.8,
+          "m": 4006.21
+        },
+        {
+          "d": "2026-01-28",
+          "c": 3794.0,
+          "m": 4001.54
+        },
+        {
+          "d": "2026-01-29",
+          "c": 3932.9,
+          "m": 4000.2
+        },
+        {
+          "d": "2026-01-30",
+          "c": 3932.3,
+          "m": 3998.46
+        },
+        {
+          "d": "2026-02-02",
+          "c": 3921.3,
+          "m": 3996.13
+        },
+        {
+          "d": "2026-02-03",
+          "c": 4038.8,
+          "m": 3996.41
+        },
+        {
+          "d": "2026-02-04",
+          "c": 4087.1,
+          "m": 3997.89
+        },
+        {
+          "d": "2026-02-05",
+          "c": 4063.3,
+          "m": 3999.22
+        },
+        {
+          "d": "2026-02-06",
+          "c": 4068.1,
+          "m": 3999.34
+        },
+        {
+          "d": "2026-02-09",
+          "c": 4113.6,
+          "m": 3999.99
+        },
+        {
+          "d": "2026-02-10",
+          "c": 4169.0,
+          "m": 4001.98
+        },
+        {
+          "d": "2026-02-11",
+          "c": 4170.4,
+          "m": 4003.92
+        },
+        {
+          "d": "2026-02-12",
+          "c": 4185.9,
+          "m": 4007.03
+        },
+        {
+          "d": "2026-02-13",
+          "c": 4173.9,
+          "m": 4010.75
+        },
+        {
+          "d": "2026-02-16",
+          "c": 4201.5,
+          "m": 4015.1
+        },
+        {
+          "d": "2026-02-17",
+          "c": 4279.8,
+          "m": 4019.94
+        },
+        {
+          "d": "2026-02-18",
+          "c": 4325.9,
+          "m": 4026.52
+        },
+        {
+          "d": "2026-02-19",
+          "c": 4280.5,
+          "m": 4032.18
+        },
+        {
+          "d": "2026-02-20",
+          "c": 4380.6,
+          "m": 4039.97
+        },
+        {
+          "d": "2026-02-23",
+          "c": 4418.1,
+          "m": 4048.25
+        },
+        {
+          "d": "2026-02-24",
+          "c": 4259.2,
+          "m": 4051.95
+        },
+        {
+          "d": "2026-02-25",
+          "c": 4298.5,
+          "m": 4056.08
+        },
+        {
+          "d": "2026-02-26",
+          "c": 4286.5,
+          "m": 4060.53
+        },
+        {
+          "d": "2026-02-27",
+          "c": 4278.3,
+          "m": 4064.85
+        },
+        {
+          "d": "2026-03-02",
+          "c": 4066.7,
+          "m": 4065.56
+        },
+        {
+          "d": "2026-03-04",
+          "c": 3882.6,
+          "m": 4061.74
+        },
+        {
+          "d": "2026-03-05",
+          "c": 4038.7,
+          "m": 4061.07
+        },
+        {
+          "d": "2026-03-06",
+          "c": 3949.8,
+          "m": 4058.89
+        },
+        {
+          "d": "2026-03-09",
+          "c": 3842.1,
+          "m": 4054.66
+        },
+        {
+          "d": "2026-03-10",
+          "c": 3876.0,
+          "m": 4051.23
+        },
+        {
+          "d": "2026-03-11",
+          "c": 3838.8,
+          "m": 4047.23
+        },
+        {
+          "d": "2026-03-12",
+          "c": 3719.5,
+          "m": 4040.58
+        },
+        {
+          "d": "2026-03-13",
+          "c": 3439.0,
+          "m": 4027.69
+        },
+        {
+          "d": "2026-03-16",
+          "c": 3469.4,
+          "m": 4014.27
+        },
+        {
+          "d": "2026-03-17",
+          "c": 3542.8,
+          "m": 4001.86
+        },
+        {
+          "d": "2026-03-18",
+          "c": 3607.9,
+          "m": 3991.01
+        },
+        {
+          "d": "2026-03-19",
+          "c": 3434.5,
+          "m": 3976.89
+        },
+        {
+          "d": "2026-03-20",
+          "c": 3434.8,
+          "m": 3962.45
+        },
+        {
+          "d": "2026-03-23",
+          "c": 3342.4,
+          "m": 3948.73
+        },
+        {
+          "d": "2026-03-24",
+          "c": 3516.8,
+          "m": 3938.56
+        },
+        {
+          "d": "2026-03-25",
+          "c": 3649.3,
+          "m": 3931.16
+        },
+        {
+          "d": "2026-03-27",
+          "c": 3564.1,
+          "m": 3924.7
+        },
+        {
+          "d": "2026-03-30",
+          "c": 3504.1,
+          "m": 3917.46
+        },
+        {
+          "d": "2026-04-01",
+          "c": 3607.5,
+          "m": 3912.3
+        },
+        {
+          "d": "2026-04-02",
+          "c": 3613.1,
+          "m": 3907.43
+        },
+        {
+          "d": "2026-04-06",
+          "c": 3727.7,
+          "m": 3904.59
+        },
+        {
+          "d": "2026-04-07",
+          "c": 3723.3,
+          "m": 3902.85
+        },
+        {
+          "d": "2026-04-08",
+          "c": 4005.9,
+          "m": 3907.63
+        },
+        {
+          "d": "2026-04-09",
+          "c": 3896.2,
+          "m": 3909.68
+        },
+        {
+          "d": "2026-04-10",
+          "c": 3959.9,
+          "m": 3914.0
+        },
+        {
+          "d": "2026-04-13",
+          "c": 3954.3,
+          "m": 3917.33
+        },
+        {
+          "d": "2026-04-15",
+          "c": 4076.3,
+          "m": 3922.98
+        },
+        {
+          "d": "2026-04-16",
+          "c": 4119.8,
+          "m": 3926.72
+        },
+        {
+          "d": "2026-04-17",
+          "c": 4096.1,
+          "m": 3929.99
+        },
+        {
+          "d": "2026-04-20",
+          "c": 4051.0,
+          "m": 3932.59
+        },
+        {
+          "d": "2026-04-21",
+          "c": 4075.4,
+          "m": 3933.32
+        },
+        {
+          "d": "2026-04-22",
+          "c": 4021.1,
+          "m": 3932.0
+        },
+        {
+          "d": "2026-04-23",
+          "c": 4054.1,
+          "m": 3931.82
+        },
+        {
+          "d": "2026-04-24",
+          "c": 4014.3,
+          "m": 3930.74
+        },
+        {
+          "d": "2026-04-27",
+          "c": 4053.6,
+          "m": 3929.54
+        },
+        {
+          "d": "2026-04-28",
+          "c": 4037.7,
+          "m": 3926.91
+        },
+        {
+          "d": "2026-04-29",
+          "c": 4096.1,
+          "m": 3925.43
+        },
+        {
+          "d": "2026-04-30",
+          "c": 4014.0,
+          "m": 3921.99
+        },
+        {
+          "d": "2026-05-01",
+          "c": 4014.0,
+          "m": 3918.79
+        },
+        {
+          "d": "2026-05-04",
+          "c": 4100.8,
+          "m": 3916.78
+        },
+        {
+          "d": "2026-05-05",
+          "c": 4054.5,
+          "m": 3912.27
+        },
+        {
+          "d": "2026-05-06",
+          "c": 4008.5,
+          "m": 3905.92
+        },
+        {
+          "d": "2026-05-07",
+          "c": 4023.0,
+          "m": 3900.77
+        },
+        {
+          "d": "2026-05-08",
+          "c": 3974.5,
+          "m": 3892.65
+        },
+        {
+          "d": "2026-05-11",
+          "c": 3940.2,
+          "m": 3883.09
+        },
+        {
+          "d": "2026-05-12",
+          "c": 3856.5,
+          "m": 3875.04
+        },
+        {
+          "d": "2026-05-13",
+          "c": 3915.8,
+          "m": 3867.39
+        },
+        {
+          "d": "2026-05-14",
+          "c": 3940.4,
+          "m": 3860.46
+        },
+        {
+          "d": "2026-05-15",
+          "c": 3909.0,
+          "m": 3853.08
+        },
+        {
+          "d": "2026-05-18",
+          "c": 3917.8,
+          "m": 3850.1
+        },
+        {
+          "d": "2026-05-19",
+          "c": 3921.0,
+          "m": 3850.87
+        },
+        {
+          "d": "2026-05-20",
+          "c": 3910.7,
+          "m": 3848.31
+        },
+        {
+          "d": "2026-05-21",
+          "c": 3928.5,
+          "m": 3847.88
+        },
+        {
+          "d": "2026-05-22",
+          "c": 3926.6,
+          "m": 3849.57
+        },
+        {
+          "d": "2026-05-25",
+          "c": 4033.4,
+          "m": 3852.72
+        },
+        {
+          "d": "2026-05-26",
+          "c": 4037.8,
+          "m": 3856.7
+        },
+        {
+          "d": "2026-05-27",
+          "c": 4047.5,
+          "m": 3863.26
+        },
+        {
+          "d": "2026-05-28",
+          "c": 4047.5,
+          "m": 3875.43
+        },
+        {
+          "d": "2026-05-29",
+          "c": 4076.5,
+          "m": 3887.57
+        },
+        {
+          "d": "2026-06-01",
+          "c": 4010.8,
+          "m": 3896.93
+        },
+        {
+          "d": "2026-06-02",
+          "c": 4000.9,
+          "m": 3904.79
+        },
+        {
+          "d": "2026-06-03",
+          "c": 3953.2,
+          "m": 3915.17
+        },
+        {
+          "d": "2026-06-04",
+          "c": 3942.1,
+          "m": 3925.31
+        },
+        {
+          "d": "2026-06-05",
+          "c": 3953.2,
+          "m": 3937.53
+        },
+        {
+          "d": "2026-06-08",
+          "c": 3875.5,
+          "m": 3944.7
+        },
+        {
+          "d": "2026-06-09",
+          "c": 3900.6,
+          "m": 3949.73
+        },
+        {
+          "d": "2026-06-10",
+          "c": 3917.5,
+          "m": 3956.8
+        },
+        {
+          "d": "2026-06-11",
+          "c": 3862.0,
+          "m": 3963.95
+        },
+        {
+          "d": "2026-06-12",
+          "c": 4017.0,
+          "m": 3972.14
+        }
+      ],
+      "is_favourite": false
+    },
+    {
       "symbol": "KO",
       "market": "US",
       "sector": "Consumer Staples",
@@ -16483,6 +17231,10 @@
         "days_to_earnings": 39,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears favorable due to a bullish trend (price above 50 and 200 DMA) and positive momentum indicators (6m return +17.7%, MACD +). Additionally, the stock shows signs of accumulation (flow 70).",
+        "caution": "The stock has an expensive valuation with a PE of 26.0 and high leverage (D/E 1.25x), which may pose risks despite the favorable technical setup."
       },
       "history": [
         {
@@ -17212,6 +17964,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and relative strength (3m outperformance vs index +4.8%), despite slightly negative momentum (MACD \u2212). However, flow metrics indicate distribution (flow 30).",
+        "caution": "The trade setup faces potential caution from expensive valuation (PE 35.8, P/B 40.7) and upcoming earnings (2026-07-31, 49d from now)."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -17821,11 +18577,11 @@
       "market": "India",
       "sector": "Communication",
       "as_of": "2026-06-12",
-      "last_close": 1816.2,
-      "score": 27.1,
+      "last_close": 1816.3,
+      "score": 26.9,
       "label": "SELL",
-      "core": 27.1,
-      "conviction": 22.9,
+      "core": 26.9,
+      "conviction": 23.1,
       "components": {
         "trend": {
           "score": 0.0,
@@ -17838,9 +18594,9 @@
           "reason": "6m return -13.1%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 63.4,
+          "score": 62.6,
           "weight": 0.25,
-          "reason": "3m vs index +2.7%"
+          "reason": "3m vs index +2.6%"
         },
         "flow": {
           "score": 50.0,
@@ -17861,18 +18617,18 @@
       "expected_move": {
         "5d": {
           "sigma_pct": 2.22,
-          "low": 1775.95,
-          "high": 1856.45
+          "low": 1776.03,
+          "high": 1856.57
         },
         "15d": {
           "sigma_pct": 3.84,
-          "low": 1746.49,
-          "high": 1885.91
+          "low": 1746.55,
+          "high": 1886.05
         },
         "30d": {
           "sigma_pct": 5.43,
-          "low": 1717.62,
-          "high": 1914.78
+          "low": 1717.65,
+          "high": 1914.95
         }
       },
       "key_levels": {
@@ -17887,9 +18643,9 @@
       },
       "trade": {
         "direction": "short",
-        "entry": 1816.2,
-        "stop": 1890.66,
-        "target": 1667.28,
+        "entry": 1816.3,
+        "stop": 1890.76,
+        "target": 1667.38,
         "risk_per_share": 74.46,
         "reward_per_share": 148.92,
         "risk_reward": 2.0,
@@ -17909,6 +18665,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -18507,705 +19264,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1816.2,
+          "c": 1816.3,
           "m": 1839.45
-        }
-      ],
-      "is_favourite": false
-    },
-    {
-      "symbol": "LT.NS",
-      "market": "India",
-      "sector": "Industrials",
-      "as_of": "2026-06-12",
-      "last_close": 3995.0,
-      "score": 72.9,
-      "label": "BUY",
-      "core": 72.9,
-      "conviction": 22.9,
-      "components": {
-        "trend": {
-          "score": 100.0,
-          "weight": 0.35,
-          "reason": "price/50/200DMA stack above"
-        },
-        "momentum": {
-          "score": 44.9,
-          "weight": 0.3,
-          "reason": "6m return -0.1%, MACD \u2212"
-        },
-        "relative_strength": {
-          "score": 77.9,
-          "weight": 0.25,
-          "reason": "3m vs index +6.3%"
-        },
-        "flow": {
-          "score": 50.0,
-          "weight": 0.1,
-          "reason": "neutral"
-        }
-      },
-      "timing": {
-        "adjustment": 0.0,
-        "reason": "RSI 54 neutral"
-      },
-      "volatility": {
-        "atr_14": 79.2,
-        "atr_pct": 1.98,
-        "daily_vol_pct": 1.26,
-        "annual_vol_pct": 20.0
-      },
-      "expected_move": {
-        "5d": {
-          "sigma_pct": 2.82,
-          "low": 3882.34,
-          "high": 4107.66
-        },
-        "15d": {
-          "sigma_pct": 4.88,
-          "low": 3799.86,
-          "high": 4190.14
-        },
-        "30d": {
-          "sigma_pct": 6.91,
-          "low": 3719.04,
-          "high": 4270.96
-        }
-      },
-      "key_levels": {
-        "support": [
-          3990.0,
-          3978.5
-        ],
-        "resistance": [
-          4032.0,
-          4122.0
-        ]
-      },
-      "trade": {
-        "direction": "long",
-        "entry": 3995.0,
-        "stop": 3836.6,
-        "target": 4122.0,
-        "risk_per_share": 158.4,
-        "reward_per_share": 127.0,
-        "risk_reward": 0.8,
-        "actionable": false,
-        "note": "R:R 0.8 below 1.5 \u2014 structure doesn't justify the trade; watch only"
-      },
-      "calibration": {
-        "band": "BUY",
-        "market": "India",
-        "tradeable": false,
-        "reason": "India price signal had no net edge \u2014 informational only",
-        "win_rate": 48.6,
-        "expectancy_pct": -0.506,
-        "profit_factor": 0.73,
-        "samples": 329,
-        "avg_hold_days": 9.5
-      },
-      "quality": null,
-      "events": null,
-      "history": [
-        {
-          "d": "2025-12-18",
-          "c": 4031.1,
-          "m": 3960.94
-        },
-        {
-          "d": "2025-12-19",
-          "c": 4073.5,
-          "m": 3967.81
-        },
-        {
-          "d": "2025-12-22",
-          "c": 4072.4,
-          "m": 3973.88
-        },
-        {
-          "d": "2025-12-23",
-          "c": 4058.8,
-          "m": 3979.37
-        },
-        {
-          "d": "2025-12-24",
-          "c": 4053.6,
-          "m": 3985.06
-        },
-        {
-          "d": "2025-12-26",
-          "c": 4047.3,
-          "m": 3991.12
-        },
-        {
-          "d": "2025-12-29",
-          "c": 4038.7,
-          "m": 3995.32
-        },
-        {
-          "d": "2025-12-30",
-          "c": 4052.0,
-          "m": 3999.12
-        },
-        {
-          "d": "2025-12-31",
-          "c": 4083.5,
-          "m": 4004.0
-        },
-        {
-          "d": "2026-01-01",
-          "c": 4140.4,
-          "m": 4009.36
-        },
-        {
-          "d": "2026-01-02",
-          "c": 4163.4,
-          "m": 4014.86
-        },
-        {
-          "d": "2026-01-05",
-          "c": 4150.4,
-          "m": 4019.49
-        },
-        {
-          "d": "2026-01-06",
-          "c": 4140.6,
-          "m": 4024.21
-        },
-        {
-          "d": "2026-01-07",
-          "c": 4157.0,
-          "m": 4028.87
-        },
-        {
-          "d": "2026-01-08",
-          "c": 4028.4,
-          "m": 4029.98
-        },
-        {
-          "d": "2026-01-09",
-          "c": 4025.2,
-          "m": 4031.33
-        },
-        {
-          "d": "2026-01-12",
-          "c": 4019.0,
-          "m": 4031.96
-        },
-        {
-          "d": "2026-01-13",
-          "c": 3887.4,
-          "m": 4029.09
-        },
-        {
-          "d": "2026-01-14",
-          "c": 3865.8,
-          "m": 4026.79
-        },
-        {
-          "d": "2026-01-15",
-          "c": 3865.8,
-          "m": 4025.62
-        },
-        {
-          "d": "2026-01-16",
-          "c": 3856.4,
-          "m": 4025.12
-        },
-        {
-          "d": "2026-01-19",
-          "c": 3869.8,
-          "m": 4024.86
-        },
-        {
-          "d": "2026-01-20",
-          "c": 3810.5,
-          "m": 4022.7
-        },
-        {
-          "d": "2026-01-21",
-          "c": 3766.5,
-          "m": 4018.93
-        },
-        {
-          "d": "2026-01-22",
-          "c": 3793.8,
-          "m": 4015.72
-        },
-        {
-          "d": "2026-01-23",
-          "c": 3743.8,
-          "m": 4010.54
-        },
-        {
-          "d": "2026-01-27",
-          "c": 3787.8,
-          "m": 4006.21
-        },
-        {
-          "d": "2026-01-28",
-          "c": 3794.0,
-          "m": 4001.54
-        },
-        {
-          "d": "2026-01-29",
-          "c": 3932.9,
-          "m": 4000.2
-        },
-        {
-          "d": "2026-01-30",
-          "c": 3932.3,
-          "m": 3998.46
-        },
-        {
-          "d": "2026-02-02",
-          "c": 3921.3,
-          "m": 3996.13
-        },
-        {
-          "d": "2026-02-03",
-          "c": 4038.8,
-          "m": 3996.41
-        },
-        {
-          "d": "2026-02-04",
-          "c": 4087.1,
-          "m": 3997.89
-        },
-        {
-          "d": "2026-02-05",
-          "c": 4063.3,
-          "m": 3999.22
-        },
-        {
-          "d": "2026-02-06",
-          "c": 4068.1,
-          "m": 3999.34
-        },
-        {
-          "d": "2026-02-09",
-          "c": 4113.6,
-          "m": 3999.99
-        },
-        {
-          "d": "2026-02-10",
-          "c": 4169.0,
-          "m": 4001.98
-        },
-        {
-          "d": "2026-02-11",
-          "c": 4170.4,
-          "m": 4003.92
-        },
-        {
-          "d": "2026-02-12",
-          "c": 4185.9,
-          "m": 4007.03
-        },
-        {
-          "d": "2026-02-13",
-          "c": 4173.9,
-          "m": 4010.75
-        },
-        {
-          "d": "2026-02-16",
-          "c": 4201.5,
-          "m": 4015.1
-        },
-        {
-          "d": "2026-02-17",
-          "c": 4279.8,
-          "m": 4019.94
-        },
-        {
-          "d": "2026-02-18",
-          "c": 4325.9,
-          "m": 4026.52
-        },
-        {
-          "d": "2026-02-19",
-          "c": 4280.5,
-          "m": 4032.18
-        },
-        {
-          "d": "2026-02-20",
-          "c": 4380.6,
-          "m": 4039.97
-        },
-        {
-          "d": "2026-02-23",
-          "c": 4418.1,
-          "m": 4048.25
-        },
-        {
-          "d": "2026-02-24",
-          "c": 4259.2,
-          "m": 4051.95
-        },
-        {
-          "d": "2026-02-25",
-          "c": 4298.5,
-          "m": 4056.08
-        },
-        {
-          "d": "2026-02-26",
-          "c": 4286.5,
-          "m": 4060.53
-        },
-        {
-          "d": "2026-02-27",
-          "c": 4278.3,
-          "m": 4064.85
-        },
-        {
-          "d": "2026-03-02",
-          "c": 4066.7,
-          "m": 4065.56
-        },
-        {
-          "d": "2026-03-04",
-          "c": 3882.6,
-          "m": 4061.74
-        },
-        {
-          "d": "2026-03-05",
-          "c": 4038.7,
-          "m": 4061.07
-        },
-        {
-          "d": "2026-03-06",
-          "c": 3949.8,
-          "m": 4058.89
-        },
-        {
-          "d": "2026-03-09",
-          "c": 3842.1,
-          "m": 4054.66
-        },
-        {
-          "d": "2026-03-10",
-          "c": 3876.0,
-          "m": 4051.23
-        },
-        {
-          "d": "2026-03-11",
-          "c": 3838.8,
-          "m": 4047.23
-        },
-        {
-          "d": "2026-03-12",
-          "c": 3719.5,
-          "m": 4040.58
-        },
-        {
-          "d": "2026-03-13",
-          "c": 3439.0,
-          "m": 4027.69
-        },
-        {
-          "d": "2026-03-16",
-          "c": 3469.4,
-          "m": 4014.27
-        },
-        {
-          "d": "2026-03-17",
-          "c": 3542.8,
-          "m": 4001.86
-        },
-        {
-          "d": "2026-03-18",
-          "c": 3607.9,
-          "m": 3991.01
-        },
-        {
-          "d": "2026-03-19",
-          "c": 3434.5,
-          "m": 3976.89
-        },
-        {
-          "d": "2026-03-20",
-          "c": 3434.8,
-          "m": 3962.45
-        },
-        {
-          "d": "2026-03-23",
-          "c": 3342.4,
-          "m": 3948.73
-        },
-        {
-          "d": "2026-03-24",
-          "c": 3516.8,
-          "m": 3938.56
-        },
-        {
-          "d": "2026-03-25",
-          "c": 3649.3,
-          "m": 3931.16
-        },
-        {
-          "d": "2026-03-27",
-          "c": 3564.1,
-          "m": 3924.7
-        },
-        {
-          "d": "2026-03-30",
-          "c": 3504.1,
-          "m": 3917.46
-        },
-        {
-          "d": "2026-04-01",
-          "c": 3607.5,
-          "m": 3912.3
-        },
-        {
-          "d": "2026-04-02",
-          "c": 3613.1,
-          "m": 3907.43
-        },
-        {
-          "d": "2026-04-06",
-          "c": 3727.7,
-          "m": 3904.59
-        },
-        {
-          "d": "2026-04-07",
-          "c": 3723.3,
-          "m": 3902.85
-        },
-        {
-          "d": "2026-04-08",
-          "c": 4005.9,
-          "m": 3907.63
-        },
-        {
-          "d": "2026-04-09",
-          "c": 3896.2,
-          "m": 3909.68
-        },
-        {
-          "d": "2026-04-10",
-          "c": 3959.9,
-          "m": 3914.0
-        },
-        {
-          "d": "2026-04-13",
-          "c": 3954.3,
-          "m": 3917.33
-        },
-        {
-          "d": "2026-04-15",
-          "c": 4076.3,
-          "m": 3922.98
-        },
-        {
-          "d": "2026-04-16",
-          "c": 4119.8,
-          "m": 3926.72
-        },
-        {
-          "d": "2026-04-17",
-          "c": 4096.1,
-          "m": 3929.99
-        },
-        {
-          "d": "2026-04-20",
-          "c": 4051.0,
-          "m": 3932.59
-        },
-        {
-          "d": "2026-04-21",
-          "c": 4075.4,
-          "m": 3933.32
-        },
-        {
-          "d": "2026-04-22",
-          "c": 4021.1,
-          "m": 3932.0
-        },
-        {
-          "d": "2026-04-23",
-          "c": 4054.1,
-          "m": 3931.82
-        },
-        {
-          "d": "2026-04-24",
-          "c": 4014.3,
-          "m": 3930.74
-        },
-        {
-          "d": "2026-04-27",
-          "c": 4053.6,
-          "m": 3929.54
-        },
-        {
-          "d": "2026-04-28",
-          "c": 4037.7,
-          "m": 3926.91
-        },
-        {
-          "d": "2026-04-29",
-          "c": 4096.1,
-          "m": 3925.43
-        },
-        {
-          "d": "2026-04-30",
-          "c": 4014.0,
-          "m": 3921.99
-        },
-        {
-          "d": "2026-05-01",
-          "c": 4014.0,
-          "m": 3918.79
-        },
-        {
-          "d": "2026-05-04",
-          "c": 4100.8,
-          "m": 3916.78
-        },
-        {
-          "d": "2026-05-05",
-          "c": 4054.5,
-          "m": 3912.27
-        },
-        {
-          "d": "2026-05-06",
-          "c": 4008.5,
-          "m": 3905.92
-        },
-        {
-          "d": "2026-05-07",
-          "c": 4023.0,
-          "m": 3900.77
-        },
-        {
-          "d": "2026-05-08",
-          "c": 3974.5,
-          "m": 3892.65
-        },
-        {
-          "d": "2026-05-11",
-          "c": 3940.2,
-          "m": 3883.09
-        },
-        {
-          "d": "2026-05-12",
-          "c": 3856.5,
-          "m": 3875.04
-        },
-        {
-          "d": "2026-05-13",
-          "c": 3915.8,
-          "m": 3867.39
-        },
-        {
-          "d": "2026-05-14",
-          "c": 3940.4,
-          "m": 3860.46
-        },
-        {
-          "d": "2026-05-15",
-          "c": 3909.0,
-          "m": 3853.08
-        },
-        {
-          "d": "2026-05-18",
-          "c": 3917.8,
-          "m": 3850.1
-        },
-        {
-          "d": "2026-05-19",
-          "c": 3921.0,
-          "m": 3850.87
-        },
-        {
-          "d": "2026-05-20",
-          "c": 3910.7,
-          "m": 3848.31
-        },
-        {
-          "d": "2026-05-21",
-          "c": 3928.5,
-          "m": 3847.88
-        },
-        {
-          "d": "2026-05-22",
-          "c": 3926.6,
-          "m": 3849.57
-        },
-        {
-          "d": "2026-05-25",
-          "c": 4033.4,
-          "m": 3852.72
-        },
-        {
-          "d": "2026-05-26",
-          "c": 4037.8,
-          "m": 3856.7
-        },
-        {
-          "d": "2026-05-27",
-          "c": 4047.5,
-          "m": 3863.26
-        },
-        {
-          "d": "2026-05-28",
-          "c": 4047.5,
-          "m": 3875.43
-        },
-        {
-          "d": "2026-05-29",
-          "c": 4076.5,
-          "m": 3887.57
-        },
-        {
-          "d": "2026-06-01",
-          "c": 4010.8,
-          "m": 3896.93
-        },
-        {
-          "d": "2026-06-02",
-          "c": 4000.9,
-          "m": 3904.79
-        },
-        {
-          "d": "2026-06-03",
-          "c": 3953.2,
-          "m": 3915.17
-        },
-        {
-          "d": "2026-06-04",
-          "c": 3942.1,
-          "m": 3925.31
-        },
-        {
-          "d": "2026-06-05",
-          "c": 3953.2,
-          "m": 3937.53
-        },
-        {
-          "d": "2026-06-08",
-          "c": 3875.5,
-          "m": 3944.7
-        },
-        {
-          "d": "2026-06-09",
-          "c": 3900.6,
-          "m": 3949.73
-        },
-        {
-          "d": "2026-06-10",
-          "c": 3917.5,
-          "m": 3956.8
-        },
-        {
-          "d": "2026-06-11",
-          "c": 3862.0,
-          "m": 3963.95
-        },
-        {
-          "d": "2026-06-12",
-          "c": 3995.0,
-          "m": 3971.7
         }
       ],
       "is_favourite": false
@@ -19332,6 +19392,10 @@
         "days_to_earnings": 76,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears attractive due to strong relative strength (3m vs index +24.9%) and positive momentum indicators (6m return +8.0%, MACD +), which outweigh mixed trend signals and neutral flow. The price/50/200DMA stack is mixed, but relative strength and momentum drive the model's bullish stance.",
+        "caution": "The stock's expensive valuation (P/B 43.0, PEG 6.21) and weak profitability (ROE -54.9%, net margin -23.8%, op margin -22.2%) pose risks despite the positive technical setup."
       },
       "history": [
         {
@@ -20030,6 +20094,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -20757,6 +20822,10 @@
         "days_to_earnings": 47,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The model favors SBUX due to a strong trend (price above 50/200 DMA) and positive momentum (6m return +24.3%), despite relative weakness (-8.7% 3m vs index) and neutral flow (accumulation score 70).",
+        "caution": "The expensive valuation (PE 78.1, PEG 1.36, EV/EBITDA 25.8) and weak profitability (net margin 3.9%, op margin 8.4%) may pose risks to the upside."
       },
       "history": [
         {
@@ -21486,6 +21555,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears bullish due to a strong trend (price above 50 and 200 DMA) and positive momentum (6m return +19.2%, MACD +), but is partially offset by weak relative strength (3m vs index -12.3%); accumulation flow suggests institutional interest.",
+        "caution": "The trade setup is cautioned by JNJ's expensive valuation (PE 27.6, P/B 7.1) and weak earnings growth (-52.9% YoY), with earnings due in 33 days."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -22183,6 +22256,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -22792,11 +22866,11 @@
       "market": "India",
       "sector": "Healthcare",
       "as_of": "2026-06-12",
-      "last_close": 1809.6,
-      "score": 68.8,
+      "last_close": 1806.6,
+      "score": 68.3,
       "label": "BUY",
-      "core": 68.8,
-      "conviction": 18.8,
+      "core": 68.3,
+      "conviction": 18.3,
       "components": {
         "trend": {
           "score": 100.0,
@@ -22804,14 +22878,14 @@
           "reason": "price/50/200DMA stack above"
         },
         "momentum": {
-          "score": 48.8,
+          "score": 48.4,
           "weight": 0.3,
-          "reason": "6m return +1.9%, MACD \u2212"
+          "reason": "6m return +1.7%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 56.6,
+          "score": 55.0,
           "weight": 0.25,
-          "reason": "3m vs index +1.3%"
+          "reason": "3m vs index +1.0%"
         },
         "flow": {
           "score": 50.0,
@@ -22821,29 +22895,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 51 neutral"
+        "reason": "RSI 50 neutral"
       },
       "volatility": {
         "atr_14": 33.89,
-        "atr_pct": 1.87,
-        "daily_vol_pct": 0.97,
-        "annual_vol_pct": 15.3
+        "atr_pct": 1.88,
+        "daily_vol_pct": 0.96,
+        "annual_vol_pct": 15.2
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 2.16,
-          "low": 1770.52,
-          "high": 1848.68
+          "sigma_pct": 2.14,
+          "low": 1767.94,
+          "high": 1845.26
         },
         "15d": {
-          "sigma_pct": 3.74,
-          "low": 1741.91,
-          "high": 1877.29
+          "sigma_pct": 3.71,
+          "low": 1739.64,
+          "high": 1873.56
         },
         "30d": {
-          "sigma_pct": 5.29,
-          "low": 1713.88,
-          "high": 1905.32
+          "sigma_pct": 5.24,
+          "low": 1711.9,
+          "high": 1901.3
         }
       },
       "key_levels": {
@@ -22852,15 +22926,15 @@
           1756.8
         ],
         "resistance": [
-          1819.0,
-          1843.0
+          1806.6,
+          1819.0
         ]
       },
       "trade": {
         "direction": "long",
-        "entry": 1809.6,
-        "stop": 1741.82,
-        "target": 1945.16,
+        "entry": 1806.6,
+        "stop": 1738.82,
+        "target": 1942.16,
         "risk_per_share": 67.78,
         "reward_per_share": 135.56,
         "risk_reward": 2.0,
@@ -22880,6 +22954,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -23478,8 +23553,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1809.6,
-          "m": 1780.41
+          "c": 1806.6,
+          "m": 1780.35
         }
       ],
       "is_favourite": false
@@ -23607,6 +23682,10 @@
         "days_to_earnings": 42,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears favorable due to a mix of positive trend and momentum indicators, with a strong relative strength showing a 7.1% outperformance vs the index over 3 months, despite a neutral flow score of 30. The price/50/200DMA stack is mixed, but the 6-month return of +12.8% and MACD crossover suggest improving momentum.",
+        "caution": "The expensive valuation (PE 27.3, P/B 9.1) and upcoming earnings report in 42 days may pose risks to the trade."
       },
       "history": [
         {
@@ -24213,6 +24292,704 @@
       "is_favourite": false
     },
     {
+      "symbol": "HINDUNILVR.NS",
+      "market": "India",
+      "sector": "Consumer Staples",
+      "as_of": "2026-06-12",
+      "last_close": 2157.4,
+      "score": 32.5,
+      "label": "SELL",
+      "core": 32.5,
+      "conviction": 17.5,
+      "components": {
+        "trend": {
+          "score": 0.0,
+          "weight": 0.35,
+          "reason": "price/50/200DMA stack below"
+        },
+        "momentum": {
+          "score": 42.4,
+          "weight": 0.3,
+          "reason": "6m return -6.5%, MACD +"
+        },
+        "relative_strength": {
+          "score": 59.2,
+          "weight": 0.25,
+          "reason": "3m vs index +1.9%"
+        },
+        "flow": {
+          "score": 50.0,
+          "weight": 0.1,
+          "reason": "neutral"
+        }
+      },
+      "timing": {
+        "adjustment": 0.0,
+        "reason": "RSI 47 neutral"
+      },
+      "volatility": {
+        "atr_14": 46.56,
+        "atr_pct": 2.16,
+        "daily_vol_pct": 1.29,
+        "annual_vol_pct": 20.5
+      },
+      "expected_move": {
+        "5d": {
+          "sigma_pct": 2.88,
+          "low": 2095.23,
+          "high": 2219.57
+        },
+        "15d": {
+          "sigma_pct": 4.99,
+          "low": 2049.72,
+          "high": 2265.08
+        },
+        "30d": {
+          "sigma_pct": 7.06,
+          "low": 2005.12,
+          "high": 2309.68
+        }
+      },
+      "key_levels": {
+        "support": [
+          2113.5,
+          2109.3
+        ],
+        "resistance": [
+          2192.8,
+          2238.1
+        ]
+      },
+      "trade": {
+        "direction": "short",
+        "entry": 2157.4,
+        "stop": 2250.52,
+        "target": 2109.3,
+        "risk_per_share": 93.12,
+        "reward_per_share": 48.1,
+        "risk_reward": 0.52,
+        "actionable": false,
+        "note": "R:R 0.5 below 1.5 \u2014 structure doesn't justify the trade; watch only"
+      },
+      "calibration": {
+        "band": "SELL",
+        "market": "India",
+        "tradeable": false,
+        "reason": "Shorts were net-negative in backtest \u2014 informational only",
+        "win_rate": 43.8,
+        "expectancy_pct": -0.803,
+        "profit_factor": 0.68,
+        "samples": 404,
+        "avg_hold_days": 9.5
+      },
+      "quality": null,
+      "events": null,
+      "narration": null,
+      "history": [
+        {
+          "d": "2025-12-18",
+          "c": 2265.5,
+          "m": 2438.47
+        },
+        {
+          "d": "2025-12-19",
+          "c": 2280.0,
+          "m": 2434.07
+        },
+        {
+          "d": "2025-12-22",
+          "c": 2289.5,
+          "m": 2429.51
+        },
+        {
+          "d": "2025-12-23",
+          "c": 2302.6,
+          "m": 2424.98
+        },
+        {
+          "d": "2025-12-24",
+          "c": 2282.2,
+          "m": 2420.77
+        },
+        {
+          "d": "2025-12-26",
+          "c": 2285.4,
+          "m": 2416.43
+        },
+        {
+          "d": "2025-12-29",
+          "c": 2293.3,
+          "m": 2411.92
+        },
+        {
+          "d": "2025-12-30",
+          "c": 2290.2,
+          "m": 2406.49
+        },
+        {
+          "d": "2025-12-31",
+          "c": 2315.9,
+          "m": 2400.74
+        },
+        {
+          "d": "2026-01-01",
+          "c": 2323.0,
+          "m": 2395.31
+        },
+        {
+          "d": "2026-01-02",
+          "c": 2348.0,
+          "m": 2390.43
+        },
+        {
+          "d": "2026-01-05",
+          "c": 2384.1,
+          "m": 2386.08
+        },
+        {
+          "d": "2026-01-06",
+          "c": 2424.7,
+          "m": 2384.25
+        },
+        {
+          "d": "2026-01-07",
+          "c": 2399.4,
+          "m": 2382.0
+        },
+        {
+          "d": "2026-01-08",
+          "c": 2386.7,
+          "m": 2379.79
+        },
+        {
+          "d": "2026-01-09",
+          "c": 2372.6,
+          "m": 2377.48
+        },
+        {
+          "d": "2026-01-12",
+          "c": 2406.2,
+          "m": 2376.22
+        },
+        {
+          "d": "2026-01-13",
+          "c": 2389.5,
+          "m": 2374.7
+        },
+        {
+          "d": "2026-01-14",
+          "c": 2353.5,
+          "m": 2372.57
+        },
+        {
+          "d": "2026-01-15",
+          "c": 2353.5,
+          "m": 2370.72
+        },
+        {
+          "d": "2026-01-16",
+          "c": 2360.4,
+          "m": 2369.21
+        },
+        {
+          "d": "2026-01-19",
+          "c": 2413.9,
+          "m": 2369.21
+        },
+        {
+          "d": "2026-01-20",
+          "c": 2379.1,
+          "m": 2368.61
+        },
+        {
+          "d": "2026-01-21",
+          "c": 2368.0,
+          "m": 2367.42
+        },
+        {
+          "d": "2026-01-22",
+          "c": 2390.6,
+          "m": 2366.75
+        },
+        {
+          "d": "2026-01-23",
+          "c": 2409.5,
+          "m": 2366.78
+        },
+        {
+          "d": "2026-01-27",
+          "c": 2400.9,
+          "m": 2366.25
+        },
+        {
+          "d": "2026-01-28",
+          "c": 2378.4,
+          "m": 2365.32
+        },
+        {
+          "d": "2026-01-29",
+          "c": 2352.6,
+          "m": 2364.29
+        },
+        {
+          "d": "2026-01-30",
+          "c": 2373.0,
+          "m": 2362.92
+        },
+        {
+          "d": "2026-02-02",
+          "c": 2357.3,
+          "m": 2361.49
+        },
+        {
+          "d": "2026-02-03",
+          "c": 2368.6,
+          "m": 2360.19
+        },
+        {
+          "d": "2026-02-04",
+          "c": 2371.0,
+          "m": 2359.13
+        },
+        {
+          "d": "2026-02-05",
+          "c": 2354.4,
+          "m": 2357.93
+        },
+        {
+          "d": "2026-02-06",
+          "c": 2424.2,
+          "m": 2357.91
+        },
+        {
+          "d": "2026-02-09",
+          "c": 2435.0,
+          "m": 2357.58
+        },
+        {
+          "d": "2026-02-10",
+          "c": 2453.6,
+          "m": 2357.32
+        },
+        {
+          "d": "2026-02-11",
+          "c": 2462.9,
+          "m": 2357.29
+        },
+        {
+          "d": "2026-02-12",
+          "c": 2409.7,
+          "m": 2355.93
+        },
+        {
+          "d": "2026-02-13",
+          "c": 2305.2,
+          "m": 2353.07
+        },
+        {
+          "d": "2026-02-16",
+          "c": 2319.0,
+          "m": 2350.21
+        },
+        {
+          "d": "2026-02-17",
+          "c": 2312.3,
+          "m": 2349.68
+        },
+        {
+          "d": "2026-02-18",
+          "c": 2323.5,
+          "m": 2349.87
+        },
+        {
+          "d": "2026-02-19",
+          "c": 2279.3,
+          "m": 2349.33
+        },
+        {
+          "d": "2026-02-20",
+          "c": 2314.5,
+          "m": 2349.58
+        },
+        {
+          "d": "2026-02-23",
+          "c": 2345.4,
+          "m": 2350.38
+        },
+        {
+          "d": "2026-02-24",
+          "c": 2358.6,
+          "m": 2352.34
+        },
+        {
+          "d": "2026-02-25",
+          "c": 2374.9,
+          "m": 2353.97
+        },
+        {
+          "d": "2026-02-26",
+          "c": 2383.3,
+          "m": 2356.01
+        },
+        {
+          "d": "2026-02-27",
+          "c": 2338.1,
+          "m": 2357.26
+        },
+        {
+          "d": "2026-03-02",
+          "c": 2320.6,
+          "m": 2358.36
+        },
+        {
+          "d": "2026-03-04",
+          "c": 2261.3,
+          "m": 2357.99
+        },
+        {
+          "d": "2026-03-05",
+          "c": 2255.0,
+          "m": 2357.3
+        },
+        {
+          "d": "2026-03-06",
+          "c": 2225.7,
+          "m": 2355.76
+        },
+        {
+          "d": "2026-03-09",
+          "c": 2194.6,
+          "m": 2354.01
+        },
+        {
+          "d": "2026-03-10",
+          "c": 2190.2,
+          "m": 2352.1
+        },
+        {
+          "d": "2026-03-11",
+          "c": 2161.4,
+          "m": 2349.47
+        },
+        {
+          "d": "2026-03-12",
+          "c": 2136.9,
+          "m": 2346.4
+        },
+        {
+          "d": "2026-03-13",
+          "c": 2160.0,
+          "m": 2343.28
+        },
+        {
+          "d": "2026-03-16",
+          "c": 2175.7,
+          "m": 2340.34
+        },
+        {
+          "d": "2026-03-17",
+          "c": 2158.2,
+          "m": 2336.54
+        },
+        {
+          "d": "2026-03-18",
+          "c": 2135.3,
+          "m": 2331.56
+        },
+        {
+          "d": "2026-03-19",
+          "c": 2077.3,
+          "m": 2324.62
+        },
+        {
+          "d": "2026-03-20",
+          "c": 2082.7,
+          "m": 2318.28
+        },
+        {
+          "d": "2026-03-23",
+          "c": 2052.2,
+          "m": 2311.59
+        },
+        {
+          "d": "2026-03-24",
+          "c": 2085.0,
+          "m": 2305.84
+        },
+        {
+          "d": "2026-03-25",
+          "c": 2134.8,
+          "m": 2300.41
+        },
+        {
+          "d": "2026-03-27",
+          "c": 2074.4,
+          "m": 2294.11
+        },
+        {
+          "d": "2026-03-30",
+          "c": 2055.2,
+          "m": 2288.14
+        },
+        {
+          "d": "2026-04-01",
+          "c": 2064.7,
+          "m": 2282.37
+        },
+        {
+          "d": "2026-04-02",
+          "c": 2065.3,
+          "m": 2276.47
+        },
+        {
+          "d": "2026-04-06",
+          "c": 2084.8,
+          "m": 2269.88
+        },
+        {
+          "d": "2026-04-07",
+          "c": 2110.6,
+          "m": 2264.51
+        },
+        {
+          "d": "2026-04-08",
+          "c": 2145.6,
+          "m": 2260.07
+        },
+        {
+          "d": "2026-04-09",
+          "c": 2133.2,
+          "m": 2254.92
+        },
+        {
+          "d": "2026-04-10",
+          "c": 2155.3,
+          "m": 2249.83
+        },
+        {
+          "d": "2026-04-13",
+          "c": 2127.2,
+          "m": 2244.36
+        },
+        {
+          "d": "2026-04-15",
+          "c": 2157.6,
+          "m": 2239.94
+        },
+        {
+          "d": "2026-04-16",
+          "c": 2139.1,
+          "m": 2235.67
+        },
+        {
+          "d": "2026-04-17",
+          "c": 2240.8,
+          "m": 2233.03
+        },
+        {
+          "d": "2026-04-20",
+          "c": 2231.5,
+          "m": 2230.51
+        },
+        {
+          "d": "2026-04-21",
+          "c": 2310.7,
+          "m": 2229.36
+        },
+        {
+          "d": "2026-04-22",
+          "c": 2368.8,
+          "m": 2229.31
+        },
+        {
+          "d": "2026-04-23",
+          "c": 2366.4,
+          "m": 2229.55
+        },
+        {
+          "d": "2026-04-24",
+          "c": 2327.3,
+          "m": 2227.61
+        },
+        {
+          "d": "2026-04-27",
+          "c": 2328.3,
+          "m": 2225.48
+        },
+        {
+          "d": "2026-04-28",
+          "c": 2289.5,
+          "m": 2222.2
+        },
+        {
+          "d": "2026-04-29",
+          "c": 2314.4,
+          "m": 2219.23
+        },
+        {
+          "d": "2026-04-30",
+          "c": 2250.9,
+          "m": 2216.05
+        },
+        {
+          "d": "2026-05-01",
+          "c": 2250.9,
+          "m": 2214.97
+        },
+        {
+          "d": "2026-05-04",
+          "c": 2309.3,
+          "m": 2214.77
+        },
+        {
+          "d": "2026-05-05",
+          "c": 2327.4,
+          "m": 2215.07
+        },
+        {
+          "d": "2026-05-06",
+          "c": 2317.1,
+          "m": 2214.95
+        },
+        {
+          "d": "2026-05-07",
+          "c": 2272.2,
+          "m": 2214.8
+        },
+        {
+          "d": "2026-05-08",
+          "c": 2287.7,
+          "m": 2214.27
+        },
+        {
+          "d": "2026-05-11",
+          "c": 2307.2,
+          "m": 2213.5
+        },
+        {
+          "d": "2026-05-12",
+          "c": 2262.0,
+          "m": 2211.57
+        },
+        {
+          "d": "2026-05-13",
+          "c": 2267.3,
+          "m": 2209.42
+        },
+        {
+          "d": "2026-05-14",
+          "c": 2248.7,
+          "m": 2206.73
+        },
+        {
+          "d": "2026-05-15",
+          "c": 2272.2,
+          "m": 2205.41
+        },
+        {
+          "d": "2026-05-18",
+          "c": 2254.2,
+          "m": 2204.08
+        },
+        {
+          "d": "2026-05-19",
+          "c": 2232.9,
+          "m": 2203.51
+        },
+        {
+          "d": "2026-05-20",
+          "c": 2209.3,
+          "m": 2202.6
+        },
+        {
+          "d": "2026-05-21",
+          "c": 2179.0,
+          "m": 2201.67
+        },
+        {
+          "d": "2026-05-22",
+          "c": 2203.6,
+          "m": 2201.85
+        },
+        {
+          "d": "2026-05-25",
+          "c": 2196.5,
+          "m": 2201.97
+        },
+        {
+          "d": "2026-05-26",
+          "c": 2209.4,
+          "m": 2202.93
+        },
+        {
+          "d": "2026-05-27",
+          "c": 2198.4,
+          "m": 2204.16
+        },
+        {
+          "d": "2026-05-28",
+          "c": 2198.4,
+          "m": 2204.93
+        },
+        {
+          "d": "2026-05-29",
+          "c": 2153.5,
+          "m": 2204.49
+        },
+        {
+          "d": "2026-06-01",
+          "c": 2084.3,
+          "m": 2203.01
+        },
+        {
+          "d": "2026-06-02",
+          "c": 2093.7,
+          "m": 2202.18
+        },
+        {
+          "d": "2026-06-03",
+          "c": 2090.6,
+          "m": 2202.44
+        },
+        {
+          "d": "2026-06-04",
+          "c": 2079.4,
+          "m": 2202.38
+        },
+        {
+          "d": "2026-06-05",
+          "c": 2121.5,
+          "m": 2203.76
+        },
+        {
+          "d": "2026-06-08",
+          "c": 2110.1,
+          "m": 2204.26
+        },
+        {
+          "d": "2026-06-09",
+          "c": 2132.8,
+          "m": 2204.22
+        },
+        {
+          "d": "2026-06-10",
+          "c": 2169.5,
+          "m": 2206.13
+        },
+        {
+          "d": "2026-06-11",
+          "c": 2139.8,
+          "m": 2207.82
+        },
+        {
+          "d": "2026-06-12",
+          "c": 2157.4,
+          "m": 2209.67
+        }
+      ],
+      "is_favourite": false
+    },
+    {
       "symbol": "V",
       "market": "US",
       "sector": "Financials",
@@ -24305,6 +25082,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -24910,712 +25688,15 @@
       "is_favourite": false
     },
     {
-      "symbol": "HINDUNILVR.NS",
-      "market": "India",
-      "sector": "Consumer Staples",
-      "as_of": "2026-06-12",
-      "last_close": 2160.2,
-      "score": 32.9,
-      "label": "SELL",
-      "core": 32.9,
-      "conviction": 17.1,
-      "components": {
-        "trend": {
-          "score": 0.0,
-          "weight": 0.35,
-          "reason": "price/50/200DMA stack below"
-        },
-        "momentum": {
-          "score": 42.6,
-          "weight": 0.3,
-          "reason": "6m return -6.3%, MACD +"
-        },
-        "relative_strength": {
-          "score": 60.7,
-          "weight": 0.25,
-          "reason": "3m vs index +2.2%"
-        },
-        "flow": {
-          "score": 50.0,
-          "weight": 0.1,
-          "reason": "neutral"
-        }
-      },
-      "timing": {
-        "adjustment": 0.0,
-        "reason": "RSI 48 neutral"
-      },
-      "volatility": {
-        "atr_14": 46.56,
-        "atr_pct": 2.16,
-        "daily_vol_pct": 1.29,
-        "annual_vol_pct": 20.6
-      },
-      "expected_move": {
-        "5d": {
-          "sigma_pct": 2.9,
-          "low": 2097.66,
-          "high": 2222.74
-        },
-        "15d": {
-          "sigma_pct": 5.01,
-          "low": 2051.87,
-          "high": 2268.53
-        },
-        "30d": {
-          "sigma_pct": 7.09,
-          "low": 2007.0,
-          "high": 2313.4
-        }
-      },
-      "key_levels": {
-        "support": [
-          2113.5,
-          2109.3
-        ],
-        "resistance": [
-          2192.8,
-          2238.1
-        ]
-      },
-      "trade": {
-        "direction": "short",
-        "entry": 2160.2,
-        "stop": 2253.32,
-        "target": 2113.5,
-        "risk_per_share": 93.12,
-        "reward_per_share": 46.7,
-        "risk_reward": 0.5,
-        "actionable": false,
-        "note": "R:R 0.5 below 1.5 \u2014 structure doesn't justify the trade; watch only"
-      },
-      "calibration": {
-        "band": "SELL",
-        "market": "India",
-        "tradeable": false,
-        "reason": "Shorts were net-negative in backtest \u2014 informational only",
-        "win_rate": 43.8,
-        "expectancy_pct": -0.803,
-        "profit_factor": 0.68,
-        "samples": 404,
-        "avg_hold_days": 9.5
-      },
-      "quality": null,
-      "events": null,
-      "history": [
-        {
-          "d": "2025-12-18",
-          "c": 2265.5,
-          "m": 2438.47
-        },
-        {
-          "d": "2025-12-19",
-          "c": 2280.0,
-          "m": 2434.07
-        },
-        {
-          "d": "2025-12-22",
-          "c": 2289.5,
-          "m": 2429.51
-        },
-        {
-          "d": "2025-12-23",
-          "c": 2302.6,
-          "m": 2424.98
-        },
-        {
-          "d": "2025-12-24",
-          "c": 2282.2,
-          "m": 2420.77
-        },
-        {
-          "d": "2025-12-26",
-          "c": 2285.4,
-          "m": 2416.43
-        },
-        {
-          "d": "2025-12-29",
-          "c": 2293.3,
-          "m": 2411.92
-        },
-        {
-          "d": "2025-12-30",
-          "c": 2290.2,
-          "m": 2406.49
-        },
-        {
-          "d": "2025-12-31",
-          "c": 2315.9,
-          "m": 2400.74
-        },
-        {
-          "d": "2026-01-01",
-          "c": 2323.0,
-          "m": 2395.31
-        },
-        {
-          "d": "2026-01-02",
-          "c": 2348.0,
-          "m": 2390.43
-        },
-        {
-          "d": "2026-01-05",
-          "c": 2384.1,
-          "m": 2386.08
-        },
-        {
-          "d": "2026-01-06",
-          "c": 2424.7,
-          "m": 2384.25
-        },
-        {
-          "d": "2026-01-07",
-          "c": 2399.4,
-          "m": 2382.0
-        },
-        {
-          "d": "2026-01-08",
-          "c": 2386.7,
-          "m": 2379.79
-        },
-        {
-          "d": "2026-01-09",
-          "c": 2372.6,
-          "m": 2377.48
-        },
-        {
-          "d": "2026-01-12",
-          "c": 2406.2,
-          "m": 2376.22
-        },
-        {
-          "d": "2026-01-13",
-          "c": 2389.5,
-          "m": 2374.7
-        },
-        {
-          "d": "2026-01-14",
-          "c": 2353.5,
-          "m": 2372.57
-        },
-        {
-          "d": "2026-01-15",
-          "c": 2353.5,
-          "m": 2370.72
-        },
-        {
-          "d": "2026-01-16",
-          "c": 2360.4,
-          "m": 2369.21
-        },
-        {
-          "d": "2026-01-19",
-          "c": 2413.9,
-          "m": 2369.21
-        },
-        {
-          "d": "2026-01-20",
-          "c": 2379.1,
-          "m": 2368.61
-        },
-        {
-          "d": "2026-01-21",
-          "c": 2368.0,
-          "m": 2367.42
-        },
-        {
-          "d": "2026-01-22",
-          "c": 2390.6,
-          "m": 2366.75
-        },
-        {
-          "d": "2026-01-23",
-          "c": 2409.5,
-          "m": 2366.78
-        },
-        {
-          "d": "2026-01-27",
-          "c": 2400.9,
-          "m": 2366.25
-        },
-        {
-          "d": "2026-01-28",
-          "c": 2378.4,
-          "m": 2365.32
-        },
-        {
-          "d": "2026-01-29",
-          "c": 2352.6,
-          "m": 2364.29
-        },
-        {
-          "d": "2026-01-30",
-          "c": 2373.0,
-          "m": 2362.92
-        },
-        {
-          "d": "2026-02-02",
-          "c": 2357.3,
-          "m": 2361.49
-        },
-        {
-          "d": "2026-02-03",
-          "c": 2368.6,
-          "m": 2360.19
-        },
-        {
-          "d": "2026-02-04",
-          "c": 2371.0,
-          "m": 2359.13
-        },
-        {
-          "d": "2026-02-05",
-          "c": 2354.4,
-          "m": 2357.93
-        },
-        {
-          "d": "2026-02-06",
-          "c": 2424.2,
-          "m": 2357.91
-        },
-        {
-          "d": "2026-02-09",
-          "c": 2435.0,
-          "m": 2357.58
-        },
-        {
-          "d": "2026-02-10",
-          "c": 2453.6,
-          "m": 2357.32
-        },
-        {
-          "d": "2026-02-11",
-          "c": 2462.9,
-          "m": 2357.29
-        },
-        {
-          "d": "2026-02-12",
-          "c": 2409.7,
-          "m": 2355.93
-        },
-        {
-          "d": "2026-02-13",
-          "c": 2305.2,
-          "m": 2353.07
-        },
-        {
-          "d": "2026-02-16",
-          "c": 2319.0,
-          "m": 2350.21
-        },
-        {
-          "d": "2026-02-17",
-          "c": 2312.3,
-          "m": 2349.68
-        },
-        {
-          "d": "2026-02-18",
-          "c": 2323.5,
-          "m": 2349.87
-        },
-        {
-          "d": "2026-02-19",
-          "c": 2279.3,
-          "m": 2349.33
-        },
-        {
-          "d": "2026-02-20",
-          "c": 2314.5,
-          "m": 2349.58
-        },
-        {
-          "d": "2026-02-23",
-          "c": 2345.4,
-          "m": 2350.38
-        },
-        {
-          "d": "2026-02-24",
-          "c": 2358.6,
-          "m": 2352.34
-        },
-        {
-          "d": "2026-02-25",
-          "c": 2374.9,
-          "m": 2353.97
-        },
-        {
-          "d": "2026-02-26",
-          "c": 2383.3,
-          "m": 2356.01
-        },
-        {
-          "d": "2026-02-27",
-          "c": 2338.1,
-          "m": 2357.26
-        },
-        {
-          "d": "2026-03-02",
-          "c": 2320.6,
-          "m": 2358.36
-        },
-        {
-          "d": "2026-03-04",
-          "c": 2261.3,
-          "m": 2357.99
-        },
-        {
-          "d": "2026-03-05",
-          "c": 2255.0,
-          "m": 2357.3
-        },
-        {
-          "d": "2026-03-06",
-          "c": 2225.7,
-          "m": 2355.76
-        },
-        {
-          "d": "2026-03-09",
-          "c": 2194.6,
-          "m": 2354.01
-        },
-        {
-          "d": "2026-03-10",
-          "c": 2190.2,
-          "m": 2352.1
-        },
-        {
-          "d": "2026-03-11",
-          "c": 2161.4,
-          "m": 2349.47
-        },
-        {
-          "d": "2026-03-12",
-          "c": 2136.9,
-          "m": 2346.4
-        },
-        {
-          "d": "2026-03-13",
-          "c": 2160.0,
-          "m": 2343.28
-        },
-        {
-          "d": "2026-03-16",
-          "c": 2175.7,
-          "m": 2340.34
-        },
-        {
-          "d": "2026-03-17",
-          "c": 2158.2,
-          "m": 2336.54
-        },
-        {
-          "d": "2026-03-18",
-          "c": 2135.3,
-          "m": 2331.56
-        },
-        {
-          "d": "2026-03-19",
-          "c": 2077.3,
-          "m": 2324.62
-        },
-        {
-          "d": "2026-03-20",
-          "c": 2082.7,
-          "m": 2318.28
-        },
-        {
-          "d": "2026-03-23",
-          "c": 2052.2,
-          "m": 2311.59
-        },
-        {
-          "d": "2026-03-24",
-          "c": 2085.0,
-          "m": 2305.84
-        },
-        {
-          "d": "2026-03-25",
-          "c": 2134.8,
-          "m": 2300.41
-        },
-        {
-          "d": "2026-03-27",
-          "c": 2074.4,
-          "m": 2294.11
-        },
-        {
-          "d": "2026-03-30",
-          "c": 2055.2,
-          "m": 2288.14
-        },
-        {
-          "d": "2026-04-01",
-          "c": 2064.7,
-          "m": 2282.37
-        },
-        {
-          "d": "2026-04-02",
-          "c": 2065.3,
-          "m": 2276.47
-        },
-        {
-          "d": "2026-04-06",
-          "c": 2084.8,
-          "m": 2269.88
-        },
-        {
-          "d": "2026-04-07",
-          "c": 2110.6,
-          "m": 2264.51
-        },
-        {
-          "d": "2026-04-08",
-          "c": 2145.6,
-          "m": 2260.07
-        },
-        {
-          "d": "2026-04-09",
-          "c": 2133.2,
-          "m": 2254.92
-        },
-        {
-          "d": "2026-04-10",
-          "c": 2155.3,
-          "m": 2249.83
-        },
-        {
-          "d": "2026-04-13",
-          "c": 2127.2,
-          "m": 2244.36
-        },
-        {
-          "d": "2026-04-15",
-          "c": 2157.6,
-          "m": 2239.94
-        },
-        {
-          "d": "2026-04-16",
-          "c": 2139.1,
-          "m": 2235.67
-        },
-        {
-          "d": "2026-04-17",
-          "c": 2240.8,
-          "m": 2233.03
-        },
-        {
-          "d": "2026-04-20",
-          "c": 2231.5,
-          "m": 2230.51
-        },
-        {
-          "d": "2026-04-21",
-          "c": 2310.7,
-          "m": 2229.36
-        },
-        {
-          "d": "2026-04-22",
-          "c": 2368.8,
-          "m": 2229.31
-        },
-        {
-          "d": "2026-04-23",
-          "c": 2366.4,
-          "m": 2229.55
-        },
-        {
-          "d": "2026-04-24",
-          "c": 2327.3,
-          "m": 2227.61
-        },
-        {
-          "d": "2026-04-27",
-          "c": 2328.3,
-          "m": 2225.48
-        },
-        {
-          "d": "2026-04-28",
-          "c": 2289.5,
-          "m": 2222.2
-        },
-        {
-          "d": "2026-04-29",
-          "c": 2314.4,
-          "m": 2219.23
-        },
-        {
-          "d": "2026-04-30",
-          "c": 2250.9,
-          "m": 2216.05
-        },
-        {
-          "d": "2026-05-01",
-          "c": 2250.9,
-          "m": 2214.97
-        },
-        {
-          "d": "2026-05-04",
-          "c": 2309.3,
-          "m": 2214.77
-        },
-        {
-          "d": "2026-05-05",
-          "c": 2327.4,
-          "m": 2215.07
-        },
-        {
-          "d": "2026-05-06",
-          "c": 2317.1,
-          "m": 2214.95
-        },
-        {
-          "d": "2026-05-07",
-          "c": 2272.2,
-          "m": 2214.8
-        },
-        {
-          "d": "2026-05-08",
-          "c": 2287.7,
-          "m": 2214.27
-        },
-        {
-          "d": "2026-05-11",
-          "c": 2307.2,
-          "m": 2213.5
-        },
-        {
-          "d": "2026-05-12",
-          "c": 2262.0,
-          "m": 2211.57
-        },
-        {
-          "d": "2026-05-13",
-          "c": 2267.3,
-          "m": 2209.42
-        },
-        {
-          "d": "2026-05-14",
-          "c": 2248.7,
-          "m": 2206.73
-        },
-        {
-          "d": "2026-05-15",
-          "c": 2272.2,
-          "m": 2205.41
-        },
-        {
-          "d": "2026-05-18",
-          "c": 2254.2,
-          "m": 2204.08
-        },
-        {
-          "d": "2026-05-19",
-          "c": 2232.9,
-          "m": 2203.51
-        },
-        {
-          "d": "2026-05-20",
-          "c": 2209.3,
-          "m": 2202.6
-        },
-        {
-          "d": "2026-05-21",
-          "c": 2179.0,
-          "m": 2201.67
-        },
-        {
-          "d": "2026-05-22",
-          "c": 2203.6,
-          "m": 2201.85
-        },
-        {
-          "d": "2026-05-25",
-          "c": 2196.5,
-          "m": 2201.97
-        },
-        {
-          "d": "2026-05-26",
-          "c": 2209.4,
-          "m": 2202.93
-        },
-        {
-          "d": "2026-05-27",
-          "c": 2198.4,
-          "m": 2204.16
-        },
-        {
-          "d": "2026-05-28",
-          "c": 2198.4,
-          "m": 2204.93
-        },
-        {
-          "d": "2026-05-29",
-          "c": 2153.5,
-          "m": 2204.49
-        },
-        {
-          "d": "2026-06-01",
-          "c": 2084.3,
-          "m": 2203.01
-        },
-        {
-          "d": "2026-06-02",
-          "c": 2093.7,
-          "m": 2202.18
-        },
-        {
-          "d": "2026-06-03",
-          "c": 2090.6,
-          "m": 2202.44
-        },
-        {
-          "d": "2026-06-04",
-          "c": 2079.4,
-          "m": 2202.38
-        },
-        {
-          "d": "2026-06-05",
-          "c": 2121.5,
-          "m": 2203.76
-        },
-        {
-          "d": "2026-06-08",
-          "c": 2110.1,
-          "m": 2204.26
-        },
-        {
-          "d": "2026-06-09",
-          "c": 2132.8,
-          "m": 2204.22
-        },
-        {
-          "d": "2026-06-10",
-          "c": 2169.5,
-          "m": 2206.13
-        },
-        {
-          "d": "2026-06-11",
-          "c": 2139.8,
-          "m": 2207.82
-        },
-        {
-          "d": "2026-06-12",
-          "c": 2160.2,
-          "m": 2209.73
-        }
-      ],
-      "is_favourite": false
-    },
-    {
       "symbol": "COALINDIA.NS",
       "market": "India",
       "sector": "Energy",
       "as_of": "2026-06-12",
-      "last_close": 441.95,
-      "score": 65.6,
+      "last_close": 444.0,
+      "score": 66.2,
       "label": "BUY",
-      "core": 65.6,
-      "conviction": 15.6,
+      "core": 66.2,
+      "conviction": 16.2,
       "components": {
         "trend": {
           "score": 70.0,
@@ -25623,14 +25704,14 @@
           "reason": "price/50/200DMA stack mixed"
         },
         "momentum": {
-          "score": 73.9,
+          "score": 74.6,
           "weight": 0.3,
-          "reason": "6m return +16.5%, MACD \u2212"
+          "reason": "6m return +17.0%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 55.8,
+          "score": 57.1,
           "weight": 0.25,
-          "reason": "3m vs index +1.2%"
+          "reason": "3m vs index +1.4%"
         },
         "flow": {
           "score": 50.0,
@@ -25640,29 +25721,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 37 neutral"
+        "reason": "RSI 38 neutral"
       },
       "volatility": {
         "atr_14": 12.65,
-        "atr_pct": 2.86,
-        "daily_vol_pct": 1.42,
-        "annual_vol_pct": 22.5
+        "atr_pct": 2.85,
+        "daily_vol_pct": 1.41,
+        "annual_vol_pct": 22.3
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 3.16,
-          "low": 427.97,
-          "high": 455.93
+          "sigma_pct": 3.14,
+          "low": 430.04,
+          "high": 457.96
         },
         "15d": {
-          "sigma_pct": 5.48,
-          "low": 417.73,
-          "high": 466.17
+          "sigma_pct": 5.45,
+          "low": 419.82,
+          "high": 468.18
         },
         "30d": {
-          "sigma_pct": 7.75,
-          "low": 407.69,
-          "high": 476.21
+          "sigma_pct": 7.7,
+          "low": 409.8,
+          "high": 478.2
         }
       },
       "key_levels": {
@@ -25671,20 +25752,20 @@
           438.8
         ],
         "resistance": [
-          442.0,
-          458.5
+          458.5,
+          461.55
         ]
       },
       "trade": {
         "direction": "long",
-        "entry": 441.95,
-        "stop": 416.65,
+        "entry": 444.0,
+        "stop": 418.7,
         "target": 458.5,
         "risk_per_share": 25.3,
-        "reward_per_share": 16.55,
-        "risk_reward": 0.65,
+        "reward_per_share": 14.5,
+        "risk_reward": 0.57,
         "actionable": false,
-        "note": "R:R 0.7 below 1.5 \u2014 structure doesn't justify the trade; watch only"
+        "note": "R:R 0.6 below 1.5 \u2014 structure doesn't justify the trade; watch only"
       },
       "calibration": {
         "band": "BUY",
@@ -25699,6 +25780,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -26297,8 +26379,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 441.95,
-          "m": 458.76
+          "c": 444.0,
+          "m": 458.8
         }
       ],
       "is_favourite": false
@@ -26308,11 +26390,11 @@
       "market": "India",
       "sector": "Technology",
       "as_of": "2026-06-12",
-      "last_close": 1434.5,
-      "score": 35.7,
+      "last_close": 1432.0,
+      "score": 35.4,
       "label": "SELL",
-      "core": 35.7,
-      "conviction": 14.3,
+      "core": 35.4,
+      "conviction": 14.6,
       "components": {
         "trend": {
           "score": 0.0,
@@ -26320,14 +26402,14 @@
           "reason": "price/50/200DMA stack below"
         },
         "momentum": {
-          "score": 29.3,
+          "score": 29.0,
           "weight": 0.3,
-          "reason": "6m return -8.1%, MACD \u2212"
+          "reason": "6m return -8.3%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 87.5,
+          "score": 86.7,
           "weight": 0.25,
-          "reason": "3m vs index +9.7%"
+          "reason": "3m vs index +9.4%"
         },
         "flow": {
           "score": 50.0,
@@ -26341,25 +26423,25 @@
       },
       "volatility": {
         "atr_14": 45.52,
-        "atr_pct": 3.17,
-        "daily_vol_pct": 2.38,
-        "annual_vol_pct": 37.7
+        "atr_pct": 3.18,
+        "daily_vol_pct": 2.39,
+        "annual_vol_pct": 37.9
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 5.32,
-          "low": 1358.24,
-          "high": 1510.76
+          "sigma_pct": 5.34,
+          "low": 1355.57,
+          "high": 1508.43
         },
         "15d": {
-          "sigma_pct": 9.21,
-          "low": 1302.41,
-          "high": 1566.59
+          "sigma_pct": 9.24,
+          "low": 1299.62,
+          "high": 1564.38
         },
         "30d": {
-          "sigma_pct": 13.02,
-          "low": 1247.69,
-          "high": 1621.31
+          "sigma_pct": 13.07,
+          "low": 1244.79,
+          "high": 1619.21
         }
       },
       "key_levels": {
@@ -26374,9 +26456,9 @@
       },
       "trade": {
         "direction": "short",
-        "entry": 1434.5,
-        "stop": 1525.54,
-        "target": 1252.42,
+        "entry": 1432.0,
+        "stop": 1523.04,
+        "target": 1249.92,
         "risk_per_share": 91.04,
         "reward_per_share": 182.08,
         "risk_reward": 2.0,
@@ -26396,6 +26478,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -26994,8 +27077,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1434.5,
-          "m": 1454.6
+          "c": 1432.0,
+          "m": 1454.55
         }
       ],
       "is_favourite": false
@@ -27123,6 +27206,10 @@
         "days_to_earnings": 76,
         "event_within_horizon": false,
         "flag": "CLEAR"
+      },
+      "narration": {
+        "thesis": "The setup appears favorable due to a mixed but overall positive trend (70) and momentum (65) from a 6-month return of +10.8%, despite a negative MACD. The relative strength (56) also indicates a slight outperformance over the last 3 months.",
+        "caution": "However, the expensive valuation (PE 31.3, P/B 25.4) and upcoming earnings (in 76 days) could pose risks not captured by the price model."
       },
       "history": [
         {
@@ -27852,6 +27939,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears favorable due to a mix of positive trend and relative strength indicators, with a 3m relative strength of 71 and a 6m return of +6.0%, despite slightly negative MACD momentum. The price action stack is mixed, but the quant model sees sufficient potential for a move towards 270.63. The trade levels reflect a risk-reward ratio of 2.0, driven by a stop loss at 226.95 and an entry at 241.51.",
+        "caution": "The expensive valuation (PE 31.7, P/B 5.9) and upcoming earnings event (2026-07-31, 49d) may pose risks not captured by the price model."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -28549,6 +28640,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -29246,6 +29338,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -29974,6 +30067,10 @@
         "event_within_horizon": false,
         "flag": "CLEAR"
       },
+      "narration": {
+        "thesis": "The setup appears to be driven by momentum, with a 6-month return of 16.6% and a positive MACD, which outweighs the neutral trend and relative strength signals. The mixed trend signal comes from the price/50/200DMA stack being mixed, indicating some uncertainty in the trend. The model is overweighting momentum, given its high score of 84.",
+        "caution": "The expensive valuation (PE 41.3, P/B 18.7) and upcoming earnings event (2026-07-16, 34d) may pose risks not captured by the price model."
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -30661,6 +30758,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -31348,6 +31446,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -31957,11 +32056,11 @@
       "market": "India",
       "sector": "Financials",
       "as_of": "2026-06-12",
-      "last_close": 1011.15,
-      "score": 57.8,
+      "last_close": 1015.0,
+      "score": 58.2,
       "label": "NEUTRAL",
-      "core": 57.8,
-      "conviction": 7.8,
+      "core": 58.2,
+      "conviction": 8.2,
       "components": {
         "trend": {
           "score": 70.0,
@@ -31969,14 +32068,14 @@
           "reason": "price/50/200DMA stack mixed"
         },
         "momentum": {
-          "score": 65.6,
+          "score": 66.4,
           "weight": 0.3,
-          "reason": "6m return +5.4%, MACD +"
+          "reason": "6m return +5.8%, MACD +"
         },
         "relative_strength": {
-          "score": 26.5,
+          "score": 27.2,
           "weight": 0.25,
-          "reason": "3m vs index -5.1%"
+          "reason": "3m vs index -4.9%"
         },
         "flow": {
           "score": 70.0,
@@ -31986,29 +32085,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 58 neutral"
+        "reason": "RSI 59 neutral"
       },
       "volatility": {
         "atr_14": 21.31,
-        "atr_pct": 2.11,
-        "daily_vol_pct": 1.04,
-        "annual_vol_pct": 16.5
+        "atr_pct": 2.1,
+        "daily_vol_pct": 1.06,
+        "annual_vol_pct": 16.8
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 2.33,
-          "low": 987.59,
-          "high": 1034.72
+          "sigma_pct": 2.37,
+          "low": 990.92,
+          "high": 1039.08
         },
         "15d": {
-          "sigma_pct": 4.04,
-          "low": 970.33,
-          "high": 1051.97
+          "sigma_pct": 4.11,
+          "low": 973.3,
+          "high": 1056.7
         },
         "30d": {
-          "sigma_pct": 5.71,
-          "low": 953.43,
-          "high": 1068.87
+          "sigma_pct": 5.81,
+          "low": 956.03,
+          "high": 1073.97
         }
       },
       "key_levels": {
@@ -32035,6 +32134,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -32633,8 +32733,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1011.15,
-          "m": 1021.81
+          "c": 1015.0,
+          "m": 1021.89
         }
       ],
       "is_favourite": false
@@ -32644,11 +32744,11 @@
       "market": "India",
       "sector": "Energy",
       "as_of": "2026-06-12",
-      "last_close": 245.7,
-      "score": 43.9,
+      "last_close": 245.6,
+      "score": 43.8,
       "label": "NEUTRAL",
-      "core": 38.9,
-      "conviction": 6.1,
+      "core": 38.7,
+      "conviction": 6.2,
       "components": {
         "trend": {
           "score": 40.0,
@@ -32656,14 +32756,14 @@
           "reason": "price/50/200DMA stack mixed"
         },
         "momentum": {
-          "score": 49.9,
+          "score": 49.8,
           "weight": 0.3,
           "reason": "6m return +2.4%, MACD \u2212"
         },
         "relative_strength": {
-          "score": 19.7,
+          "score": 19.0,
           "weight": 0.25,
-          "reason": "3m vs index -7.0%"
+          "reason": "3m vs index -7.2%"
         },
         "flow": {
           "score": 50.0,
@@ -32672,30 +32772,30 @@
         }
       },
       "timing": {
-        "adjustment": 5.0,
+        "adjustment": 5.1,
         "reason": "oversold (RSI 22)"
       },
       "volatility": {
         "atr_14": 6.93,
         "atr_pct": 2.82,
         "daily_vol_pct": 1.55,
-        "annual_vol_pct": 24.6
+        "annual_vol_pct": 24.7
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 3.47,
-          "low": 237.17,
-          "high": 254.23
+          "sigma_pct": 3.48,
+          "low": 237.06,
+          "high": 254.14
         },
         "15d": {
-          "sigma_pct": 6.01,
-          "low": 230.93,
-          "high": 260.47
+          "sigma_pct": 6.02,
+          "low": 230.82,
+          "high": 260.38
         },
         "30d": {
-          "sigma_pct": 8.5,
-          "low": 224.82,
-          "high": 266.58
+          "sigma_pct": 8.51,
+          "low": 224.69,
+          "high": 266.51
         }
       },
       "key_levels": {
@@ -32722,6 +32822,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -33320,8 +33421,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 245.7,
-          "m": 282.68
+          "c": 245.6,
+          "m": 282.67
         }
       ],
       "is_favourite": false
@@ -33409,6 +33510,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -34096,6 +34198,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -34783,6 +34886,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -35470,6 +35574,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -36157,6 +36262,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -36766,11 +36872,11 @@
       "market": "India",
       "sector": "Financials",
       "as_of": "2026-06-12",
-      "last_close": 1336.5,
-      "score": 51.0,
+      "last_close": 1339.0,
+      "score": 51.2,
       "label": "NEUTRAL",
-      "core": 51.0,
-      "conviction": 1.0,
+      "core": 51.2,
+      "conviction": 1.2,
       "components": {
         "trend": {
           "score": 30.0,
@@ -36778,12 +36884,12 @@
           "reason": "price/50/200DMA stack mixed"
         },
         "momentum": {
-          "score": 49.4,
+          "score": 49.8,
           "weight": 0.3,
-          "reason": "6m return -2.8%, MACD +"
+          "reason": "6m return -2.6%, MACD +"
         },
         "relative_strength": {
-          "score": 74.9,
+          "score": 75.0,
           "weight": 0.25,
           "reason": "3m vs index +5.5%"
         },
@@ -36795,29 +36901,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 66 neutral"
+        "reason": "RSI 67 neutral"
       },
       "volatility": {
-        "atr_14": 26.27,
+        "atr_14": 26.36,
         "atr_pct": 1.97,
-        "daily_vol_pct": 1.2,
-        "annual_vol_pct": 19.0
+        "daily_vol_pct": 1.21,
+        "annual_vol_pct": 19.1
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 2.67,
-          "low": 1300.76,
-          "high": 1372.24
+          "sigma_pct": 2.7,
+          "low": 1302.9,
+          "high": 1375.1
         },
         "15d": {
-          "sigma_pct": 4.63,
-          "low": 1274.6,
-          "high": 1398.4
+          "sigma_pct": 4.67,
+          "low": 1276.48,
+          "high": 1401.52
         },
         "30d": {
-          "sigma_pct": 6.55,
-          "low": 1248.97,
-          "high": 1424.03
+          "sigma_pct": 6.6,
+          "low": 1250.58,
+          "high": 1427.42
         }
       },
       "key_levels": {
@@ -36844,6 +36950,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -37442,8 +37549,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 1336.5,
-          "m": 1281.56
+          "c": 1339.0,
+          "m": 1281.61
         }
       ],
       "is_favourite": false
@@ -37453,11 +37560,11 @@
       "market": "India",
       "sector": "Financials",
       "as_of": "2026-06-12",
-      "last_close": 401.85,
-      "score": 50.8,
+      "last_close": 403.45,
+      "score": 51.2,
       "label": "NEUTRAL",
-      "core": 50.8,
-      "conviction": 0.8,
+      "core": 51.2,
+      "conviction": 1.2,
       "components": {
         "trend": {
           "score": 30.0,
@@ -37465,14 +37572,14 @@
           "reason": "price/50/200DMA stack mixed"
         },
         "momentum": {
-          "score": 44.0,
+          "score": 44.8,
           "weight": 0.3,
-          "reason": "6m return -5.6%, MACD +"
+          "reason": "6m return -5.2%, MACD +"
         },
         "relative_strength": {
-          "score": 80.5,
+          "score": 81.3,
           "weight": 0.25,
-          "reason": "3m vs index +7.1%"
+          "reason": "3m vs index +7.3%"
         },
         "flow": {
           "score": 70.0,
@@ -37482,29 +37589,29 @@
       },
       "timing": {
         "adjustment": 0.0,
-        "reason": "RSI 67 neutral"
+        "reason": "RSI 68 neutral"
       },
       "volatility": {
-        "atr_14": 8.86,
-        "atr_pct": 2.2,
-        "daily_vol_pct": 1.29,
-        "annual_vol_pct": 20.4
+        "atr_14": 9.02,
+        "atr_pct": 2.24,
+        "daily_vol_pct": 1.32,
+        "annual_vol_pct": 21.0
       },
       "expected_move": {
         "5d": {
-          "sigma_pct": 2.88,
-          "low": 390.29,
-          "high": 413.41
+          "sigma_pct": 2.95,
+          "low": 391.54,
+          "high": 415.36
         },
         "15d": {
-          "sigma_pct": 4.98,
-          "low": 381.83,
-          "high": 421.87
+          "sigma_pct": 5.12,
+          "low": 382.81,
+          "high": 424.09
         },
         "30d": {
-          "sigma_pct": 7.05,
-          "low": 373.54,
-          "high": 430.16
+          "sigma_pct": 7.23,
+          "low": 374.27,
+          "high": 432.64
         }
       },
       "key_levels": {
@@ -37531,6 +37638,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -38129,8 +38237,8 @@
         },
         {
           "d": "2026-06-12",
-          "c": 401.85,
-          "m": 379.93
+          "c": 403.45,
+          "m": 379.96
         }
       ],
       "is_favourite": false
@@ -38218,6 +38326,7 @@
       },
       "quality": null,
       "events": null,
+      "narration": null,
       "history": [
         {
           "d": "2025-12-18",
