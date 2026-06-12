@@ -58,8 +58,34 @@ export interface Signal {
   key_levels: { support: number[]; resistance: number[] };
   trade: Trade | null;
   calibration: Calibration;
+  quality: Quality | null;
+  events: Events | null;
   history: PricePoint[];
   is_favourite: boolean;
+}
+
+export interface Quality {
+  score: number;
+  assessment: "CHEAP" | "FAIR" | "EXPENSIVE";
+  components: Record<string, { score: number; reason: string }>;
+  reasons: string[];
+}
+
+export interface Events {
+  next_earnings_date: string | null;
+  days_to_earnings: number | null;
+  event_within_horizon: boolean;
+  flag: "EARNINGS_SOON" | "CLEAR";
+}
+
+export interface Macro {
+  regime: "EASING" | "NEUTRAL" | "TIGHTENING";
+  policy_rate: number | null;
+  ten_year: number | null;
+  curve_slope_bps: number | null;
+  fx: { pair: string; level: number; trend: string } | null;
+  as_of: string;
+  source: string;
 }
 
 export interface PricePoint {
@@ -84,6 +110,7 @@ export interface Scan {
     date_range: [string, string] | null;
     caveats: string;
   };
+  macro: Record<string, Macro | null>;
   favourites: string[];
   signals: Signal[];
 }

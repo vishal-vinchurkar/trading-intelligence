@@ -20,9 +20,13 @@ from pathlib import Path
 
 import pandas as pd
 
+from data import events as ev_mod
+from data import fetcher_india  # yfinance fundamentals — keyless, works for US tickers too
+from data import fetcher_macro
 from data import universe
 from data.backfill import load_cached
 from indicators import technical as ta
+from quant import quality as quality_mod
 from quant import score as qscore
 from quant import trade as qtrade
 
@@ -77,7 +81,26 @@ def _calibration(band: str, market: str | None, direction: str, rules: dict) -> 
     }
 
 
-def scan_one(symbol: str, rules: dict) -> dict | None:
+def _enrich(symbol: str) -> tuple[dict | None, dict | None]:
+    """Fundamental quality + event context for a name (Phase B overlay).
+
+    Keyless yfinance for both (fetcher_india.fetch_fundamentals works on US
+    tickers too) so we never touch the Alpha Vantage daily limit. Each is a
+    current-state overlay — NOT folded into the backtested quant score. Failures
+    degrade to None rather than breaking the scan."""
+    quality = events = None
+    try:
+        quality = quality_mod.quality_score(fetcher_india.fetch_fundamentals(symbol))
+    except Exception:  # noqa: BLE001 — yfinance .info is flaky; overlay is optional
+        pass
+    try:
+        events = ev_mod.event_context(symbol)
+    except Exception:  # noqa: BLE001
+        pass
+    return quality, events
+
+
+def scan_one(symbol: str, rules: dict, enrich: bool = False) -> dict | None:
     df = load_cached(symbol)
     if df is None or len(df) < 200:
         return None
@@ -88,6 +111,10 @@ def scan_one(symbol: str, rules: dict) -> dict | None:
     ind = ta.compute_all(df)
     sc = qscore.score(df, bc)
     direction = qtrade.direction_for(sc["label"])
+    cal = _calibration(sc["label"], market, direction, rules)
+    # Enrich the names you'd actually act on (tradeable or pinned) — keyless, so
+    # the rest of the scan stays fast and the Alpha Vantage quota is untouched.
+    quality, events = (_enrich(symbol) if (enrich and (cal["tradeable"] or symbol in FAVOURITES)) else (None, None))
 
     # Last 120 sessions of price + 50DMA for the dashboard chart (closes only —
     # enough to draw the trend and overlay the trade levels, small JSON footprint).
@@ -118,24 +145,36 @@ def scan_one(symbol: str, rules: dict) -> dict | None:
         "expected_move": ind["expected_move"],
         "key_levels": ind["key_levels"],
         "trade": trade,
-        "calibration": _calibration(sc["label"], market, direction, rules),
+        "calibration": cal,
+        "quality": quality,   # Phase B: current-state fundamental overlay (None if not enriched)
+        "events": events,     # Phase B: earnings/event-risk flag (None if not enriched)
         "history": history,
         "is_favourite": symbol in FAVOURITES,
     }
 
 
-def run() -> dict:
+def run(enrich: bool = True) -> dict:
     rules = _rules()
-    signals = [s for s in (scan_one(sym, rules) for sym in universe.symbols()) if s]
+    signals = [s for s in (scan_one(sym, rules, enrich=enrich) for sym in universe.symbols()) if s]
     # Rank by conviction (distance from neutral): strongest longs and shorts float up.
     signals.sort(key=lambda s: s["conviction"], reverse=True)
     as_of = max((s["as_of"] for s in signals), default=None)
 
     portfolio = json.loads(PORTFOLIO_PATH.read_text()) if PORTFOLIO_PATH.exists() else {}
     us_long = (rules.get("by_market_long", {}).get("US", {}) or {}).get("out_of_sample", {})
+
+    # Macro regime once per market present (Phase B overlay — context, not a signal).
+    macro = {}
+    for mkt in sorted({s["market"] for s in signals if s["market"]}):
+        try:
+            macro[mkt] = fetcher_macro.macro_context(mkt)
+        except Exception:  # noqa: BLE001
+            macro[mkt] = None
+
     result = {
         "as_of": as_of,
         "universe_size": len(signals),
+        "macro": macro,
         # The honest, validated headline: the rule-based US-long result + the
         # portfolio curve, with the survivorship caveat travelling alongside.
         "evidence": {

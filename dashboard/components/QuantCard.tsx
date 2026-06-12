@@ -65,6 +65,9 @@ export function QuantCard({
         ) : (
           <span className="ml-1.5 rounded bg-border px-1.5 py-0.5 text-[10px] text-muted">info</span>
         )}
+        {s.events?.event_within_horizon && (
+          <span className="ml-1.5 rounded bg-neutral/15 px-1.5 py-0.5 text-[10px] text-neutral">⚠ earnings</span>
+        )}
       </div>
 
       {/* 120-day price sparkline */}

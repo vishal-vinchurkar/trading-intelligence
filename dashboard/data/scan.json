@@ -1,6 +1,32 @@
 {
   "as_of": "2026-06-12",
   "universe_size": 33,
+  "macro": {
+    "India": {
+      "regime": "NEUTRAL",
+      "policy_rate": null,
+      "ten_year": null,
+      "two_year": null,
+      "curve_slope_bps": null,
+      "fx": {
+        "pair": "USDINR",
+        "level": 95.3275,
+        "trend": "WEAKER"
+      },
+      "as_of": "2026-06-12",
+      "source": "yfinance; IN rates=None (no keyless yfinance G-sec/policy source); regime=NEUTRAL (no IN rate series to derive trend)"
+    },
+    "US": {
+      "regime": "NEUTRAL",
+      "policy_rate": 3.622999906539917,
+      "ten_year": 4.463,
+      "two_year": null,
+      "curve_slope_bps": null,
+      "fx": null,
+      "as_of": "2026-06-12",
+      "source": "yfinance; two_year=None (no keyless 2y yfinance index)"
+    }
+  },
   "evidence": {
     "us_long_oos": {
       "win_rate": 57.3,
@@ -126,6 +152,39 @@
         "profit_factor": 1.54,
         "samples": 548,
         "avg_hold_days": 9.6
+      },
+      "quality": {
+        "score": 61.4,
+        "components": {
+          "valuation": {
+            "score": 20.6,
+            "reason": "rich multiples (PE 163.9, P/B 12.4, PEG 1.18, EV/EBITDA 106.1)"
+          },
+          "profitability": {
+            "score": 52.2,
+            "reason": "moderate profitability (ROE 8.1%, net margin 13.4%, op margin 14.4%)"
+          },
+          "growth": {
+            "score": 100.0,
+            "reason": "growing (revenue 37.8% YoY, earnings 91.2% YoY)"
+          },
+          "leverage": {
+            "score": 97.0,
+            "reason": "low leverage (D/E 0.06x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 163.9, P/B 12.4, PEG 1.18, EV/EBITDA 106.1)",
+          "growing (revenue 37.8% YoY, earnings 91.2% YoY)",
+          "moderate profitability (ROE 8.1%, net margin 13.4%, op margin 14.4%)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-08-05",
+        "days_to_earnings": 54,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
       },
       "history": [
         {
@@ -821,6 +880,39 @@
         "samples": 548,
         "avg_hold_days": 9.6
       },
+      "quality": {
+        "score": 38.1,
+        "components": {
+          "valuation": {
+            "score": 37.4,
+            "reason": "rich multiples (PE 30.6, P/B 3.8, PEG 1.41, EV/EBITDA 19.7)"
+          },
+          "profitability": {
+            "score": 31.4,
+            "reason": "weak profitability (ROE 12.2%, net margin 2.7%, op margin 8.0%)"
+          },
+          "growth": {
+            "score": 32.2,
+            "reason": "shrinking / weak growth (revenue 2.0% YoY, earnings 0.7% YoY)"
+          },
+          "leverage": {
+            "score": 63.0,
+            "reason": "low leverage (D/E 0.74x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 30.6, P/B 3.8, PEG 1.41, EV/EBITDA 19.7)",
+          "low leverage (D/E 0.74x)",
+          "weak profitability (ROE 12.2%, net margin 2.7%, op margin 8.0%)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-16",
+        "days_to_earnings": 34,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -1514,6 +1606,39 @@
         "profit_factor": 1.54,
         "samples": 548,
         "avg_hold_days": 9.6
+      },
+      "quality": {
+        "score": 60.9,
+        "components": {
+          "valuation": {
+            "score": 7.7,
+            "reason": "rich multiples (PE 40.6, P/B 9.8, PEG 1.69, EV/EBITDA 29.2)"
+          },
+          "profitability": {
+            "score": 99.5,
+            "reason": "strong profitability (ROE 25.2%, net margin 19.7%, op margin 25.0%)"
+          },
+          "growth": {
+            "score": 75.1,
+            "reason": "growing (revenue 12.0% YoY, earnings 37.1% YoY)"
+          },
+          "leverage": {
+            "score": 66.2,
+            "reason": "low leverage (D/E 0.68x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 40.6, P/B 9.8, PEG 1.69, EV/EBITDA 29.2)",
+          "strong profitability (ROE 25.2%, net margin 19.7%, op margin 25.0%)",
+          "low leverage (D/E 0.68x)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-08-13",
+        "days_to_earnings": 62,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
       },
       "history": [
         {
@@ -2210,6 +2335,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -2904,6 +3031,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -3598,6 +3727,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -4292,6 +4423,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -4987,6 +5120,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -5681,6 +5816,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -6374,6 +6511,39 @@
         "profit_factor": 0.87,
         "samples": 291,
         "avg_hold_days": 10.5
+      },
+      "quality": {
+        "score": 55.6,
+        "components": {
+          "valuation": {
+            "score": 77.8,
+            "reason": "attractive multiples (PE 21.4, P/B 1.9, EV/EBITDA 11.8)"
+          },
+          "profitability": {
+            "score": 38.2,
+            "reason": "weak profitability (ROE 9.1%, net margin 7.6%, op margin 10.0%)"
+          },
+          "growth": {
+            "score": 34.3,
+            "reason": "shrinking / weak growth (revenue 12.5% YoY, earnings -12.6% YoY)"
+          },
+          "leverage": {
+            "score": 81.7,
+            "reason": "low leverage (D/E 0.37x)"
+          }
+        },
+        "assessment": "CHEAP",
+        "reasons": [
+          "attractive multiples (PE 21.4, P/B 1.9, EV/EBITDA 11.8)",
+          "low leverage (D/E 0.37x)",
+          "shrinking / weak growth (revenue 12.5% YoY, earnings -12.6% YoY)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-17",
+        "days_to_earnings": 35,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
       },
       "history": [
         {
@@ -7070,6 +7240,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -7765,6 +7937,8 @@
         "samples": 263,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -8460,6 +8634,8 @@
         "samples": 291,
         "avg_hold_days": 10.5
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -9155,6 +9331,39 @@
         "samples": 548,
         "avg_hold_days": 9.6
       },
+      "quality": {
+        "score": 76.7,
+        "components": {
+          "valuation": {
+            "score": 100.0,
+            "reason": "attractive multiples (PE 13.7, P/B 1.4, PEG 0.99)"
+          },
+          "profitability": {
+            "score": 80.9,
+            "reason": "strong profitability (ROE 10.6%, net margin 29.0%, op margin 36.0%)"
+          },
+          "growth": {
+            "score": 59.6,
+            "reason": "flattish growth (revenue 8.1% YoY, earnings 24.4% YoY)"
+          },
+          "leverage": {
+            "score": 50.0,
+            "reason": "no leverage data"
+          }
+        },
+        "assessment": "CHEAP",
+        "reasons": [
+          "attractive multiples (PE 13.7, P/B 1.4, PEG 0.99)",
+          "strong profitability (ROE 10.6%, net margin 29.0%, op margin 36.0%)",
+          "no leverage data"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-14",
+        "days_to_earnings": 32,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -9848,6 +10057,39 @@
         "profit_factor": 1.54,
         "samples": 548,
         "avg_hold_days": 9.6
+      },
+      "quality": {
+        "score": 54.7,
+        "components": {
+          "valuation": {
+            "score": 14.0,
+            "reason": "rich multiples (PE 26.0, P/B 10.6, PEG 4.23, EV/EBITDA 23.2)"
+          },
+          "profitability": {
+            "score": 100.0,
+            "reason": "strong profitability (ROE 43.4%, net margin 27.8%, op margin 35.1%)"
+          },
+          "growth": {
+            "score": 59.5,
+            "reason": "flattish growth (revenue 12.1% YoY, earnings 18.2% YoY)"
+          },
+          "leverage": {
+            "score": 37.5,
+            "reason": "high leverage (D/E 1.25x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 26.0, P/B 10.6, PEG 4.23, EV/EBITDA 23.2)",
+          "strong profitability (ROE 43.4%, net margin 27.8%, op margin 35.1%)",
+          "high leverage (D/E 1.25x)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-21",
+        "days_to_earnings": 39,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
       },
       "history": [
         {
@@ -10544,6 +10786,39 @@
         "samples": 548,
         "avg_hold_days": 9.6
       },
+      "quality": {
+        "score": 57.3,
+        "components": {
+          "valuation": {
+            "score": 4.2,
+            "reason": "rich multiples (PE 35.8, P/B 40.7, PEG 2.39, EV/EBITDA 27.2)"
+          },
+          "profitability": {
+            "score": 100.0,
+            "reason": "strong profitability (ROE 141.5%, net margin 27.2%, op margin 32.3%)"
+          },
+          "growth": {
+            "score": 68.1,
+            "reason": "growing (revenue 16.6% YoY, earnings 21.8% YoY)"
+          },
+          "leverage": {
+            "score": 60.2,
+            "reason": "low leverage (D/E 0.80x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 35.8, P/B 40.7, PEG 2.39, EV/EBITDA 27.2)",
+          "strong profitability (ROE 141.5%, net margin 27.2%, op margin 32.3%)",
+          "low leverage (D/E 0.80x)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-31",
+        "days_to_earnings": 49,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -11239,6 +11514,8 @@
         "samples": 228,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -11934,6 +12211,8 @@
         "samples": 228,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -12628,6 +12907,39 @@
         "profit_factor": 1.54,
         "samples": 548,
         "avg_hold_days": 9.6
+      },
+      "quality": {
+        "score": 51.3,
+        "components": {
+          "valuation": {
+            "score": 17.2,
+            "reason": "rich multiples (PE 27.6, P/B 7.1, PEG 3.10, EV/EBITDA 17.7)"
+          },
+          "profitability": {
+            "score": 100.0,
+            "reason": "strong profitability (ROE 26.4%, net margin 21.8%, op margin 27.4%)"
+          },
+          "growth": {
+            "score": 24.9,
+            "reason": "shrinking / weak growth (revenue 9.9% YoY, earnings -52.9% YoY)"
+          },
+          "leverage": {
+            "score": 66.1,
+            "reason": "low leverage (D/E 0.68x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 27.6, P/B 7.1, PEG 3.10, EV/EBITDA 17.7)",
+          "strong profitability (ROE 26.4%, net margin 21.8%, op margin 27.4%)",
+          "shrinking / weak growth (revenue 9.9% YoY, earnings -52.9% YoY)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-15",
+        "days_to_earnings": 33,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
       },
       "history": [
         {
@@ -13324,6 +13636,8 @@
         "samples": 228,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -14018,6 +14332,39 @@
         "profit_factor": 1.54,
         "samples": 548,
         "avg_hold_days": 9.6
+      },
+      "quality": {
+        "score": 74.2,
+        "components": {
+          "valuation": {
+            "score": 27.5,
+            "reason": "rich multiples (PE 27.3, P/B 9.1, PEG 1.41, EV/EBITDA 26.7)"
+          },
+          "profitability": {
+            "score": 100.0,
+            "reason": "strong profitability (ROE 38.9%, net margin 37.9%, op margin 36.1%)"
+          },
+          "growth": {
+            "score": 89.8,
+            "reason": "growing (revenue 21.8% YoY, earnings 82.0% YoY)"
+          },
+          "leverage": {
+            "score": 90.0,
+            "reason": "low leverage (D/E 0.20x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 27.3, P/B 9.1, PEG 1.41, EV/EBITDA 26.7)",
+          "strong profitability (ROE 38.9%, net margin 37.9%, op margin 36.1%)",
+          "growing (revenue 21.8% YoY, earnings 82.0% YoY)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-24",
+        "days_to_earnings": 42,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
       },
       "history": [
         {
@@ -14714,6 +15061,8 @@
         "samples": 228,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -15409,6 +15758,8 @@
         "samples": 228,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -16103,6 +16454,39 @@
         "profit_factor": 1.54,
         "samples": 548,
         "avg_hold_days": 9.6
+      },
+      "quality": {
+        "score": 79.6,
+        "components": {
+          "valuation": {
+            "score": 33.7,
+            "reason": "rich multiples (PE 31.3, P/B 25.4, PEG 0.63, EV/EBITDA 29.7)"
+          },
+          "profitability": {
+            "score": 100.0,
+            "reason": "strong profitability (ROE 114.3%, net margin 63.0%, op margin 65.6%)"
+          },
+          "growth": {
+            "score": 100.0,
+            "reason": "growing (revenue 85.2% YoY, earnings 214.5% YoY)"
+          },
+          "leverage": {
+            "score": 96.7,
+            "reason": "low leverage (D/E 0.07x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 31.3, P/B 25.4, PEG 0.63, EV/EBITDA 29.7)",
+          "growing (revenue 85.2% YoY, earnings 214.5% YoY)",
+          "low leverage (D/E 0.07x)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-08-27",
+        "days_to_earnings": 76,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
       },
       "history": [
         {
@@ -16799,6 +17183,39 @@
         "samples": 548,
         "avg_hold_days": 9.6
       },
+      "quality": {
+        "score": 58.6,
+        "components": {
+          "valuation": {
+            "score": 18.9,
+            "reason": "rich multiples (PE 31.7, P/B 5.9, PEG 1.83, EV/EBITDA 17.3)"
+          },
+          "profitability": {
+            "score": 70.3,
+            "reason": "strong profitability (ROE 24.3%, net margin 12.2%, op margin 13.1%)"
+          },
+          "growth": {
+            "score": 83.2,
+            "reason": "growing (revenue 16.6% YoY, earnings 74.8% YoY)"
+          },
+          "leverage": {
+            "score": 73.4,
+            "reason": "low leverage (D/E 0.53x)"
+          }
+        },
+        "assessment": "EXPENSIVE",
+        "reasons": [
+          "rich multiples (PE 31.7, P/B 5.9, PEG 1.83, EV/EBITDA 17.3)",
+          "growing (revenue 16.6% YoY, earnings 74.8% YoY)",
+          "strong profitability (ROE 24.3%, net margin 12.2%, op margin 13.1%)"
+        ]
+      },
+      "events": {
+        "next_earnings_date": "2026-07-31",
+        "days_to_earnings": 49,
+        "event_within_horizon": false,
+        "flag": "CLEAR"
+      },
       "history": [
         {
           "d": "2025-12-18",
@@ -17494,6 +17911,8 @@
         "samples": 228,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -18189,6 +18608,8 @@
         "samples": 263,
         "avg_hold_days": 10.2
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -18874,6 +19295,8 @@
         "samples": null,
         "avg_hold_days": null
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -19559,6 +19982,8 @@
         "samples": null,
         "avg_hold_days": null
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -20244,6 +20669,8 @@
         "samples": null,
         "avg_hold_days": null
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -20929,6 +21356,8 @@
         "samples": null,
         "avg_hold_days": null
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -21614,6 +22043,8 @@
         "samples": null,
         "avg_hold_days": null
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",
@@ -22299,6 +22730,8 @@
         "samples": null,
         "avg_hold_days": null
       },
+      "quality": null,
+      "events": null,
       "history": [
         {
           "d": "2025-12-18",

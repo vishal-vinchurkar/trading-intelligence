@@ -97,6 +97,65 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         </div>
       </section>
 
+      {/* Phase B context — fundamentals, events, macro (current-state overlays) */}
+      {(s.quality || s.events || scan.macro[s.market]) && (
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="rounded-xl border border-border bg-panel p-5">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">Fundamentals</h3>
+            {s.quality ? (
+              <div className="mt-2">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-mono text-lg">{s.quality.score.toFixed(0)}</span>
+                  <span className={`rounded px-1.5 py-0.5 text-[11px] ${s.quality.assessment === "CHEAP" ? "bg-bull/15 text-bull" : s.quality.assessment === "EXPENSIVE" ? "bg-bear/15 text-bear" : "bg-neutral/15 text-neutral"}`}>
+                    {s.quality.assessment}
+                  </span>
+                </div>
+                <ul className="mt-2 space-y-1 text-[11px] text-muted">
+                  {s.quality.reasons.slice(0, 3).map((r, i) => <li key={i}>· {r}</li>)}
+                </ul>
+              </div>
+            ) : (
+              <p className="mt-2 text-xs text-muted">Not enriched (tradeable + watchlist only).</p>
+            )}
+            <p className="mt-3 text-[10px] text-muted">Current-state overlay — not in the backtested score.</p>
+          </div>
+
+          <div className="rounded-xl border border-border bg-panel p-5">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">Event risk</h3>
+            {s.events && s.events.next_earnings_date ? (
+              <div className="mt-2 text-sm">
+                <div className={s.events.event_within_horizon ? "text-neutral" : "text-muted"}>
+                  {s.events.event_within_horizon ? "⚠ earnings soon" : "clear"}
+                </div>
+                <div className="mt-1 font-mono text-xs text-muted">
+                  next earnings {s.events.next_earnings_date}
+                  {s.events.days_to_earnings != null && ` (${s.events.days_to_earnings}d)`}
+                </div>
+                {s.events.event_within_horizon && (
+                  <p className="mt-2 text-[11px] text-neutral">Within the trade horizon — size down or wait.</p>
+                )}
+              </div>
+            ) : (
+              <p className="mt-2 text-xs text-muted">No upcoming earnings flagged.</p>
+            )}
+          </div>
+
+          <div className="rounded-xl border border-border bg-panel p-5">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">Macro · {s.market}</h3>
+            {scan.macro[s.market] ? (
+              <div className="mt-2 space-y-1 text-xs">
+                <div>regime <span className="font-mono text-white">{scan.macro[s.market]!.regime}</span></div>
+                {scan.macro[s.market]!.ten_year != null && <div className="text-muted">10y <span className="font-mono">{scan.macro[s.market]!.ten_year}%</span></div>}
+                {scan.macro[s.market]!.fx && <div className="text-muted">{scan.macro[s.market]!.fx!.pair} <span className="font-mono">{scan.macro[s.market]!.fx!.level}</span> ({scan.macro[s.market]!.fx!.trend})</div>}
+                <div className="text-[10px] text-muted">as of {scan.macro[s.market]!.as_of}</div>
+              </div>
+            ) : (
+              <p className="mt-2 text-xs text-muted">Unavailable.</p>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* The trade */}
       <section>
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">The trade</h2>
