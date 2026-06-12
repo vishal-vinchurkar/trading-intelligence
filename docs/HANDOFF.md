@@ -48,7 +48,12 @@ Built via two parallel sub-agents (contract-first, disjoint files) + integration
 - `quant/quality.py` — current-state 0–100 fundamental quality score.
 - `data/events.py` — next-earnings / event-within-horizon flag.
 - `quant/scan.py` enriches tradeable + watchlist names (keyless, no AV-quota hit) with quality + events; macro per market. **All current-state overlays — NOT in the backtested score.** Surfaced on the dashboard detail page + ⚠ earnings chip on cards.
-- Still optional: a hybrid LLM arbitrator that *narrates*/vetoes using these overlays (the quant spine already decides; this would add reasoning). Lower priority than the two below.
+- Hybrid LLM narration: `agents/narrate.py` (Groq) — built + tested, produces thesis+caution subordinate to the quant verdict. **Last wiring step pending:** call `narrate()` in `quant/scan.py` for tradeable+favourites (bounded Groq calls), store `narration` on the signal, surface on the dashboard detail page.
+
+## Automation (live)
+- `scripts/daily.sh` (backfill→scan→ledger record→reconcile→telegram) + `scripts/weekly.sh` (re-backtest). **Cron installed** (weekdays 07:30 local, Sun 09:00). `logs/` gitignored.
+- `execution/telegram_push.py` — needs `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` in `.env` (prints if absent).
+- Universe is now **55 names** (de-cherry-picked with laggards + SNOW/NOW); US-long edge held OOS (55% win, PF 1.43, 24.6% CAGR vs SPY 13.2%).
 
 ## What's next (priority order)
 1. **Cheapest/highest-integrity:** automate the ledger (daily cron: backfill→scan→record→reconcile) + add Alpaca paper keys. Let the unbiased track record compound.
