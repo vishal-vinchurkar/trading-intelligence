@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Disclaimer } from "@/components/Disclaimer";
 import { QuantCard } from "@/components/QuantCard";
+import { TickerSearch } from "@/components/TickerSearch";
 import {
   book,
   getSignalsBySymbols,
@@ -91,9 +92,27 @@ export default function Home() {
         </div>
       </div>
 
-      {watchSignals.length > 0 && (
-        <Deck title="My Watchlist" subtitle="Your pinned names — click ★ on any card to add or remove." signals={watchSignals} star={star} />
-      )}
+      {/* Watchlist — always shown so the add-ticker box is reachable even when empty. */}
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-lg font-semibold">My Watchlist</h2>
+          <p className="text-sm text-muted">
+            Search any scanned name to pin it, or click ★ on any card. Saved in your browser.
+          </p>
+        </div>
+        <TickerSearch has={has} onToggleStar={toggle} />
+        {watchSignals.length > 0 ? (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {watchSignals.map((s) => (
+              <QuantCard key={s.symbol} s={s} starred={has(s.symbol)} onToggleStar={toggle} />
+            ))}
+          </div>
+        ) : (
+          <p className="rounded-lg border border-dashed border-border px-3 py-4 text-sm text-muted">
+            No pinned names {market !== "All" && `in ${market} `}yet — search above to add one.
+          </p>
+        )}
+      </section>
 
       <Deck
         title="Tradeable now"
