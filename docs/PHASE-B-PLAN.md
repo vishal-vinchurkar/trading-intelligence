@@ -100,3 +100,18 @@ If you'd rather not run two chat windows: a single session can fan these out wit
 the **Workflow tool** (multi-agent orchestration) — say "ultracode" or "use a
 workflow" to opt in. Producers run as parallel sub-agents against these same
 contracts; integration runs after. Same decomposition, one driver.
+
+---
+
+## Session kickoff prompts (paste verbatim into each worktree's Claude Code window)
+
+Open a Claude Code window whose working directory is the worktree, then paste.
+
+### Session A — `../ti-phaseb-grounding`
+> You're in the `phaseb/grounding` worktree of the Sovian quant project. Read `docs/HANDOFF.md` and `docs/PHASE-B-PLAN.md` in full first. You OWN Stream 1 (macro) + Stream 3 (events): build `data/fetcher_macro.py` and `data/events.py` to the FROZEN contracts, each with a `__main__` smoke test printing a real result for AAPL and RELIANCE.NS. Rules: (1) the venv is Python 3.9 — add `from __future__ import annotations` to any file using `|` unions; (2) outputs must be plain JSON-serialisable types, no numpy; (3) macro `regime` must be DERIVED from real rate data, never guessed; (4) do NOT edit any file outside the two you own — not `quant/scan.py`, `agents/`, or `dashboard/`; (5) when both smoke tests pass, commit on `phaseb/grounding` and push. Do not deploy.
+
+### Session B — `../ti-phaseb-fundamentals`
+> You're in the `phaseb/fundamentals` worktree of the Sovian quant project. Read `docs/HANDOFF.md` and `docs/PHASE-B-PLAN.md` in full first. You OWN Stream 2: build `quant/quality.py` (a current-state 0–100 fundamental quality score, to the FROZEN contract) and widen the fundamental fields surfaced by `data/fetcher_us.py` and `data/fetcher_india.py` — ADDITIVE ONLY (add keys; never rename/remove existing ones or you break the live pipeline). Include a `__main__` smoke test printing a real result for AAPL and RELIANCE.NS. Rules: (1) Python 3.9 → `from __future__ import annotations` for `|` unions; (2) JSON-serialisable outputs, no numpy; (3) HONESTY RULE — quality is a current-state overlay; do NOT fold it into the backtested score and do NOT touch `quant/score.py`; (4) don't edit anything outside your owned files; (5) when the smoke test passes, commit on `phaseb/fundamentals` and push. Do not deploy.
+
+### Integration — `phaseb/integrate` (run AFTER A + B are merged to main)
+> Both producer branches are merged to main. Read `docs/PHASE-B-PLAN.md` Stream 4. Wire the hybrid arbitrator (`agents/agent_arbitrator.py`): the price-only quant score sets base direction/conviction; macro/quality/events may downgrade, veto, or widen bands — each override with a stated reason. Pay special attention to India (no price edge → require quality agreement). Then surface the new fields in `quant/scan.py` and `dashboard/` (macro chip, quality bar, earnings flag), rebuild, deploy, and update `docs/HANDOFF.md`.
