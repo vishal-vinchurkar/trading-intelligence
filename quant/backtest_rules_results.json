@@ -1,0 +1,479 @@
+{
+  "meta": {
+    "trades": 12299,
+    "symbols": 33,
+    "date_range": [
+      "2017-03-29",
+      "2026-05-08"
+    ],
+    "oos_split": "2025-05-08",
+    "rule": "entry=next open, stop=2xATR, target=nearest resistance (fallback 4xATR), time-stop=20d; costs US 10.0bps / India 35.0bps",
+    "note": "Simulates the exact trade the dashboard shows. Net of costs, point-in-time, stop-before-target on ambiguous bars. Not financial advice."
+  },
+  "long_all": {
+    "all": {
+      "n": 8560,
+      "win_rate": 52.7,
+      "expectancy_pct": 0.423,
+      "avg_win_pct": 4.57,
+      "avg_loss_pct": -4.2,
+      "profit_factor": 1.21,
+      "total_net_pct": 3618.8,
+      "max_drawdown_pct": -746.6,
+      "avg_hold_days": 9.7,
+      "exit_mix": {
+        "stop": 3520,
+        "target": 3294,
+        "time": 1746
+      }
+    },
+    "in_sample": {
+      "n": 7749,
+      "win_rate": 52.5,
+      "expectancy_pct": 0.414,
+      "avg_win_pct": 4.62,
+      "avg_loss_pct": -4.23,
+      "profit_factor": 1.21,
+      "total_net_pct": 3205.9,
+      "max_drawdown_pct": -749.0,
+      "avg_hold_days": 9.7,
+      "exit_mix": {
+        "stop": 3204,
+        "target": 2965,
+        "time": 1580
+      }
+    },
+    "out_of_sample": {
+      "n": 811,
+      "win_rate": 55.0,
+      "expectancy_pct": 0.509,
+      "avg_win_pct": 4.16,
+      "avg_loss_pct": -3.95,
+      "profit_factor": 1.29,
+      "total_net_pct": 412.9,
+      "max_drawdown_pct": -167.2,
+      "avg_hold_days": 9.8,
+      "exit_mix": {
+        "target": 329,
+        "stop": 316,
+        "time": 166
+      }
+    },
+    "actionable_only": {
+      "n": 4662,
+      "win_rate": 46.1,
+      "expectancy_pct": 0.592,
+      "avg_win_pct": 5.94,
+      "avg_loss_pct": -3.98,
+      "profit_factor": 1.28,
+      "total_net_pct": 2759.1,
+      "max_drawdown_pct": -468.7,
+      "avg_hold_days": 12.1,
+      "exit_mix": {
+        "stop": 2115,
+        "time": 1474,
+        "target": 1073
+      }
+    }
+  },
+  "by_market_long": {
+    "India": {
+      "all": {
+        "n": 3032,
+        "win_rate": 50.6,
+        "expectancy_pct": 0.022,
+        "avg_win_pct": 4.06,
+        "avg_loss_pct": -4.12,
+        "profit_factor": 1.01,
+        "total_net_pct": 66.6,
+        "max_drawdown_pct": -478.2,
+        "avg_hold_days": 9.9,
+        "exit_mix": {
+          "stop": 1244,
+          "target": 1141,
+          "time": 647
+        }
+      },
+      "in_sample": {
+        "n": 2769,
+        "win_rate": 50.7,
+        "expectancy_pct": 0.067,
+        "avg_win_pct": 4.2,
+        "avg_loss_pct": -4.18,
+        "profit_factor": 1.03,
+        "total_net_pct": 186.9,
+        "max_drawdown_pct": -404.8,
+        "avg_hold_days": 9.8,
+        "exit_mix": {
+          "stop": 1130,
+          "target": 1044,
+          "time": 595
+        }
+      },
+      "out_of_sample": {
+        "n": 263,
+        "win_rate": 50.2,
+        "expectancy_pct": -0.457,
+        "avg_win_pct": 2.53,
+        "avg_loss_pct": -3.47,
+        "profit_factor": 0.74,
+        "total_net_pct": -120.3,
+        "max_drawdown_pct": -163.0,
+        "avg_hold_days": 10.2,
+        "exit_mix": {
+          "stop": 114,
+          "target": 97,
+          "time": 52
+        }
+      },
+      "actionable_only": {
+        "n": 1625,
+        "win_rate": 42.5,
+        "expectancy_pct": 0.123,
+        "avg_win_pct": 5.59,
+        "avg_loss_pct": -3.91,
+        "profit_factor": 1.05,
+        "total_net_pct": 199.5,
+        "max_drawdown_pct": -291.2,
+        "avg_hold_days": 12.2,
+        "exit_mix": {
+          "stop": 743,
+          "time": 533,
+          "target": 349
+        }
+      }
+    },
+    "US": {
+      "all": {
+        "n": 5528,
+        "win_rate": 53.9,
+        "expectancy_pct": 0.643,
+        "avg_win_pct": 4.84,
+        "avg_loss_pct": -4.25,
+        "profit_factor": 1.33,
+        "total_net_pct": 3552.2,
+        "max_drawdown_pct": -480.6,
+        "avg_hold_days": 9.5,
+        "exit_mix": {
+          "stop": 2276,
+          "target": 2153,
+          "time": 1099
+        }
+      },
+      "in_sample": {
+        "n": 4980,
+        "win_rate": 53.5,
+        "expectancy_pct": 0.606,
+        "avg_win_pct": 4.84,
+        "avg_loss_pct": -4.26,
+        "profit_factor": 1.31,
+        "total_net_pct": 3019.0,
+        "max_drawdown_pct": -474.4,
+        "avg_hold_days": 9.5,
+        "exit_mix": {
+          "stop": 2074,
+          "target": 1921,
+          "time": 985
+        }
+      },
+      "out_of_sample": {
+        "n": 548,
+        "win_rate": 57.3,
+        "expectancy_pct": 0.973,
+        "avg_win_pct": 4.85,
+        "avg_loss_pct": -4.22,
+        "profit_factor": 1.54,
+        "total_net_pct": 533.2,
+        "max_drawdown_pct": -97.5,
+        "avg_hold_days": 9.6,
+        "exit_mix": {
+          "target": 232,
+          "stop": 202,
+          "time": 114
+        }
+      },
+      "actionable_only": {
+        "n": 3037,
+        "win_rate": 48.0,
+        "expectancy_pct": 0.843,
+        "avg_win_pct": 6.11,
+        "avg_loss_pct": -4.02,
+        "profit_factor": 1.4,
+        "total_net_pct": 2559.6,
+        "max_drawdown_pct": -269.3,
+        "avg_hold_days": 12.0,
+        "exit_mix": {
+          "stop": 1372,
+          "time": 941,
+          "target": 724
+        }
+      }
+    }
+  },
+  "by_band": {
+    "STRONG_BUY": {
+      "all": {
+        "n": 5503,
+        "win_rate": 52.6,
+        "expectancy_pct": 0.459,
+        "avg_win_pct": 4.76,
+        "avg_loss_pct": -4.31,
+        "profit_factor": 1.22,
+        "total_net_pct": 2524.0,
+        "max_drawdown_pct": -523.4,
+        "avg_hold_days": 9.7,
+        "exit_mix": {
+          "stop": 2279,
+          "target": 2100,
+          "time": 1124
+        }
+      },
+      "in_sample": {
+        "n": 4993,
+        "win_rate": 52.5,
+        "expectancy_pct": 0.471,
+        "avg_win_pct": 4.82,
+        "avg_loss_pct": -4.34,
+        "profit_factor": 1.23,
+        "total_net_pct": 2350.7,
+        "max_drawdown_pct": -524.9,
+        "avg_hold_days": 9.7,
+        "exit_mix": {
+          "stop": 2071,
+          "target": 1894,
+          "time": 1028
+        }
+      },
+      "out_of_sample": {
+        "n": 510,
+        "win_rate": 52.9,
+        "expectancy_pct": 0.34,
+        "avg_win_pct": 4.25,
+        "avg_loss_pct": -4.06,
+        "profit_factor": 1.18,
+        "total_net_pct": 173.3,
+        "max_drawdown_pct": -75.9,
+        "avg_hold_days": 9.4,
+        "exit_mix": {
+          "stop": 208,
+          "target": 206,
+          "time": 96
+        }
+      },
+      "actionable_only": {
+        "n": 3120,
+        "win_rate": 45.5,
+        "expectancy_pct": 0.585,
+        "avg_win_pct": 6.11,
+        "avg_loss_pct": -4.03,
+        "profit_factor": 1.27,
+        "total_net_pct": 1824.5,
+        "max_drawdown_pct": -311.0,
+        "avg_hold_days": 11.9,
+        "exit_mix": {
+          "stop": 1439,
+          "time": 955,
+          "target": 726
+        }
+      }
+    },
+    "BUY": {
+      "all": {
+        "n": 3057,
+        "win_rate": 53.0,
+        "expectancy_pct": 0.358,
+        "avg_win_pct": 4.23,
+        "avg_loss_pct": -4.0,
+        "profit_factor": 1.19,
+        "total_net_pct": 1094.8,
+        "max_drawdown_pct": -304.5,
+        "avg_hold_days": 9.7,
+        "exit_mix": {
+          "stop": 1241,
+          "target": 1194,
+          "time": 622
+        }
+      },
+      "in_sample": {
+        "n": 2756,
+        "win_rate": 52.4,
+        "expectancy_pct": 0.31,
+        "avg_win_pct": 4.26,
+        "avg_loss_pct": -4.03,
+        "profit_factor": 1.16,
+        "total_net_pct": 855.2,
+        "max_drawdown_pct": -301.7,
+        "avg_hold_days": 9.6,
+        "exit_mix": {
+          "stop": 1133,
+          "target": 1071,
+          "time": 552
+        }
+      },
+      "out_of_sample": {
+        "n": 301,
+        "win_rate": 58.5,
+        "expectancy_pct": 0.796,
+        "avg_win_pct": 4.03,
+        "avg_loss_pct": -3.76,
+        "profit_factor": 1.51,
+        "total_net_pct": 239.6,
+        "max_drawdown_pct": -112.5,
+        "avg_hold_days": 10.3,
+        "exit_mix": {
+          "target": 123,
+          "stop": 108,
+          "time": 70
+        }
+      },
+      "actionable_only": {
+        "n": 1542,
+        "win_rate": 47.1,
+        "expectancy_pct": 0.606,
+        "avg_win_pct": 5.61,
+        "avg_loss_pct": -3.86,
+        "profit_factor": 1.3,
+        "total_net_pct": 934.6,
+        "max_drawdown_pct": -188.8,
+        "avg_hold_days": 12.5,
+        "exit_mix": {
+          "stop": 676,
+          "time": 519,
+          "target": 347
+        }
+      }
+    },
+    "STRONG_SELL": {
+      "all": {
+        "n": 1990,
+        "win_rate": 41.0,
+        "expectancy_pct": -0.737,
+        "avg_win_pct": 6.06,
+        "avg_loss_pct": -5.46,
+        "profit_factor": 0.77,
+        "total_net_pct": -1466.9,
+        "max_drawdown_pct": -1502.9,
+        "avg_hold_days": 9.9,
+        "exit_mix": {
+          "stop": 1003,
+          "target": 555,
+          "time": 432
+        }
+      },
+      "in_sample": {
+        "n": 1699,
+        "win_rate": 40.3,
+        "expectancy_pct": -0.814,
+        "avg_win_pct": 6.39,
+        "avg_loss_pct": -5.68,
+        "profit_factor": 0.76,
+        "total_net_pct": -1382.2,
+        "max_drawdown_pct": -1380.6,
+        "avg_hold_days": 9.9,
+        "exit_mix": {
+          "stop": 866,
+          "target": 470,
+          "time": 363
+        }
+      },
+      "out_of_sample": {
+        "n": 291,
+        "win_rate": 45.0,
+        "expectancy_pct": -0.291,
+        "avg_win_pct": 4.35,
+        "avg_loss_pct": -4.09,
+        "profit_factor": 0.87,
+        "total_net_pct": -84.7,
+        "max_drawdown_pct": -170.4,
+        "avg_hold_days": 10.5,
+        "exit_mix": {
+          "stop": 137,
+          "target": 85,
+          "time": 69
+        }
+      },
+      "actionable_only": {
+        "n": 1018,
+        "win_rate": 34.1,
+        "expectancy_pct": -0.892,
+        "avg_win_pct": 7.8,
+        "avg_loss_pct": -5.39,
+        "profit_factor": 0.75,
+        "total_net_pct": -908.0,
+        "max_drawdown_pct": -923.9,
+        "avg_hold_days": 11.9,
+        "exit_mix": {
+          "stop": 564,
+          "time": 311,
+          "target": 143
+        }
+      }
+    },
+    "SELL": {
+      "all": {
+        "n": 1749,
+        "win_rate": 39.6,
+        "expectancy_pct": -0.911,
+        "avg_win_pct": 4.92,
+        "avg_loss_pct": -4.74,
+        "profit_factor": 0.68,
+        "total_net_pct": -1594.0,
+        "max_drawdown_pct": -1616.2,
+        "avg_hold_days": 9.4,
+        "exit_mix": {
+          "stop": 909,
+          "target": 498,
+          "time": 342
+        }
+      },
+      "in_sample": {
+        "n": 1521,
+        "win_rate": 39.3,
+        "expectancy_pct": -0.927,
+        "avg_win_pct": 5.07,
+        "avg_loss_pct": -4.8,
+        "profit_factor": 0.68,
+        "total_net_pct": -1410.6,
+        "max_drawdown_pct": -1424.8,
+        "avg_hold_days": 9.3,
+        "exit_mix": {
+          "stop": 796,
+          "target": 443,
+          "time": 282
+        }
+      },
+      "out_of_sample": {
+        "n": 228,
+        "win_rate": 42.1,
+        "expectancy_pct": -0.804,
+        "avg_win_pct": 4.0,
+        "avg_loss_pct": -4.3,
+        "profit_factor": 0.68,
+        "total_net_pct": -183.3,
+        "max_drawdown_pct": -188.0,
+        "avg_hold_days": 10.2,
+        "exit_mix": {
+          "stop": 113,
+          "time": 60,
+          "target": 55
+        }
+      },
+      "actionable_only": {
+        "n": 874,
+        "win_rate": 30.3,
+        "expectancy_pct": -1.171,
+        "avg_win_pct": 6.8,
+        "avg_loss_pct": -4.64,
+        "profit_factor": 0.64,
+        "total_net_pct": -1023.7,
+        "max_drawdown_pct": -1035.1,
+        "avg_hold_days": 11.6,
+        "exit_mix": {
+          "stop": 504,
+          "time": 260,
+          "target": 110
+        }
+      }
+    }
+  }
+}

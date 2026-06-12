@@ -48,12 +48,34 @@ def bollinger(close: pd.Series, period: int = 20, num_std: float = 2.0):
     return middle, middle + num_std * std, middle - num_std * std
 
 
-def support_resistance(df: pd.DataFrame, lookback: int = 90, n_levels: int = 2):
-    """Naive S/R from recent swing lows/highs, rounded to nearby clusters."""
+def support_resistance(df: pd.DataFrame, lookback: int = 120, k: int = 3, n_levels: int = 2):
+    """Near-price support/resistance from swing pivots.
+
+    A swing high is a bar whose high is the max of its ±k neighbours (a local top);
+    a swing low is the mirror. We return the NEAREST pivots above (resistance) and
+    below (support) the latest close — the levels a trade would actually use —
+    rather than the 90-day extremes (which for a trending name sit absurdly far
+    from price and read as broken). Falls back to rolling min/max if no pivots."""
     window = df.tail(lookback)
-    lows = window["low"].nsmallest(n_levels * 3).round(2).unique()[:n_levels]
-    highs = window["high"].nlargest(n_levels * 3).round(2).unique()[:n_levels]
-    return sorted(lows.tolist(), reverse=True), sorted(highs.tolist())
+    highs, lows = window["high"].to_numpy(), window["low"].to_numpy()
+    close = float(window["close"].iloc[-1])
+
+    swing_highs, swing_lows = [], []
+    for i in range(k, len(window) - k):
+        if highs[i] == highs[i - k : i + k + 1].max():
+            swing_highs.append(round(float(highs[i]), 2))
+        if lows[i] == lows[i - k : i + k + 1].min():
+            swing_lows.append(round(float(lows[i]), 2))
+
+    resistance = sorted({h for h in swing_highs if h > close})[:n_levels]
+    support = sorted({l for l in swing_lows if l < close}, reverse=True)[:n_levels]
+
+    # Fallbacks so we always return usable levels.
+    if not resistance:
+        resistance = [round(float(window["high"].tail(20).max()), 2)]
+    if not support:
+        support = [round(float(window["low"].tail(20).min()), 2)]
+    return support, resistance
 
 
 def atr(df: pd.DataFrame, period: int = 14) -> pd.Series:
