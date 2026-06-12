@@ -102,27 +102,53 @@ track record, not a model's feeling. Every actionable signal becomes a **trade**
 — entry, 2×ATR stop, structural target, and a computed R:R gated at 1.5.
 
 ```bash
-PYTHONPATH=. python -m data.backfill      # 10y daily history → data/cache/ (yfinance, free)
-PYTHONPATH=. python -m quant.backtest     # point-in-time backtest → quant/backtest_results.json
-PYTHONPATH=. python -m quant.scan         # rank the universe → quant/scan.json + dashboard/data/scan.json
+PYTHONPATH=. python -m data.backfill         # 10y daily history → data/cache/ (yfinance, free)
+PYTHONPATH=. python -m quant.backtest         # hold-to-horizon backtest (net of cost)
+PYTHONPATH=. python -m quant.backtest_rules   # rule-based: the EXACT trade, bar-by-bar
+PYTHONPATH=. python -m quant.portfolio        # daily equity curve vs SPY
+PYTHONPATH=. python -m quant.scan             # rank universe → scan.json (+ dashboard copy)
 ```
 
-Honest limits (by design): the backtested score is **price-only** — free data has
-no clean point-in-time fundamental history, so fundamentals stay a current-state
-LLM overlay we don't claim to have backtested. Edges are **modest** (long side
-~52–53% 15d hit, holds out-of-sample; short side ~noise in a secular bull) — which
-is the truthful result for a price-only signal on liquid large-caps.
+### What the backtest actually says (net of cost, out-of-sample)
 
-The dashboard (`dashboard/`) renders **Top Signals** (ranked conviction) + **My
-Watchlist** (pinned favourites) from the bundled `scan.json` — no DB needed to
-demo. Edit the universe in `data/universe.py` and favourites in `quant/scan.py`.
+The rule-based backtest simulates the *exact* trade the dashboard shows — entry
+next open, 2×ATR stop, swing-resistance target, 20-day time-stop — net of realistic
+costs (US ~10bps, India ~35bps) and a 1-bar execution lag. Findings, stated plainly:
+
+- **US longs are the only tradeable edge:** ~57% win, +0.97% net/trade, profit
+  factor 1.54 out-of-sample. As a daily-rebalanced book: **24% CAGR vs SPY's 13%,
+  Sharpe 1.26 vs 0.76, max drawdown −23% vs −34%.**
+- **India longs and all shorts were net-negative** — demoted to *informational*,
+  not trade signals.
+- **Survivorship caveat (loud, on purpose):** the universe is *today's* names, so
+  those returns are an **upper bound, not a forward expectation.** The honest test
+  is the forward ledger below.
+
+### Forward paper-trading ledger (the unbiased test)
+
+`execution/ledger.py` logs every tradeable signal now and grades it as the future
+arrives — no broker needed (reconciles against free prices, same rules as the
+backtest). `execution/alpaca_paper.py` optionally places real bracket orders on
+Alpaca **paper** once `ALPACA_*` keys are set (dry-run by default).
+
+```bash
+PYTHONPATH=. python -m execution.ledger record      # log today's tradeable signals
+PYTHONPATH=. python -m execution.ledger reconcile    # resolve closed trades, vs backtest
+PYTHONPATH=. python -m execution.alpaca_paper         # dry-run paper orders (--live to place)
+```
+
+The dashboard (`dashboard/`, branded **Sovian**) renders **Tradeable now** (US
+longs that cleared the backtest) + **My Watchlist** (click ★, persisted in
+localStorage) + **Informational** from the bundled `scan.json` — with sparklines,
+a price chart that draws entry/stop/target on the bars, and an evidence banner that
+carries the survivorship caveat. No DB needed to run.
 
 ## Status
 
-- ✅ Phase 1 — data pipeline (US + India) and indicators
-- ✅ Phase 2 — agents 1/2/3 + async orchestrator
-- ✅ Phase 3 — Next.js dashboard (Vercel)
-- ✅ Quant engine — deterministic score, 10y point-in-time backtest, trade construct, scan/watchlist dashboard
-- ◻ Phase B (next) — real macro (FRED) + wider fundamentals + earnings/event flag, fed into a hybrid LLM arbitrator
-- ⬜ Phase 4 — cron refresh + forward outcome tracking (+ optional Telegram push)
+- ✅ Phases 1–3 — data pipeline, agents, Next.js dashboard
+- ✅ Quant engine — deterministic score, point-in-time + rule-based backtest, portfolio curve
+- ✅ Trust layer — net-of-cost validation, tradeable re-scoping, forward paper ledger (+ Alpaca paper)
+- ✅ UX — Sovian brand, charts, clickable watchlist, honest evidence banner
+- ◻ Phase B (next) — real macro (FRED) + fundamentals + earnings/event flag (esp. for India, where price alone has no edge); hybrid LLM arbitrator
+- ⬜ Phase 4 — cron refresh + point-in-time universe (kill survivorship bias) + Telegram push
 - ⬜ Phase 5 — Polymarket inputs

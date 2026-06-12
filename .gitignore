@@ -28,3 +28,6 @@ dist/
 .DS_Store
 .idea/
 .vscode/
+
+# Forward paper-trading ledger — runtime state, accrues locally / via cron.
+execution/ledger.json
