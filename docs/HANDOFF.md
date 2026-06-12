@@ -55,11 +55,17 @@ Built via two parallel sub-agents (contract-first, disjoint files) + integration
 - `execution/telegram_push.py` — needs `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` in `.env` (prints if absent).
 - Universe is now **55 names** (de-cherry-picked with laggards + SNOW/NOW); US-long edge held OOS (55% win, PF 1.43, 24.6% CAGR vs SPY 13.2%).
 
+## Survivorship robustness — DONE (2026-06-12), in lieu of full point-in-time
+Free price data (yfinance) **purges delisted tickers** (empirically confirmed: SIVB/FRC/WE/FTCH/TWTR return no data; reused tickers give the wrong entity), so a true point-in-time membership universe isn't buildable on this budget. Instead `quant/robustness.py` **bounds** the bias and answers the skeptic:
+- **Leave-one-out by name**, **drop-top-K contributors**, **name-level bootstrap** (2000x, resample the SET OF NAMES — survivorship's unit) over US-long rule-based trades.
+- Result: edge is robust. Drop top-5 winners (NVDA/AMD/META/PYPL/MSFT) → still +0.41%/trade; bootstrap 5th-pct +0.41%/trade, **100% of draws positive**.
+- Writes `quant/robustness_results.json`; `quant/scan.py` folds a summary into `evidence.robustness`; surfaced as a green ✓ stress-test line under the caveat on the dashboard home. Runs in `scripts/weekly.sh`.
+- **Honesty:** this BOUNDS, does not ELIMINATE, survivorship bias. The forward paper ledger is still the only unbiased test.
+
 ## What's next (priority order)
-1. **Cheapest/highest-integrity:** automate the ledger (daily cron: backfill→scan→record→reconcile) + add Alpaca paper keys. Let the unbiased track record compound.
-2. **Point-in-time universe** — kill survivorship bias so the backtest is believable now. Highest-value rigor build.
-3. **Telegram push delivery** (from the competitor teardown — worth it as delivery).
-4. Optional: hybrid LLM arbitrator narration over the Phase B overlays.
+1. **Blocked on user creds — Alpaca paper keys:** `.env` `ALPACA_API_KEY`/`ALPACA_SECRET_KEY` are empty. Code (`execution/alpaca_paper.py`) is ready; once keys are in, `python -m execution.alpaca_paper` places paper orders. Steps in chat 2026-06-12.
+2. **Blocked on user creds — Telegram push:** `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID` not yet in `.env` (BotFather + getUpdates). Code (`execution/telegram_push.py`) is ready; `daily.sh` already calls it (no-op print until tokens present).
+3. **True point-in-time universe** — only if a paid delisted-history source (Polygon paid / Norgate) gets provisioned. Robustness harness is the free stand-in until then.
 
 ## Conventions
 - Commit messages end with the Co-Authored-By trailer. Branch before non-trivial work.

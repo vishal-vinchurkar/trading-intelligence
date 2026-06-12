@@ -10,7 +10,7 @@
       "curve_slope_bps": null,
       "fx": {
         "pair": "USDINR",
-        "level": 95.03,
+        "level": 95.015,
         "trend": "WEAKER"
       },
       "as_of": "2026-06-12",
@@ -55,6 +55,20 @@
       "2017-03-29",
       "2026-05-08"
     ],
+    "robustness": {
+      "verdict": "Edge survives an unlucky draw of survivors: 5th-pct expectancy 0.413%/trade across 2000 name-bootstraps, 100% of draws positive.",
+      "p05_expectancy_pct": 0.413,
+      "share_positive": 1.0,
+      "robust": true,
+      "drop_top5_expectancy_pct": 0.411,
+      "drop_top5_removed": [
+        "NVDA",
+        "AMD",
+        "META",
+        "PYPL",
+        "MSFT"
+      ]
+    },
     "caveats": "Backtested on TODAY's universe (survivorship bias) \u2014 treat returns as an upper bound, not a forward expectation. Perfect stop fills assumed. The forward Alpaca paper ledger is the unbiased test. Not financial advice."
   },
   "favourites": [
@@ -885,8 +899,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to AMD's strong trend (price above 50/200 DMA) and momentum (6m return +120.4%), coupled with high relative strength (3m vs index +136.3%), indicating robust price performance. However, the flow component is neutral at 70, suggesting accumulation but not overly conclusive.",
-        "caution": "Despite the technical setup, caution is warranted due to AMD's expensive valuation (PE 163.9, P/B 12.4) and upcoming earnings (2026-08-05), which could introduce volatility."
+        "thesis": "The setup appears favorable due to AMD's strong trend (price above 50/200 DMA) and momentum (6m return +120.4%), coupled with high relative strength (3m vs index +136.3%), indicating robust price performance. However, the flow component is neutral at 70, suggesting accumulation but not overly convincing buying pressure.",
+        "caution": "The expensive valuation (PE 163.9, P/B 12.4) and upcoming earnings (2026-08-05, 54d) may pose risks not captured by the price model."
       },
       "history": [
         {
@@ -1617,8 +1631,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and high momentum (6m return of 188.8%), with relative strength also showing significant outperformance (3m vs index +147.7%). However, the flow component is more neutral at 70, indicating some accumulation but not overly conclusive. These technical factors collectively contribute to the model's bullish assessment.",
-        "caution": "The expensive valuation (P/B 5.3, EV/EBITDA 43.3) and weak profitability (ROE -2.9%, net margin -5.9%) could pose risks if not addressed by upcoming earnings (in 42 days)."
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and high momentum (6m return +188.8%), with relative strength also showing significant outperformance (3m vs index +147.7%). However, the flow component is more neutral at 70, indicating some accumulation but not extremely high conviction. These technical factors collectively contribute to the model's strong buy verdict.",
+        "caution": "The expensive valuation (P/B 5.3, EV/EBITDA 43.3) and weak profitability (ROE -2.9%, net margin -5.9%) could pose risks if earnings do not meet expectations, particularly with the next earnings report in 42 days."
       },
       "history": [
         {
@@ -2349,7 +2363,7 @@
       },
       "narration": {
         "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA), robust momentum (6m return +25.3%, MACD positive), and significant relative strength (3m vs index +35.6%).",
-        "caution": "The trade setup faces potential headwinds from expensive valuation (PE 30.6, P/B 3.8) and an earnings event on 2026-07-16."
+        "caution": "However, the trade may be impacted by UNH's expensive valuation (PE 30.6, P/B 3.8) and upcoming earnings on 2026-07-16, which could introduce volatility."
       },
       "history": [
         {
@@ -3079,8 +3093,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears attractive due to C's strong trend and momentum, as evidenced by its stacked price/50/200DMA above, 6m return of +26.2%, and positive MACD. Additionally, the stock has shown relative strength with a 3m outperformance of +20.1% vs the index.",
-        "caution": "C's valuation appears cheap but earnings growth may be scrutinized at the upcoming event on 2026-07-14."
+        "thesis": "The setup appears attractive due to C's strong trend and momentum, as evidenced by its stacked price/50/200DMA above, 6m return of +26.2%, and positive MACD. Additionally, its relative strength is robust with a 3m outperformance of +20.1% vs the index, although flow accumulation is only moderately supportive at 70.",
+        "caution": "C's valuation appears cheap with a PE of 17.1, but investors should be aware that earnings growth of 56.1% YoY may be difficult to sustain."
       },
       "history": [
         {
@@ -3810,8 +3824,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears attractive due to CVS's strong technicals, including a bullish price/50/200DMA stack, significant 6m return of +28.4%, and relative outperformance of +21.3% over 3 months, which collectively suggest a favorable trend and momentum environment. The stock also exhibits cheap valuation multiples, such as a low PEG of 0.28 and EV/EBITDA of 12.6, alongside growth in revenue and earnings.",
-        "caution": "Despite the attractive setup, caution is warranted due to CVS's weak profitability metrics, including a low ROE of 3.8%, net margin of 0.7%, and operating margin of 4.1%."
+        "thesis": "The setup appears attractive due to CVS's strong technicals, including a bullish price/50/200DMA stack, significant 6m return of +28.4%, and relative outperformance of +21.3% over 3 months, which collectively suggest a favorable trend and momentum environment. The stock also exhibits cheap valuation multiples, such as a low PEG of 0.28 and EV/EBITDA of 12.6, alongside growth metrics like 6.1% revenue YoY and 63.1% earnings YoY growth.",
+        "caution": "Despite the attractive setup, CVS's weak profitability metrics, including a low ROE of 3.8%, net margin of 0.7%, and op margin of 4.1%, may pose risks to sustained growth and profitability."
       },
       "history": [
         {
@@ -4541,8 +4555,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a strong uptrend (price above 50/200 DMA) and significant momentum (6m return +53.2%), with relative strength also impressive at +45.9% over 3 months, despite neutral flow.",
-        "caution": "The trade setup may be impacted by expensive valuation (PE 40.6, P/B 9.8) and upcoming earnings (2026-08-13, 62d from now), which could introduce event risk."
+        "thesis": "The setup appears bullish due to a strong trend (price above 50 and 200 DMA) and high momentum (6m return +53.2%), with relative strength also showing significant outperformance (3m vs index +45.9%). However, flow is neutral, which may temper enthusiasm.",
+        "caution": "The stock looks expensive on valuation metrics (PE 40.6, P/B 9.8) and earnings are due in 62 days, which could introduce event risk."
       },
       "history": [
         {
@@ -12248,8 +12262,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a strong trend (price above 50/200 DMA) and high relative strength (3m outperformance of +11.4% vs index), despite slightly negative momentum indicated by MACD. The price/50/200DMA stack suggests a bullish trend, while the 6m return of +12.5% indicates positive price movement.",
-        "caution": "The stock's expensive valuation (P/B 1.6, PEG 8.48, EV/EBITDA 25.9) and high leverage (D/E 4.26x) may pose risks, with earnings expected in 48 days potentially impacting the stock's performance."
+        "thesis": "The setup appears favorable due to a strong trend (price above 50/200 DMA) and high relative strength (3m outperformance of +11.4% vs index), despite slightly negative momentum indicated by MACD. The trend and relative strength components collectively contribute to the high score, outweighing neutral flow and modest momentum.",
+        "caution": "The stock's expensive valuation (P/B 1.6, PEG 8.48, EV/EBITDA 25.9) and high leverage (D/E 4.26x) may pose risks not captured by the price model."
       },
       "history": [
         {
@@ -13676,8 +13690,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears bearish due to a stacked trend indicator (price below 50 and 200 DMA), negative momentum (6m return -16.0%, MACD \u2212), and weak relative strength (3m vs index -5.6%). Despite some accumulation flow, overall metrics suggest a downward bias.",
-        "caution": "The trade's risk-reward ratio of 0.59 is below 1, and with earnings expected in 35 days, there may be event-driven volatility that could impact the trade's performance."
+        "thesis": "The setup appears bearish due to a stacked trend indicator (price below 50 and 200 DMA), weak momentum (6m return -16.0%, MACD negative), and underperforming relative strength (3m vs index -5.6%). Despite cheap valuation and low leverage, growth metrics are weak.",
+        "caution": "Earnings are expected on 2026-07-17, which may cause price volatility and impact the trade"
       },
       "history": [
         {
@@ -15804,8 +15818,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and relative strength (outperforming index by 6.3% over 3 months), despite neutral flow and modest momentum (6m return +3.0%). The attractive valuation multiples (PE 13.7, P/B 1.4, PEG 0.99) and strong profitability metrics (ROE 10.6%, net margin 29.0%, op margin 36.0%) support the bullish case.",
-        "caution": "The trade's risk-reward ratio of 0.62 is below the typical threshold of 1.5, which may limit the trade's potential."
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and relative strength (outperforming index by 6.3% over 3 months), despite neutral flow and modest momentum (6m return +3.0%). The model's score of 77.8 reflects a combination of these factors, along with attractive valuation multiples.",
+        "caution": "The upcoming earnings report on 2026-07-14 may introduce volatility, but the quant model does not appear to penalize this."
       },
       "history": [
         {
@@ -17233,8 +17247,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a bullish trend (price above 50 and 200 DMA) and positive momentum indicators (6m return +17.7%, MACD +). Additionally, the stock shows signs of accumulation (flow 70).",
-        "caution": "The stock has an expensive valuation with a PE of 26.0 and high leverage (D/E 1.25x), which may pose risks despite the favorable technical setup."
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and positive momentum indicators (6m return +17.7%, MACD +). However, relative strength is neutral at 29, and flow indicators suggest moderate accumulation.",
+        "caution": "The stock has an expensive valuation (PE 26.0, P/B 10.6) and high leverage (D/E 1.25x), which may pose risks despite strong profitability."
       },
       "history": [
         {
@@ -17965,8 +17979,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and relative strength (3m outperformance vs index +4.8%), despite slightly negative momentum (MACD \u2212). However, flow metrics indicate distribution (flow 30).",
-        "caution": "The trade setup faces potential caution from expensive valuation (PE 35.8, P/B 40.7) and upcoming earnings (2026-07-31, 49d from now)."
+        "thesis": "The setup appears favorable due to a strong trend (price above 50 and 200 DMA) and relative strength (3m outperformance vs index +4.8%), despite neutral momentum (6m return +6.7%, MACD negative) and weak flow (distribution) readings.",
+        "caution": "The expensive valuation (PE 35.8, P/B 40.7) and upcoming earnings event (2026-07-31, 49d) may pose risks not captured by the price model."
       },
       "history": [
         {
@@ -19394,8 +19408,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears attractive due to strong relative strength (3m vs index +24.9%) and positive momentum indicators (6m return +8.0%, MACD +), which outweigh mixed trend signals and neutral flow. The price/50/200DMA stack is mixed, but relative strength and momentum drive the model's bullish stance.",
-        "caution": "The stock's expensive valuation (P/B 43.0, PEG 6.21) and weak profitability (ROE -54.9%, net margin -23.8%, op margin -22.2%) pose risks despite the positive technical setup."
+        "thesis": "The setup appears attractive due to strong relative strength (3m vs index +24.9%) and positive momentum indicators (6m return +8.0%, MACD +), which contrast with a neutral flow reading. The mixed trend component (price/50/200DMA stack mixed) seems to be outweighed by other factors, leading to a score of 72.0/100.",
+        "caution": "The stock's expensive valuation (P/B 43.0, PEG 6.21) and weak profitability (ROE -54.9%, net margin -23.8%, op margin -22.2%) pose significant fundamental risks."
       },
       "history": [
         {
@@ -20825,7 +20839,7 @@
       },
       "narration": {
         "thesis": "The model favors SBUX due to a strong trend (price above 50/200 DMA) and positive momentum (6m return +24.3%), despite relative weakness (-8.7% 3m vs index) and neutral flow (accumulation score 70).",
-        "caution": "The expensive valuation (PE 78.1, PEG 1.36, EV/EBITDA 25.8) and weak profitability (net margin 3.9%, op margin 8.4%) may pose risks to the upside."
+        "caution": "SBUX appears expensive with high valuation multiples (PE 78.1, PEG 1.36, EV/EBITDA 25.8) and upcoming earnings (2026-07-29, 47d) may introduce event risk."
       },
       "history": [
         {
@@ -21556,8 +21570,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears bullish due to a strong trend (price above 50 and 200 DMA) and positive momentum (6m return +19.2%, MACD +), but is partially offset by weak relative strength (3m vs index -12.3%); accumulation flow suggests institutional interest.",
-        "caution": "The trade setup is cautioned by JNJ's expensive valuation (PE 27.6, P/B 7.1) and weak earnings growth (-52.9% YoY), with earnings due in 33 days."
+        "thesis": "The setup appears bullish due to a strong trend (price above 50 and 200 DMA) and positive momentum (6m return +19.2%, MACD +), but is partially offset by weak relative strength (3m vs index -12.3%) and neutral flow (accumulation score 70).",
+        "caution": "The trade setup faces caution due to expensive valuation (PE 27.6, P/B 7.1) and weak earnings growth (-52.9% YoY), with earnings due in 33 days."
       },
       "history": [
         {
@@ -23684,8 +23698,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a mix of positive trend and momentum indicators, with a strong relative strength showing a 7.1% outperformance vs the index over 3 months, despite a neutral flow score of 30. The price/50/200DMA stack is mixed, but the 6-month return of +12.8% and MACD crossover suggest improving momentum.",
-        "caution": "The expensive valuation (PE 27.3, P/B 9.1) and upcoming earnings report in 42 days may pose risks to the trade."
+        "thesis": "The setup appears favorable due to a mix of positive trend and momentum indicators, with a strong relative strength showing a 7.1% outperformance vs the index over 3 months, despite a neutral flow score of 30. The price/50/200DMA stack is mixed, while 6m returns are +12.8%.",
+        "caution": "However, GOOGL's valuation is considered expensive with a PE of 27.3, P/B of 9.1, and EV/EBITDA of 26.7, which could pose a risk if earnings growth doesn't meet expectations."
       },
       "history": [
         {
@@ -27208,8 +27222,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a mixed but overall positive trend (70) and momentum (65) from a 6-month return of +10.8%, despite a negative MACD. The relative strength (56) also indicates a slight outperformance over the last 3 months.",
-        "caution": "However, the expensive valuation (PE 31.3, P/B 25.4) and upcoming earnings (in 76 days) could pose risks not captured by the price model."
+        "thesis": "The setup appears attractive due to a mixed trend signal (70) from the price/50/200DMA stack, supported by decent momentum (65) from a 6-month return of +10.8%, despite a negative MACD. However, relative strength (56) and flow (50) signals are neutral.",
+        "caution": "The trade setup faces potential caution from NVDA's expensive valuation (PE 31.3, P/B 25.4) and upcoming earnings event risk (next earnings in 76 days)."
       },
       "history": [
         {
@@ -27940,8 +27954,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears favorable due to a mix of positive trend and relative strength indicators, with a 3m relative strength of 71 and a 6m return of +6.0%, despite slightly negative MACD momentum. The price action stack is mixed, but the quant model sees sufficient potential for a move towards 270.63. The trade levels reflect a risk-reward ratio of 2.0, driven by a stop loss at 226.95 and an entry at 241.51.",
-        "caution": "The expensive valuation (PE 31.7, P/B 5.9) and upcoming earnings event (2026-07-31, 49d) may pose risks not captured by the price model."
+        "thesis": "The setup appears favorable due to a mix of positive trend and relative strength indicators, with a 3-month outperformance of +4.5% vs the index and a supportive price/50/200DMA stack, despite slightly negative momentum signals. The model also considers a relatively low 6-month return of +6.0% and a MACD crossover. The stock's rich valuation multiples are balanced by strong growth and profitability metrics.",
+        "caution": "The stock's expensive valuation (PE 31.7, P/B 5.9) and upcoming earnings report in 49 days may pose risks not captured by the price model."
       },
       "history": [
         {
@@ -30068,8 +30082,8 @@
         "flag": "CLEAR"
       },
       "narration": {
-        "thesis": "The setup appears to be driven by momentum, with a 6-month return of 16.6% and a positive MACD, which outweighs the neutral trend and relative strength signals. The mixed trend signal comes from the price/50/200DMA stack being mixed, indicating some uncertainty in the trend. The model is overweighting momentum, given its high score of 84.",
-        "caution": "The expensive valuation (PE 41.3, P/B 18.7) and upcoming earnings event (2026-07-16, 34d) may pose risks not captured by the price model."
+        "thesis": "The setup appears to be driven by momentum, with a 6-month return of +16.6% and a positive MACD, which outweighs the mixed trend signals and weak relative strength. The neutral flow component suggests no significant buying or selling pressure. The model likely views the recent price action and momentum as more significant than the current expensive valuation.",
+        "caution": "The expensive valuation multiples (PE 41.3, P/B 18.7) and upcoming earnings event (2026-07-16, 34d) may pose risks not captured by the price model."
       },
       "history": [
         {

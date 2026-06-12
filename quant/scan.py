@@ -34,6 +34,7 @@ from quant import trade as qtrade
 OUT_PATH = Path(__file__).parent / "latest_scan.json"
 RULES_PATH = Path(__file__).parent / "backtest_rules_results.json"
 PORTFOLIO_PATH = Path(__file__).parent / "portfolio_results.json"
+ROBUSTNESS_PATH = Path(__file__).parent / "robustness_results.json"
 
 # The user's pinned watchlist — always shown front-and-centre regardless of score.
 # Edit freely; these must exist in data/universe.py.
@@ -171,6 +172,19 @@ def run(enrich: bool = True) -> dict:
     portfolio = json.loads(PORTFOLIO_PATH.read_text()) if PORTFOLIO_PATH.exists() else {}
     us_long = (rules.get("by_market_long", {}).get("US", {}) or {}).get("out_of_sample", {})
 
+    # Survivorship robustness — bounds the bias the free-data universe can't remove.
+    rob_full = json.loads(ROBUSTNESS_PATH.read_text()) if ROBUSTNESS_PATH.exists() else {}
+    boot = rob_full.get("name_bootstrap", {})
+    drop5 = rob_full.get("drop_top_contributors", {}).get("drop_top_5", {})
+    robustness = {
+        "verdict": rob_full.get("verdict"),
+        "p05_expectancy_pct": boot.get("p05_expectancy_pct"),
+        "share_positive": boot.get("share_positive"),
+        "robust": boot.get("robust"),
+        "drop_top5_expectancy_pct": drop5.get("expectancy_pct"),
+        "drop_top5_removed": drop5.get("removed"),
+    } if rob_full else None
+
     # Macro regime once per market present (Phase B overlay — context, not a signal).
     macro = {}
     for mkt in sorted({s["market"] for s in signals if s["market"]}):
@@ -196,6 +210,7 @@ def run(enrich: bool = True) -> dict:
             "benchmark": portfolio.get("benchmark", {}),
             "rule": rules.get("meta", {}).get("rule"),
             "date_range": rules.get("meta", {}).get("date_range"),
+            "robustness": robustness,
             "caveats": "Backtested on TODAY's universe (survivorship bias) — treat returns as an "
                        "upper bound, not a forward expectation. Perfect stop fills assumed. The "
                        "forward Alpaca paper ledger is the unbiased test. Not financial advice.",

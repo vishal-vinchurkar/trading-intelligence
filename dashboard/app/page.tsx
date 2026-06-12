@@ -57,6 +57,17 @@ export default function Home() {
         <p className="mt-3 rounded-md border border-neutral/20 bg-neutral/5 px-3 py-2 text-[11px] leading-relaxed text-neutral">
           ⚠ {ev.caveats}
         </p>
+        {ev.robustness?.robust && (
+          <p className="mt-2 rounded-md border border-bull/20 bg-bull/5 px-3 py-2 text-[11px] leading-relaxed text-bull">
+            ✓ Survivorship stress-test: the edge isn&apos;t carried by a few hindsight winners.
+            Drop the top 5 contributors ({ev.robustness.drop_top5_removed?.join(", ")}) and it&apos;s
+            still <span className="font-mono">+{ev.robustness.drop_top5_expectancy_pct}%/trade</span>;
+            resampling the universe by name, the 5th-percentile edge is
+            {" "}<span className="font-mono">+{ev.robustness.p05_expectancy_pct}%/trade</span> with
+            {" "}<span className="font-mono">{Math.round((ev.robustness.share_positive ?? 0) * 100)}%</span> of
+            draws positive. Bounds the bias — the forward ledger is still the only unbiased test.
+          </p>
+        )}
       </section>
 
       {/* Market toggle + book */}

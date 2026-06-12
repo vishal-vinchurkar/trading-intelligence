@@ -1,0 +1,337 @@
+{
+  "meta": {
+    "scope": "US long, rule-based trades (the headline edge), net of cost",
+    "names": 38,
+    "trades": 8659,
+    "date_range": [
+      "2017-03-29",
+      "2026-05-08"
+    ],
+    "note": "Bounds survivorship bias; does NOT eliminate it. Free price data purges delisted names, so a true point-in-time universe isn't buildable here. The forward paper ledger remains the only unbiased test. Not financial advice."
+  },
+  "leave_one_out": {
+    "baseline_expectancy_pct": 0.598,
+    "worst_case": {
+      "symbol": "NVDA",
+      "trades": 334,
+      "expectancy_without_pct": 0.55,
+      "delta_pct": -0.048
+    },
+    "worst_case_still_positive": true,
+    "per_name": [
+      {
+        "symbol": "NVDA",
+        "trades": 334,
+        "expectancy_without_pct": 0.55,
+        "delta_pct": -0.048
+      },
+      {
+        "symbol": "PYPL",
+        "trades": 222,
+        "expectancy_without_pct": 0.566,
+        "delta_pct": -0.032
+      },
+      {
+        "symbol": "AMD",
+        "trades": 276,
+        "expectancy_without_pct": 0.567,
+        "delta_pct": -0.031
+      },
+      {
+        "symbol": "META",
+        "trades": 278,
+        "expectancy_without_pct": 0.569,
+        "delta_pct": -0.029
+      },
+      {
+        "symbol": "GE",
+        "trades": 226,
+        "expectancy_without_pct": 0.572,
+        "delta_pct": -0.026
+      },
+      {
+        "symbol": "MSFT",
+        "trades": 324,
+        "expectancy_without_pct": 0.575,
+        "delta_pct": -0.023
+      },
+      {
+        "symbol": "C",
+        "trades": 222,
+        "expectancy_without_pct": 0.58,
+        "delta_pct": -0.018
+      },
+      {
+        "symbol": "GOOGL",
+        "trades": 295,
+        "expectancy_without_pct": 0.581,
+        "delta_pct": -0.017
+      },
+      {
+        "symbol": "TSLA",
+        "trades": 234,
+        "expectancy_without_pct": 0.582,
+        "delta_pct": -0.016
+      },
+      {
+        "symbol": "NFLX",
+        "trades": 304,
+        "expectancy_without_pct": 0.585,
+        "delta_pct": -0.013
+      },
+      {
+        "symbol": "NOW",
+        "trades": 284,
+        "expectancy_without_pct": 0.585,
+        "delta_pct": -0.013
+      },
+      {
+        "symbol": "AAPL",
+        "trades": 308,
+        "expectancy_without_pct": 0.589,
+        "delta_pct": -0.009
+      },
+      {
+        "symbol": "INTC",
+        "trades": 178,
+        "expectancy_without_pct": 0.591,
+        "delta_pct": -0.007
+      },
+      {
+        "symbol": "CSCO",
+        "trades": 260,
+        "expectancy_without_pct": 0.593,
+        "delta_pct": -0.005
+      },
+      {
+        "symbol": "T",
+        "trades": 154,
+        "expectancy_without_pct": 0.596,
+        "delta_pct": -0.002
+      },
+      {
+        "symbol": "V",
+        "trades": 302,
+        "expectancy_without_pct": 0.596,
+        "delta_pct": -0.002
+      },
+      {
+        "symbol": "JPM",
+        "trades": 291,
+        "expectancy_without_pct": 0.6,
+        "delta_pct": 0.002
+      },
+      {
+        "symbol": "HD",
+        "trades": 247,
+        "expectancy_without_pct": 0.601,
+        "delta_pct": 0.003
+      },
+      {
+        "symbol": "KHC",
+        "trades": 105,
+        "expectancy_without_pct": 0.602,
+        "delta_pct": 0.004
+      },
+      {
+        "symbol": "F",
+        "trades": 152,
+        "expectancy_without_pct": 0.603,
+        "delta_pct": 0.005
+      },
+      {
+        "symbol": "SBUX",
+        "trades": 207,
+        "expectancy_without_pct": 0.603,
+        "delta_pct": 0.005
+      },
+      {
+        "symbol": "BA",
+        "trades": 204,
+        "expectancy_without_pct": 0.604,
+        "delta_pct": 0.006
+      },
+      {
+        "symbol": "NKE",
+        "trades": 202,
+        "expectancy_without_pct": 0.606,
+        "delta_pct": 0.008
+      },
+      {
+        "symbol": "AMZN",
+        "trades": 265,
+        "expectancy_without_pct": 0.607,
+        "delta_pct": 0.009
+      },
+      {
+        "symbol": "SNOW",
+        "trades": 97,
+        "expectancy_without_pct": 0.607,
+        "delta_pct": 0.009
+      },
+      {
+        "symbol": "MMM",
+        "trades": 181,
+        "expectancy_without_pct": 0.608,
+        "delta_pct": 0.01
+      },
+      {
+        "symbol": "WMT",
+        "trades": 312,
+        "expectancy_without_pct": 0.608,
+        "delta_pct": 0.01
+      },
+      {
+        "symbol": "BAC",
+        "trades": 231,
+        "expectancy_without_pct": 0.611,
+        "delta_pct": 0.013
+      },
+      {
+        "symbol": "WFC",
+        "trades": 204,
+        "expectancy_without_pct": 0.612,
+        "delta_pct": 0.014
+      },
+      {
+        "symbol": "CVS",
+        "trades": 169,
+        "expectancy_without_pct": 0.613,
+        "delta_pct": 0.015
+      },
+      {
+        "symbol": "PG",
+        "trades": 215,
+        "expectancy_without_pct": 0.615,
+        "delta_pct": 0.017
+      },
+      {
+        "symbol": "UNH",
+        "trades": 261,
+        "expectancy_without_pct": 0.616,
+        "delta_pct": 0.018
+      },
+      {
+        "symbol": "XOM",
+        "trades": 192,
+        "expectancy_without_pct": 0.616,
+        "delta_pct": 0.018
+      },
+      {
+        "symbol": "JNJ",
+        "trades": 205,
+        "expectancy_without_pct": 0.618,
+        "delta_pct": 0.02
+      },
+      {
+        "symbol": "VZ",
+        "trades": 141,
+        "expectancy_without_pct": 0.619,
+        "delta_pct": 0.021
+      },
+      {
+        "symbol": "DIS",
+        "trades": 154,
+        "expectancy_without_pct": 0.62,
+        "delta_pct": 0.022
+      },
+      {
+        "symbol": "KO",
+        "trades": 240,
+        "expectancy_without_pct": 0.621,
+        "delta_pct": 0.023
+      },
+      {
+        "symbol": "PFE",
+        "trades": 183,
+        "expectancy_without_pct": 0.624,
+        "delta_pct": 0.026
+      }
+    ]
+  },
+  "drop_top_contributors": {
+    "top_contributors": [
+      {
+        "symbol": "NVDA",
+        "total_net_pct": 600.8
+      },
+      {
+        "symbol": "AMD",
+        "total_net_pct": 419.3
+      },
+      {
+        "symbol": "META",
+        "total_net_pct": 405.8
+      },
+      {
+        "symbol": "PYPL",
+        "total_net_pct": 396.4
+      },
+      {
+        "symbol": "MSFT",
+        "total_net_pct": 384.9
+      }
+    ],
+    "drop_top_1": {
+      "removed": [
+        "NVDA"
+      ],
+      "expectancy_pct": 0.55,
+      "profit_factor": 1.28,
+      "win_rate_pct": 53.2,
+      "trades": 8325,
+      "still_positive": true
+    },
+    "drop_top_3": {
+      "removed": [
+        "NVDA",
+        "AMD",
+        "META"
+      ],
+      "expectancy_pct": 0.483,
+      "profit_factor": 1.25,
+      "win_rate_pct": 52.8,
+      "trades": 7771,
+      "still_positive": true
+    },
+    "drop_top_5": {
+      "removed": [
+        "NVDA",
+        "AMD",
+        "META",
+        "PYPL",
+        "MSFT"
+      ],
+      "expectancy_pct": 0.411,
+      "profit_factor": 1.21,
+      "win_rate_pct": 52.0,
+      "trades": 7225,
+      "still_positive": true
+    }
+  },
+  "name_bootstrap": {
+    "iterations": 2000,
+    "resample_unit": "symbol (block bootstrap by name)",
+    "mean_expectancy_pct": 0.593,
+    "ci90_pct": [
+      0.413,
+      0.765
+    ],
+    "p05_expectancy_pct": 0.413,
+    "share_positive": 1.0,
+    "robust": true
+  },
+  "name_bootstrap_oos": {
+    "iterations": 2000,
+    "resample_unit": "symbol (block bootstrap by name)",
+    "mean_expectancy_pct": 0.827,
+    "ci90_pct": [
+      0.347,
+      1.303
+    ],
+    "p05_expectancy_pct": 0.347,
+    "share_positive": 0.996,
+    "robust": true
+  },
+  "verdict": "Edge survives an unlucky draw of survivors: 5th-pct expectancy 0.413%/trade across 2000 name-bootstraps, 100% of draws positive."
+}

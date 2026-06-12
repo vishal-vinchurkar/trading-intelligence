@@ -114,11 +114,21 @@ export interface Scan {
     benchmark: CurveStats;
     rule: string | null;
     date_range: [string, string] | null;
+    robustness: Robustness | null;
     caveats: string;
   };
   macro: Record<string, Macro | null>;
   favourites: string[];
   signals: Signal[];
+}
+
+export interface Robustness {
+  verdict: string | null;
+  p05_expectancy_pct: number | null;   // 5th-pct expectancy across name-bootstraps
+  share_positive: number | null;       // fraction of bootstrap draws with +ve edge
+  robust: boolean | null;
+  drop_top5_expectancy_pct: number | null;
+  drop_top5_removed: string[] | null;
 }
 
 export interface CurveStats {
