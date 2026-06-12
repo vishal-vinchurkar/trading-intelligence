@@ -1,0 +1,19 @@
+# Data fetching
+requests>=2.31.0
+yfinance>=0.2.40
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Indicators computed by hand on pandas/numpy — no extra dep needed
+
+# Persistence
+supabase>=2.4.0
+
+# Env + utils
+python-dotenv>=1.0.1
+
+# LLM access — all agents call Groq (and optionally local Ollama) over HTTP
+# via `requests`; no provider SDK required. Groq free tier, no Anthropic key.
+
+# Execution (paper trading — wired in a later phase)
+alpaca-py>=0.20.0
