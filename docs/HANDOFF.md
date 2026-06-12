@@ -42,11 +42,19 @@ cd dashboard && npm run build                   # then: vercel deploy --prod --y
 ```
 Env: `.venv` is Python 3.9 → keep `from __future__ import annotations` in any module using `|` unions. Secrets in `.env` (GROQ, ALPHA_VANTAGE, SUPABASE live; FRED present; ALPACA empty).
 
+## Phase B — DONE (grounding overlays)
+Built via two parallel sub-agents (contract-first, disjoint files) + integration:
+- `data/fetcher_macro.py` — keyless macro regime (yfinance ^TNX/^IRX, USDINR), derived not guessed.
+- `quant/quality.py` — current-state 0–100 fundamental quality score.
+- `data/events.py` — next-earnings / event-within-horizon flag.
+- `quant/scan.py` enriches tradeable + watchlist names (keyless, no AV-quota hit) with quality + events; macro per market. **All current-state overlays — NOT in the backtested score.** Surfaced on the dashboard detail page + ⚠ earnings chip on cards.
+- Still optional: a hybrid LLM arbitrator that *narrates*/vetoes using these overlays (the quant spine already decides; this would add reasoning). Lower priority than the two below.
+
 ## What's next (priority order)
 1. **Cheapest/highest-integrity:** automate the ledger (daily cron: backfill→scan→record→reconcile) + add Alpaca paper keys. Let the unbiased track record compound.
 2. **Point-in-time universe** — kill survivorship bias so the backtest is believable now. Highest-value rigor build.
-3. **Phase B grounding** — macro (FRED) + fundamentals + earnings/event flag + hybrid LLM arbitrator. Most valuable for India (no price edge). **See `docs/PHASE-B-PLAN.md` — it's decomposed for parallel sessions.**
-4. Telegram push delivery (from the competitor teardown — worth it as delivery).
+3. **Telegram push delivery** (from the competitor teardown — worth it as delivery).
+4. Optional: hybrid LLM arbitrator narration over the Phase B overlays.
 
 ## Conventions
 - Commit messages end with the Co-Authored-By trailer. Branch before non-trivial work.
