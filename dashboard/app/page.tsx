@@ -5,81 +5,100 @@ import { Disclaimer } from "@/components/Disclaimer";
 import { QuantCard } from "@/components/QuantCard";
 import {
   book,
-  edgeFor,
-  favourites,
+  getSignalsBySymbols,
+  informational,
   scan,
-  topLongs,
-  topShorts,
+  tradeable,
   type MarketFilter,
   type Signal,
 } from "@/lib/scan";
+import { useWatchlist } from "@/lib/useWatchlist";
 
 const MARKETS: MarketFilter[] = ["All", "US", "India"];
 
-// The decision surface. A market toggle keeps the US book and the India book
-// cleanly separated — different sessions, currencies, benchmarks and (as the
-// backtest shows) different edges — while "All" stays a cross-market discovery view.
 export default function Home() {
   const [market, setMarket] = useState<MarketFilter>("All");
-  const bt = scan.backtest_meta;
+  const { symbols: watch, has, toggle } = useWatchlist();
+  const ev = scan.evidence;
   const b = book(market);
-  const edge = edgeFor(market);
-  const favs = favourites(market);
-  const longs = topLongs(market, 6);
-  const shorts = topShorts(market, 6);
+
+  const watchSignals = getSignalsBySymbols(watch).filter(
+    (s) => market === "All" || s.market === market
+  );
+  const td = tradeable(market);
+  const info = informational(market);
+
+  const star = { has, onToggleStar: toggle };
 
   return (
     <div className="space-y-7">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Top Signals</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Signals</h1>
           <p className="mt-1 text-sm text-muted">
-            A deterministic quant score ranks {scan.universe_size} names; the
-            strongest setups surface here. Scan as of {scan.as_of}.
+            A deterministic quant score ranks {scan.universe_size} names; only setups
+            that cleared the backtest are marked tradeable. Scan as of {scan.as_of}.
           </p>
         </div>
         <Disclaimer />
       </div>
 
-      {/* Market toggle */}
-      <div className="flex gap-1.5">
-        {MARKETS.map((m) => (
-          <button
-            key={m}
-            onClick={() => setMarket(m)}
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
-              market === m ? "bg-muted/20 text-white" : "bg-panel text-muted hover:text-white"
-            }`}
-          >
-            {m}
-          </button>
-        ))}
-      </div>
-
-      {/* Backtest credibility — per the selected market */}
+      {/* Evidence — the validated edge, with the survivorship caveat in plain sight */}
       <section className="rounded-xl border border-border bg-panel p-5">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
-            Track record — {market} (10-year backtest)
-          </h2>
-          <span className="text-[11px] text-muted">
-            {bt.date_range?.[0]}→{bt.date_range?.[1]} · out-of-sample after {bt.oos_split}
-          </span>
-        </div>
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+          What the backtest actually shows
+        </h2>
         <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <Stat label={`${market} long/short 15d edge`} value={`${edge ?? "—"}%`} hint={market === "India" ? "≈flat this period" : undefined} />
-          <Stat label="Names in view" value={`${b.total}`} />
-          <Stat label="Net book" value={`${b.longs}L / ${b.shorts}S`} />
-          <Stat label="Actionable now" value={`${b.actionable}/${b.total}`} />
+          <Stat label="US-long win-rate (OOS)" value={`${ev.us_long_oos.win_rate ?? "—"}%`} />
+          <Stat label="Net edge / trade" value={`${ev.us_long_oos.expectancy_pct ?? "—"}%`} hint={`PF ${ev.us_long_oos.profit_factor ?? "—"}`} />
+          <Stat label="Strategy CAGR vs SPY" value={`${ev.portfolio.cagr_pct ?? "—"}% / ${ev.benchmark.cagr_pct ?? "—"}%`} hint={`Sharpe ${ev.portfolio.sharpe ?? "—"} vs ${ev.benchmark.sharpe ?? "—"}`} />
+          <Stat label="Max drawdown vs SPY" value={`${ev.portfolio.max_drawdown_pct ?? "—"}% / ${ev.benchmark.max_drawdown_pct ?? "—"}%`} />
         </div>
-        <p className="mt-3 text-[11px] leading-relaxed text-muted">{bt.note}</p>
+        <p className="mt-3 rounded-md border border-neutral/20 bg-neutral/5 px-3 py-2 text-[11px] leading-relaxed text-neutral">
+          ⚠ {ev.caveats}
+        </p>
       </section>
 
-      {favs.length > 0 && (
-        <Deck title="My Watchlist" subtitle="Your pinned names — always shown, regardless of score." signals={favs} />
+      {/* Market toggle + book */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex gap-1.5">
+          {MARKETS.map((m) => (
+            <button
+              key={m}
+              onClick={() => setMarket(m)}
+              className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                market === m ? "bg-muted/20 text-white" : "bg-panel text-muted hover:text-white"
+              }`}
+            >
+              {m}
+            </button>
+          ))}
+        </div>
+        <div className="text-[11px] text-muted">
+          {market} book: <span className="text-bull">{b.longs}L</span> /{" "}
+          <span className="text-bear">{b.shorts}S</span> · {b.tradeable} tradeable
+        </div>
+      </div>
+
+      {watchSignals.length > 0 && (
+        <Deck title="My Watchlist" subtitle="Your pinned names — click ★ on any card to add or remove." signals={watchSignals} star={star} />
       )}
-      <Deck title="Top Longs" subtitle="Highest conviction. Hit-rate is backtested on this market's own history." signals={longs} />
-      <Deck title="Top Shorts" subtitle="Weakest names. Shorts judged on lagging the index, not absolute falls." signals={shorts} />
+
+      <Deck
+        title="Tradeable now"
+        subtitle="US longs that cleared the backtest (net-positive expectancy out-of-sample). The R:R ✓/·wait flag tells you if today's entry is worth it."
+        signals={td}
+        star={star}
+        empty="No tradeable signals in this market — the engine only validates US longs."
+      />
+
+      <Deck
+        title="Informational — no validated edge"
+        subtitle="Shorts and India longs were net-negative in the backtest. Shown for context; not trade signals."
+        signals={info.slice(0, 9)}
+        star={star}
+        muted
+      />
     </div>
   );
 }
@@ -88,30 +107,40 @@ function Stat({ label, value, hint }: { label: string; value: string; hint?: str
   return (
     <div>
       <div className="text-[11px] text-muted">{label}</div>
-      <div className="mt-0.5 font-mono text-lg">{value}</div>
+      <div className="mt-0.5 font-mono text-base">{value}</div>
       {hint && <div className="text-[10px] text-muted">{hint}</div>}
     </div>
   );
 }
 
-function Deck({ title, subtitle, signals }: { title: string; subtitle: string; signals: Signal[] }) {
-  if (signals.length === 0) {
-    return (
-      <section>
-        <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
-        <p className="mt-2 text-sm text-muted">No names in this market match.</p>
-      </section>
-    );
-  }
+function Deck({
+  title,
+  subtitle,
+  signals,
+  star,
+  empty,
+  muted,
+}: {
+  title: string;
+  subtitle: string;
+  signals: Signal[];
+  star: { has: (s: string) => boolean; onToggleStar: (s: string) => void };
+  empty?: string;
+  muted?: boolean;
+}) {
   return (
-    <section>
+    <section className={muted ? "opacity-80" : undefined}>
       <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
       <p className="mb-3 text-xs text-muted">{subtitle}</p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {signals.map((s) => (
-          <QuantCard key={s.symbol} s={s} />
-        ))}
-      </div>
+      {signals.length === 0 ? (
+        <p className="text-sm text-muted">{empty ?? "Nothing here."}</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {signals.map((s) => (
+            <QuantCard key={s.symbol} s={s} starred={star.has(s.symbol)} onToggleStar={star.onToggleStar} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Disclaimer } from "@/components/Disclaimer";
+import { PriceChart } from "@/components/PriceChart";
 import { fmtPrice, getSignal, scan, type Label } from "@/lib/scan";
 
 const labelChip: Record<Label, string> = {
@@ -43,15 +44,35 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
           <span className="font-mono text-2xl">{s.score.toFixed(0)}<span className="text-sm text-muted">/100</span></span>
           <span className="ml-auto text-xs text-muted">as of {s.as_of}</span>
         </div>
-        <p className="mt-3 text-sm text-muted">
-          Confidence here is <span className="text-white">not</span> a model's feeling — it's the{" "}
-          <span className="text-white">backtested 15-day hit-rate</span> for this signal band:{" "}
-          <span className="font-mono text-white">{s.calibration.hit_rate_15d ?? "—"}%</span>
-          {s.calibration.oos_hit_rate_15d != null && (
-            <> in-sample, <span className="font-mono text-white">{s.calibration.oos_hit_rate_15d}%</span> out-of-sample</>
-          )}
-          {s.calibration.samples != null && <> across {s.calibration.samples.toLocaleString()} historical setups.</>}
-        </p>
+        <div className="mt-3 space-y-2">
+          <div className="flex items-center gap-2 text-sm">
+            {s.calibration.tradeable ? (
+              <span className="rounded bg-bull/15 px-2 py-0.5 text-xs font-semibold text-bull">TRADEABLE</span>
+            ) : (
+              <span className="rounded bg-border px-2 py-0.5 text-xs text-muted">INFORMATIONAL</span>
+            )}
+            <span className="text-muted">{s.calibration.reason}</span>
+          </div>
+          <p className="text-sm text-muted">
+            These numbers are from the <span className="text-white">rule-based backtest of this exact trade</span>
+            {" "}(net of cost, out-of-sample):{" "}
+            <span className="font-mono text-white">{s.calibration.win_rate ?? "—"}% win-rate</span>,{" "}
+            <span className="font-mono text-white">{s.calibration.expectancy_pct ?? "—"}% net / trade</span>,{" "}
+            <span className="font-mono text-white">PF {s.calibration.profit_factor ?? "—"}</span>
+            {s.calibration.samples != null && <> across {s.calibration.samples.toLocaleString()} trades.</>}
+          </p>
+        </div>
+      </section>
+
+      {/* Price chart — 120d close + 50DMA with the trade levels drawn on it */}
+      <section className="rounded-xl border border-border bg-panel p-5">
+        <div className="mb-2 flex items-center justify-between">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">Chart — 120 sessions</h2>
+          <span className="text-[11px] text-muted">
+            <span className="text-watch">━</span> 50DMA · <span className="text-muted">┄</span> entry · <span className="text-bear">┄</span> stop · <span className="text-bull">┄</span> target
+          </span>
+        </div>
+        <PriceChart s={s} />
       </section>
 
       {/* Score components — why the engine thinks what it thinks */}

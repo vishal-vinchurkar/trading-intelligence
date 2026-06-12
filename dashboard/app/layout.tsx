@@ -3,9 +3,9 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Trading Intelligence",
+  title: "Sovian — quant signals",
   description:
-    "Multi-agent equity analysis — two isolated analysts, one arbitrator. Experimental research tooling, not financial advice.",
+    "Deterministic quant conviction scores for US & India equities, backtested over 10 years. Experimental research tooling, not financial advice.",
 };
 
 export default function RootLayout({
@@ -18,11 +18,12 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         <header className="border-b border-border">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-            <Link href="/" className="flex items-baseline gap-2">
-              <span className="font-mono text-lg font-bold tracking-tight">
-                trading-intelligence
+            <Link href="/" className="flex items-center gap-2.5">
+              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 font-mono text-sm font-bold text-accent">
+                S
               </span>
-              <span className="text-xs text-muted">US · India</span>
+              <span className="text-lg font-semibold tracking-tight">Sovian</span>
+              <span className="text-xs text-muted">quant signals · US · India</span>
             </Link>
           </div>
         </header>

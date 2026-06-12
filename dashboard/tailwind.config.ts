@@ -16,6 +16,7 @@ const config: Config = {
         bear: "#ef4444",
         neutral: "#eab308",
         watch: "#3b82f6",
+        accent: "#2dd4bf",
       },
       fontFamily: {
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],

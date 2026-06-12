@@ -25,11 +25,14 @@ export interface Trade {
 
 export interface Calibration {
   band: Label;
-  hit_rate_15d: number | null;
-  alpha_15d_pct: number | null;
+  market: string;
+  tradeable: boolean;
+  reason: string;
+  win_rate: number | null;       // rule-based, out-of-sample
+  expectancy_pct: number | null; // net per-trade, out-of-sample
+  profit_factor: number | null;
   samples: number | null;
-  oos_hit_rate_15d: number | null;
-  oos_alpha_15d_pct: number | null;
+  avg_hold_days: number | null;
 }
 
 export interface ExpectedLeg {
@@ -55,25 +58,43 @@ export interface Signal {
   key_levels: { support: number[]; resistance: number[] };
   trade: Trade | null;
   calibration: Calibration;
+  history: PricePoint[];
   is_favourite: boolean;
+}
+
+export interface PricePoint {
+  d: string;       // date
+  c: number;       // close
+  m: number | null; // 50-day SMA
 }
 
 export interface Scan {
   as_of: string;
   universe_size: number;
-  backtest_meta: {
-    samples: number;
-    symbols: number;
-    date_range: [string, string];
-    oos_split: string;
-    horizons: number[];
-    step_days: number;
-    long_short_edge_15d_pct: number | null;
-    note: string;
-    by_market: Record<string, { long_short_edge_15d_pct: number | null; samples: number; symbols: number }>;
+  evidence: {
+    us_long_oos: {
+      win_rate: number | null;
+      expectancy_pct: number | null;
+      profit_factor: number | null;
+      trades: number | null;
+    };
+    portfolio: CurveStats;
+    benchmark: CurveStats;
+    rule: string | null;
+    date_range: [string, string] | null;
+    caveats: string;
   };
   favourites: string[];
   signals: Signal[];
+}
+
+export interface CurveStats {
+  label?: string;
+  total_return_pct?: number;
+  cagr_pct?: number;
+  vol_pct?: number;
+  sharpe?: number | null;
+  max_drawdown_pct?: number;
 }
 
 export type MarketFilter = "All" | "US" | "India";
@@ -108,11 +129,24 @@ export function topShorts(market: MarketFilter = "All", n = 6): Signal[] {
   return scan.signals.filter(inMarket(market)).filter(isShort).sort((a, b) => a.score - b.score).slice(0, n);
 }
 
-export function favourites(market: MarketFilter = "All"): Signal[] {
+/** Tradeable signals (US longs that cleared the backtest), highest score first. */
+export function tradeable(market: MarketFilter = "All"): Signal[] {
   return scan.signals
     .filter(inMarket(market))
-    .filter((s) => s.is_favourite)
+    .filter((s) => s.calibration.tradeable)
+    .sort((a, b) => b.score - a.score);
+}
+
+/** Informational signals (no validated edge) — shorts + India — by conviction. */
+export function informational(market: MarketFilter = "All"): Signal[] {
+  return scan.signals
+    .filter(inMarket(market))
+    .filter((s) => !s.calibration.tradeable && s.label !== "NEUTRAL")
     .sort((a, b) => b.conviction - a.conviction);
+}
+
+export function getSignalsBySymbols(symbols: string[]): Signal[] {
+  return symbols.map((s) => getSignal(s)).filter(Boolean) as Signal[];
 }
 
 /** The "book": net bias for the selected market. */
@@ -120,12 +154,6 @@ export function book(market: MarketFilter = "All") {
   const set = scan.signals.filter(inMarket(market));
   const longs = set.filter(isLong).length;
   const shorts = set.filter(isShort).length;
-  const actionable = set.filter((s) => s.trade?.actionable).length;
-  return { longs, shorts, neutral: set.length - longs - shorts, actionable, total: set.length };
-}
-
-/** Backtested long/short alpha edge for the selected market (or blended for "All"). */
-export function edgeFor(market: MarketFilter): number | null {
-  if (market === "All") return scan.backtest_meta.long_short_edge_15d_pct;
-  return scan.backtest_meta.by_market?.[market]?.long_short_edge_15d_pct ?? null;
+  const td = set.filter((s) => s.calibration.tradeable).length;
+  return { longs, shorts, neutral: set.length - longs - shorts, tradeable: td, total: set.length };
 }

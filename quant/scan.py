@@ -18,6 +18,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pandas as pd
+
 from data import universe
 from data.backfill import load_cached
 from indicators import technical as ta
@@ -25,35 +27,57 @@ from quant import score as qscore
 from quant import trade as qtrade
 
 OUT_PATH = Path(__file__).parent / "latest_scan.json"
-BACKTEST_PATH = Path(__file__).parent / "backtest_results.json"
+RULES_PATH = Path(__file__).parent / "backtest_rules_results.json"
+PORTFOLIO_PATH = Path(__file__).parent / "portfolio_results.json"
 
 # The user's pinned watchlist — always shown front-and-centre regardless of score.
 # Edit freely; these must exist in data/universe.py.
 FAVOURITES = ["AAPL", "RELIANCE.NS"]
 
 
-def _backtest() -> dict:
-    return json.loads(BACKTEST_PATH.read_text()) if BACKTEST_PATH.exists() else {}
+def _rules() -> dict:
+    return json.loads(RULES_PATH.read_text()) if RULES_PATH.exists() else {}
 
 
-def _calibration(band: str, market: str | None, bt: dict) -> dict:
-    """The band's backtested 15d hit-rate / alpha — validated on THIS market's own
-    history (US signals on US, India on India), falling back to the blended set."""
-    src = bt.get("by_market", {}).get(market) or bt
-    ins = src.get("in_sample", {}).get(band, {})
-    oos = src.get("out_of_sample", {}).get(band, {})
+def _calibration(band: str, market: str | None, direction: str, rules: dict) -> dict:
+    """Calibration from the RULE-BASED backtest — i.e. the exact trade we show
+    (entry/2xATR stop/target/time-stop), net of cost, out-of-sample. This is the
+    honest number, and it carries whether the trade is actually tradeable: only
+    US longs cleared the bar; India longs and all shorts were net-negative."""
+    if direction == "long":
+        src = (rules.get("by_market_long", {}).get(market, {}) or {}).get("out_of_sample", {})
+    elif direction == "short":
+        src = (rules.get("by_band", {}).get(band, {}) or {}).get("out_of_sample", {})
+    else:
+        src = {}
+
+    exp = src.get("expectancy_pct")
+    tradeable = bool(market == "US" and direction == "long" and exp is not None and exp > 0)
+    if direction == "none":
+        reason = "NEUTRAL — no trade"
+    elif tradeable:
+        reason = "US long — net-positive expectancy out-of-sample"
+    elif direction == "short":
+        reason = "Shorts were net-negative in backtest — informational only"
+    elif market == "India":
+        reason = "India price signal had no net edge — informational only"
+    else:
+        reason = "Below the tradeable bar — informational only"
+
     return {
         "band": band,
         "market": market,
-        "hit_rate_15d": ins.get("15d", {}).get("hit_rate"),
-        "alpha_15d_pct": ins.get("15d", {}).get("mean_excess_pct"),
-        "samples": ins.get("n"),
-        "oos_hit_rate_15d": oos.get("15d", {}).get("hit_rate"),
-        "oos_alpha_15d_pct": oos.get("15d", {}).get("mean_excess_pct"),
+        "tradeable": tradeable,
+        "reason": reason,
+        "win_rate": src.get("win_rate"),
+        "expectancy_pct": exp,
+        "profit_factor": src.get("profit_factor"),
+        "samples": src.get("n"),
+        "avg_hold_days": src.get("avg_hold_days"),
     }
 
 
-def scan_one(symbol: str, bt: dict) -> dict | None:
+def scan_one(symbol: str, rules: dict) -> dict | None:
     df = load_cached(symbol)
     if df is None or len(df) < 200:
         return None
@@ -64,6 +88,16 @@ def scan_one(symbol: str, bt: dict) -> dict | None:
     ind = ta.compute_all(df)
     sc = qscore.score(df, bc)
     direction = qtrade.direction_for(sc["label"])
+
+    # Last 120 sessions of price + 50DMA for the dashboard chart (closes only —
+    # enough to draw the trend and overlay the trade levels, small JSON footprint).
+    tail = df.tail(120)
+    sma50 = ta.sma(df["close"], 50).tail(120)
+    history = [
+        {"d": idx.strftime("%Y-%m-%d"), "c": round(float(c), 2),
+         "m": (None if pd.isna(m) else round(float(m), 2))}
+        for idx, c, m in zip(tail.index, tail["close"], sma50)
+    ]
     trade = qtrade.build(
         ind["last_close"], ind["volatility"]["atr_14"],
         ind["key_levels"]["support"], ind["key_levels"]["resistance"], direction,
@@ -84,32 +118,41 @@ def scan_one(symbol: str, bt: dict) -> dict | None:
         "expected_move": ind["expected_move"],
         "key_levels": ind["key_levels"],
         "trade": trade,
-        "calibration": _calibration(sc["label"], market, bt),
+        "calibration": _calibration(sc["label"], market, direction, rules),
+        "history": history,
         "is_favourite": symbol in FAVOURITES,
     }
 
 
 def run() -> dict:
-    bt = _backtest()
-    signals = [s for s in (scan_one(sym, bt) for sym in universe.symbols()) if s]
+    rules = _rules()
+    signals = [s for s in (scan_one(sym, rules) for sym in universe.symbols()) if s]
     # Rank by conviction (distance from neutral): strongest longs and shorts float up.
     signals.sort(key=lambda s: s["conviction"], reverse=True)
     as_of = max((s["as_of"] for s in signals), default=None)
 
-    bt_meta = dict(bt.get("meta", {}))
-    # Per-market edge so the dashboard banner can show US vs India separately.
-    bt_meta["by_market"] = {
-        mkt: {
-            "long_short_edge_15d_pct": mv.get("long_short_edge_15d_pct"),
-            "samples": mv.get("samples"),
-            "symbols": mv.get("symbols"),
-        }
-        for mkt, mv in bt.get("by_market", {}).items()
-    }
+    portfolio = json.loads(PORTFOLIO_PATH.read_text()) if PORTFOLIO_PATH.exists() else {}
+    us_long = (rules.get("by_market_long", {}).get("US", {}) or {}).get("out_of_sample", {})
     result = {
         "as_of": as_of,
         "universe_size": len(signals),
-        "backtest_meta": bt_meta,
+        # The honest, validated headline: the rule-based US-long result + the
+        # portfolio curve, with the survivorship caveat travelling alongside.
+        "evidence": {
+            "us_long_oos": {
+                "win_rate": us_long.get("win_rate"),
+                "expectancy_pct": us_long.get("expectancy_pct"),
+                "profit_factor": us_long.get("profit_factor"),
+                "trades": us_long.get("n"),
+            },
+            "portfolio": portfolio.get("strategy", {}),
+            "benchmark": portfolio.get("benchmark", {}),
+            "rule": rules.get("meta", {}).get("rule"),
+            "date_range": rules.get("meta", {}).get("date_range"),
+            "caveats": "Backtested on TODAY's universe (survivorship bias) — treat returns as an "
+                       "upper bound, not a forward expectation. Perfect stop fills assumed. The "
+                       "forward Alpaca paper ledger is the unbiased test. Not financial advice.",
+        },
         "favourites": FAVOURITES,
         "signals": signals,
     }
@@ -130,12 +173,14 @@ if __name__ == "__main__":
     except ImportError:
         pass
     r = run()
-    print(f"Scanned {r['universe_size']} names · as of {r['as_of']}\n")
-    print(f"{'rank':>4}  {'symbol':12} {'score':>6} {'label':11} {'15d hit':>8} {'R:R':>5} {'act':>4}")
-    for i, s in enumerate(r["signals"][:12], 1):
-        cal = s["calibration"].get("hit_rate_15d")
+    ev = r["evidence"]
+    print(f"Scanned {r['universe_size']} names · as of {r['as_of']}")
+    print(f"US-long OOS: win {ev['us_long_oos'].get('win_rate')}% · exp {ev['us_long_oos'].get('expectancy_pct')}%/trade · PF {ev['us_long_oos'].get('profit_factor')}\n")
+    print(f"{'rank':>4}  {'symbol':12} {'score':>6} {'label':11} {'win%':>6} {'R:R':>5} {'tradeable':>9}")
+    for i, s in enumerate(r["signals"][:14], 1):
+        cal = s["calibration"]
         rr = s["trade"]["risk_reward"] if s["trade"] else None
-        act = ("Y" if s["trade"] and s["trade"]["actionable"] else "—")
         fav = "★" if s["is_favourite"] else " "
-        print(f"{i:>4}{fav} {s['symbol']:12} {s['score']:>6} {s['label']:11} {str(cal):>8} {str(rr):>5} {act:>4}")
+        td = "TRADE" if cal["tradeable"] else "info"
+        print(f"{i:>4}{fav} {s['symbol']:12} {s['score']:>6} {s['label']:11} {str(cal['win_rate']):>6} {str(rr):>5} {td:>9}")
     print(f"\nSaved → {OUT_PATH}")
