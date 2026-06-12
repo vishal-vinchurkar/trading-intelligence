@@ -35,6 +35,15 @@ from quant.score import WEIGHTS, label_for, score as point_score
 HORIZONS = [5, 15, 30]
 STEP = 5                  # trading days between evaluation points (limits overlap)
 OOS_MONTHS = 12           # most recent N months held out-of-sample
+EXEC_LAG = 1              # you see the signal on close[i] but trade the NEXT session
+
+# Realistic round-trip transaction cost in basis points (1 bp = 0.01%). The signal
+# is only worth trading if its edge survives THIS. US large-caps on a zero-commission
+# broker are mostly spread+slippage; India delivery carries STT + brokerage + stamp.
+# Deliberately conservative — better to under-promise the net edge than oversell it.
+COST_BPS = {"US": 10.0, "India": 35.0}
+DEFAULT_COST_BPS = 20.0
+
 RESULTS_PATH = Path(__file__).parent / "backtest_results.json"
 
 
@@ -118,21 +127,23 @@ def backtest_symbol(sym: str) -> pd.DataFrame:
     b_aligned = bc.reindex(ss.index).ffill() if bc is not None else None
 
     rows = []
-    # Start at 200 (need 200DMA); stop early enough to have the longest forward window.
-    start, end = 200, len(df) - max(HORIZONS) - 1
+    # Start at 200 (need 200DMA); stop early enough to have the longest forward window
+    # AND the 1-bar execution lag (you can't trade the close that generated the signal).
+    start, end = 200, len(df) - max(HORIZONS) - EXEC_LAG - 1
     for i in range(start, end, STEP):
         sc = ss["score"].iloc[i]
         if pd.isna(sc):
             continue
-        c0 = ss["close"].iloc[i]
+        e = i + EXEC_LAG                 # entry bar — the session AFTER the signal
+        c0 = ss["close"].iloc[e]
         rec = {"symbol": sym, "market": universe.market_of(sym), "date": ss.index[i],
                "score": float(sc), "band": label_for(float(sc))}
         for h in HORIZONS:
-            fwd = float(ss["close"].iloc[i + h] / c0 - 1.0)
+            fwd = float(ss["close"].iloc[e + h] / c0 - 1.0)
             rec[f"fwd_{h}d"] = fwd
-            if b_aligned is not None and not pd.isna(b_aligned.iloc[i]):
-                bfwd = float(b_aligned.iloc[i + h] / b_aligned.iloc[i] - 1.0)
-                rec[f"ex_{h}d"] = fwd - bfwd  # alpha vs benchmark
+            if b_aligned is not None and not pd.isna(b_aligned.iloc[e]):
+                bfwd = float(b_aligned.iloc[e + h] / b_aligned.iloc[e] - 1.0)
+                rec[f"ex_{h}d"] = fwd - bfwd  # gross alpha vs benchmark
             else:
                 rec[f"ex_{h}d"] = fwd
         rows.append(rec)
@@ -140,23 +151,21 @@ def backtest_symbol(sym: str) -> pd.DataFrame:
 
 
 def _band_stats(g: pd.DataFrame) -> dict:
-    """Per-band, per-horizon stats. Hit-rate is judged on EXCESS return vs the
-    benchmark (alpha) — the right yardstick in a trending market — but we also
-    carry the raw absolute mean so the bull-market drift stays visible."""
+    """Per-band, per-horizon stats on NET-of-cost alpha P&L.
+
+    net_{h}d is the trade's realised alpha after the round-trip cost and the
+    1-bar execution lag, direction-aware (a short profits when the name lags).
+    Hit-rate = share of trades with positive NET alpha. We keep the gross alpha
+    too so the cost drag is visible."""
     out = {"n": int(len(g))}
-    band = g["band"].iloc[0] if len(g) else ""
     for h in HORIZONS:
-        ex, ab = f"ex_{h}d", f"fwd_{h}d"
-        if band in ("STRONG_BUY", "BUY"):
-            hit = (g[ex] > 0).mean()          # did it BEAT the index?
-        elif band in ("STRONG_SELL", "SELL"):
-            hit = (g[ex] < 0).mean()          # did it LAG the index?
-        else:
-            hit = float("nan")                # NEUTRAL takes no directional bet
+        net, ex = g[f"net_{h}d"].dropna(), g[f"ex_{h}d"]
+        hit = (net > 0).mean() if len(net) else float("nan")
         out[f"{h}d"] = {
-            "hit_rate": None if pd.isna(hit) else round(float(hit) * 100, 1),
-            "mean_excess_pct": round(float(g[ex].mean()) * 100, 2),
-            "mean_abs_pct": round(float(g[ab].mean()) * 100, 2),
+            "hit_rate": None if pd.isna(hit) else round(float(hit) * 100, 1),       # NET
+            "net_alpha_pct": None if not len(net) else round(float(net.mean()) * 100, 2),
+            "gross_alpha_pct": round(float(ex.mean()) * 100, 2),
+            "mean_abs_pct": round(float(g[f"fwd_{h}d"].mean()) * 100, 2),
         }
     return out
 
@@ -169,11 +178,10 @@ def _by_band(frame: pd.DataFrame) -> dict:
 
 
 def _edge(frame: pd.DataFrame) -> float | None:
-    # Long/short edge: mean 15d EXCESS return of longs (score≥60) vs shorts (≤40).
-    # On alpha, not absolute — the bull-market drift cancels, leaving the signal.
-    longs = frame[frame["score"] >= 60]["ex_15d"]
-    shorts = frame[frame["score"] <= 40]["ex_15d"]
-    return round((longs.mean() - shorts.mean()) * 100, 2) if len(longs) and len(shorts) else None
+    # Average NET alpha per directional trade at 15d (after cost + execution lag).
+    # This is the honest "is there money here per trade" number.
+    net = frame["net_15d"].dropna()
+    return round(float(net.mean()) * 100, 2) if len(net) else None
 
 
 def aggregate_frame(frame: pd.DataFrame, split_date: pd.Timestamp) -> dict:
@@ -202,8 +210,11 @@ def aggregate(all_rows: pd.DataFrame, split_date: pd.Timestamp) -> dict:
             "horizons": HORIZONS,
             "step_days": STEP,
             "long_short_edge_15d_pct": overall["long_short_edge_15d_pct"],
-            "note": "Price-only technical score. Forward returns are point-in-time. "
-                    "Most recent 12 months held out-of-sample. Not financial advice.",
+            "cost_bps": COST_BPS,
+            "exec_lag_days": EXEC_LAG,
+            "note": "NET of round-trip cost (US ~10bps, India ~35bps) and a 1-bar "
+                    "execution lag. Hit-rate = share of trades with positive net alpha. "
+                    "Price-only, point-in-time, last 12mo out-of-sample. Not financial advice.",
         },
         "in_sample": overall["in_sample"],
         "out_of_sample": overall["out_of_sample"],
@@ -217,6 +228,18 @@ def run() -> dict:
     frames = [f for f in frames if not f.empty]
     all_rows = pd.concat(frames, ignore_index=True)
     all_rows["date"] = pd.to_datetime(all_rows["date"])
+
+    # Direction-aware NET alpha per trade = gross alpha minus the round-trip cost,
+    # flipped for shorts (a short profits when the name lags the index).
+    cost = (all_rows["market"].map(COST_BPS).fillna(DEFAULT_COST_BPS)) / 1e4
+    long_mask = all_rows["band"].isin(["STRONG_BUY", "BUY"]).to_numpy()
+    short_mask = all_rows["band"].isin(["STRONG_SELL", "SELL"]).to_numpy()
+    for h in HORIZONS:
+        ex = all_rows[f"ex_{h}d"]
+        all_rows[f"net_{h}d"] = np.where(
+            long_mask, ex - cost, np.where(short_mask, -ex - cost, np.nan)
+        )
+
     split = all_rows["date"].max() - pd.DateOffset(months=OOS_MONTHS)
     result = aggregate(all_rows, split)
     RESULTS_PATH.write_text(json.dumps(result, indent=2))
@@ -226,19 +249,20 @@ def run() -> dict:
 def _print(result: dict) -> None:
     m = result["meta"]
     print(f"\nBacktest: {m['samples']} samples · {m['symbols']} names · {m['date_range'][0]}→{m['date_range'][1]}")
-    print(f"Long/short 15d ALPHA edge: {m['long_short_edge_15d_pct']}%   (OOS split {m['oos_split']})")
+    print(f"Avg NET alpha per 15d trade: {m['long_short_edge_15d_pct']}%   "
+          f"(cost {m['cost_bps']} bps, {m['exec_lag_days']}-bar lag, OOS split {m['oos_split']})")
     for mkt, mv in result.get("by_market", {}).items():
-        print(f"   · {mkt}: edge {mv['long_short_edge_15d_pct']}% ({mv['samples']} samples, {mv['symbols']} names)")
-    print("Hit-rate = beat (BUY) / lagged (SELL) the benchmark. Means: alpha vs index | absolute.\n")
+        print(f"   · {mkt}: net {mv['long_short_edge_15d_pct']}%/trade ({mv['samples']} samples)")
+    print("Hit-rate = share of trades with POSITIVE NET alpha. 15d: net alpha | gross alpha.\n")
     for split_name in ["in_sample", "out_of_sample"]:
         print(f"── {split_name.replace('_',' ').upper()} ──")
-        print(f"{'band':12} {'n':>6} {'5d hit':>8} {'15d hit':>9} {'30d hit':>9} {'15d alpha':>11} {'15d abs':>9}")
+        print(f"{'band':12} {'n':>6} {'5d hit':>8} {'15d hit':>9} {'30d hit':>9} {'net15':>8} {'gross15':>8}")
         for band, st in result[split_name].items():
             if st.get("n", 0) == 0:
                 continue
             h5 = st["5d"]["hit_rate"]; h15 = st["15d"]["hit_rate"]; h30 = st["30d"]["hit_rate"]
-            ex15 = st["15d"]["mean_excess_pct"]; ab15 = st["15d"]["mean_abs_pct"]
-            print(f"{band:12} {st['n']:>6} {str(h5):>8} {str(h15):>9} {str(h30):>9} {str(ex15)+'%':>11} {str(ab15)+'%':>9}")
+            net15 = st["15d"]["net_alpha_pct"]; gr15 = st["15d"]["gross_alpha_pct"]
+            print(f"{band:12} {st['n']:>6} {str(h5):>8} {str(h15):>9} {str(h30):>9} {str(net15)+'%':>8} {str(gr15)+'%':>8}")
         print()
 
 
