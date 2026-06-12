@@ -5,17 +5,17 @@
       "2017-03-30",
       "2026-06-08"
     ],
-    "trades": 5528,
-    "avg_open_positions": 26.9,
+    "trades": 8562,
+    "avg_open_positions": 41.5,
     "note": "Simplified portfolio sim (no leverage, no position cap). The forward Alpaca paper ledger is the real-money-faithful test. Not financial advice."
   },
   "strategy": {
     "label": "US longs (quant)",
-    "total_return_pct": 637.7,
-    "cagr_pct": 24.29,
-    "vol_pct": 18.7,
-    "sharpe": 1.26,
-    "max_drawdown_pct": -22.6
+    "total_return_pct": 660.4,
+    "cagr_pct": 24.7,
+    "vol_pct": 18.1,
+    "sharpe": 1.32,
+    "max_drawdown_pct": -23.2
   },
   "benchmark": {
     "label": "SPY buy & hold",

@@ -36,6 +36,27 @@ US_UNIVERSE = [
     ("UNH", "US", "Healthcare"),
     ("JNJ", "US", "Healthcare"),
     ("XOM", "US", "Energy"),
+    # Deliberate laggards / fallen-angels / cyclicals — added to de-cherry-pick the
+    # universe and stress the edge against names that did NOT compound. (Full point-
+    # in-time membership incl. fully-delisted names is the residual survivorship gap.)
+    ("INTC", "US", "Technology"),
+    ("PYPL", "US", "Financials"),
+    ("WBA", "US", "Consumer Staples"),
+    ("T", "US", "Communication"),
+    ("VZ", "US", "Communication"),
+    ("F", "US", "Consumer Discretionary"),
+    ("GE", "US", "Industrials"),
+    ("BA", "US", "Industrials"),
+    ("MMM", "US", "Industrials"),
+    ("PFE", "US", "Healthcare"),
+    ("CVS", "US", "Healthcare"),
+    ("KHC", "US", "Consumer Staples"),
+    ("NKE", "US", "Consumer Discretionary"),
+    ("SBUX", "US", "Consumer Discretionary"),
+    ("C", "US", "Financials"),
+    ("WFC", "US", "Financials"),
+    ("SNOW", "US", "Technology"),
+    ("NOW", "US", "Technology"),
 ]
 
 INDIA_UNIVERSE = [
@@ -51,6 +72,13 @@ INDIA_UNIVERSE = [
     ("HINDUNILVR.NS", "India", "Consumer Staples"),
     ("ITC.NS", "India", "Consumer Staples"),
     ("LT.NS", "India", "Industrials"),
+    # India laggards / cyclicals (de-cherry-pick)
+    ("WIPRO.NS", "India", "Technology"),
+    ("TATAMOTORS.NS", "India", "Consumer Discretionary"),
+    ("ONGC.NS", "India", "Energy"),
+    ("COALINDIA.NS", "India", "Energy"),
+    ("TECHM.NS", "India", "Technology"),
+    ("SUNPHARMA.NS", "India", "Healthcare"),
 ]
 
 UNIVERSE = US_UNIVERSE + INDIA_UNIVERSE
