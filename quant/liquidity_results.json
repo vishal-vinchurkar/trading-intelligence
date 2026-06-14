@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "what": "Forward return after each liquidity detector vs a random-entry baseline.",
+    "horizon_days": 10,
+    "min_spacing": 5,
+    "universe": "US",
+    "names": 38,
+    "note": "Entry = next open after signal, net of US cost, vs SPY same window. Point-in-time. NOT yet in the conviction score \u2014 research only. Not advice."
+  },
+  "baseline_random_entry": {
+    "n": 18672,
+    "win_pct": 54.2,
+    "mean_net_pct": 0.577,
+    "mean_alpha_vs_spy_pct": 0.009,
+    "beat_spy_pct": 48.4
+  },
+  "detectors": {
+    "liquidity_sweep_bull": {
+      "n": 2672,
+      "win_pct": 54.7,
+      "mean_net_pct": 0.627,
+      "mean_alpha_vs_spy_pct": 0.014,
+      "beat_spy_pct": 48.0,
+      "vs_baseline_pct": 0.05,
+      "has_edge": false
+    },
+    "vsa_demand": {
+      "n": 1448,
+      "win_pct": 49.7,
+      "mean_net_pct": 0.015,
+      "mean_alpha_vs_spy_pct": -0.245,
+      "beat_spy_pct": 46.3,
+      "vs_baseline_pct": -0.562,
+      "has_edge": false
+    },
+    "obv_bull_div": {
+      "n": 1985,
+      "win_pct": 55.4,
+      "mean_net_pct": 0.599,
+      "mean_alpha_vs_spy_pct": -0.048,
+      "beat_spy_pct": 48.1,
+      "vs_baseline_pct": 0.022,
+      "has_edge": false
+    },
+    "liquidity_sweep_bear": {
+      "n": 3997,
+      "win_pct": 53.4,
+      "mean_net_pct": 0.509,
+      "mean_alpha_vs_spy_pct": -0.038,
+      "beat_spy_pct": 48.3,
+      "vs_baseline_pct": -0.068,
+      "has_edge": false
+    },
+    "vsa_supply": {
+      "n": 1597,
+      "win_pct": 55.4,
+      "mean_net_pct": 0.712,
+      "mean_alpha_vs_spy_pct": 0.084,
+      "beat_spy_pct": 49.1,
+      "vs_baseline_pct": 0.135,
+      "has_edge": false
+    },
+    "obv_bear_div": {
+      "n": 3020,
+      "win_pct": 56.1,
+      "mean_net_pct": 0.768,
+      "mean_alpha_vs_spy_pct": 0.17,
+      "beat_spy_pct": 49.5,
+      "vs_baseline_pct": 0.191,
+      "has_edge": false
+    }
+  }
+}

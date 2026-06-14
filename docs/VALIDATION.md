@@ -60,6 +60,27 @@ can't eliminate; the forward paper ledger is the only unbiased test.
   equal-weight all buys; member-level selection is unexplored but not a priority.)
   Kept as a current-state overlay only — never folded into the backtested price score.
 
+## Liquidity / smart-money detectors — tested, NO edge at daily resolution
+
+Built deterministic, point-in-time detectors (`indicators/liquidity.py`) for the
+Smart-Money-Concepts thesis — liquidity sweeps (stop-runs + reclaim), Volume-Spread
+-Analysis demand/supply bars, OBV divergence — and backtested each vs a random-entry
+baseline (`quant/liquidity_backtest.py`, 10-day hold, net of cost, vs SPY).
+
+**Finding: none beat the baseline meaningfully.** Random-entry baseline = +0.577%/
+trade. Best detector (bullish liquidity sweep) = +0.627%, a trivial **+0.05% over
+baseline** (noise). VSA demand was *worse* than baseline; the "bearish" detectors
+preceded *gains*, not drops. So the daily-resolution liquidity thesis does **not**
+hold on our universe — **nothing was added to the conviction score.** (Research-first
+paid off.)
+
+Why likely null: a liquidity sweep is fundamentally an **intraday** event — the
+sweep-and-reclaim happens within a session, and by the daily close it's already
+reflected, so daily bars capture it too late to be predictive. Pursuing this for
+real needs **intraday/live data** (the Alpaca live-feed path) — a deliberate
+investment decision, not a free daily-data win. Detectors are kept for that future
+intraday work; they stay out of the score until/unless an intraday version shows edge.
+
 ## The honesty rules (unchanged, load-bearing)
 
 1. Anything not backtestable from price alone (fundamentals, macro, congress flow,
