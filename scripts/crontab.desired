@@ -1,0 +1,5 @@
+# SOVIAN daily signal cycle (weekdays 07:30 local) — edit time as you like
+30 7 * * 1-5 /Users/vishal.vinchurkar/Documents/claude-projects/projects/trading-intelligence/scripts/daily.sh >> /Users/vishal.vinchurkar/Documents/claude-projects/projects/trading-intelligence/logs/cron.log 2>&1
+# SOVIAN weekly re-validation (Sun 09:00)
+0 9 * * 0 /Users/vishal.vinchurkar/Documents/claude-projects/projects/trading-intelligence/scripts/weekly.sh >> /Users/vishal.vinchurkar/Documents/claude-projects/projects/trading-intelligence/logs/cron.log 2>&1
+30 7 * * 6 /Users/vishal.vinchurkar/Documents/claude-projects/projects/trading-intelligence/scripts/daily.sh >> /Users/vishal.vinchurkar/Documents/claude-projects/projects/trading-intelligence/logs/cron.log 2>&1
