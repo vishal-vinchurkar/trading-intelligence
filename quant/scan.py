@@ -231,9 +231,17 @@ def run(enrich: bool = True) -> dict:
         except Exception:  # noqa: BLE001
             macro[mkt] = None
 
+    # Data-freshness guard — surface stale data loudly instead of serving it silently.
+    from quant import freshness as _freshness
+    try:
+        fresh = _freshness.check()
+    except Exception:  # noqa: BLE001 — never let the guard break the scan
+        fresh = None
+
     result = {
         "as_of": as_of,
         "universe_size": len(signals),
+        "freshness": fresh,
         "macro": macro,
         # The honest, validated headline: the rule-based US-long result + the
         # portfolio curve, with the survivorship caveat travelling alongside.

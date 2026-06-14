@@ -44,6 +44,13 @@ export default function Home() {
         <Disclaimer />
       </div>
 
+      {/* Data-freshness guard — never silently serve stale prices */}
+      {scan.freshness?.is_stale && (
+        <div className="rounded-xl border border-bear/40 bg-bear/10 px-4 py-3 text-sm font-medium text-bear">
+          {scan.freshness.message} Prices below are out of date — do not trade off them until refreshed.
+        </div>
+      )}
+
       {/* Evidence — the validated edge, with the survivorship caveat in plain sight */}
       <section className="rounded-xl border border-border bg-panel p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">

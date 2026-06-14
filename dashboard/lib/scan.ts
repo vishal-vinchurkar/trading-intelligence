@@ -103,6 +103,7 @@ export interface PricePoint {
 export interface Scan {
   as_of: string;
   universe_size: number;
+  freshness: Freshness | null;
   evidence: {
     us_long_oos: {
       win_rate: number | null;
@@ -123,6 +124,15 @@ export interface Scan {
   macro: Record<string, Macro | null>;
   favourites: string[];
   signals: Signal[];
+}
+
+export interface Freshness {
+  is_stale: boolean;
+  data_date: string | null;
+  expected_date: string;
+  business_days_stale: number | null;
+  symbols_behind: number;
+  message: string;
 }
 
 export interface Robustness {
