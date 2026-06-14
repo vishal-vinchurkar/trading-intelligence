@@ -46,13 +46,19 @@ can't eliminate; the forward paper ledger is the only unbiased test.
   so live income is likely higher. **Needs real option chains + Alpaca paper to
   confirm** — this is a hypothesis-grade model.
 - **Congressional alt-data overlay (`data/congress.py`, `quant/congress_signal.py`).**
-  Pluggable adapters (Quiver / free House-Clerk index / synthetic demo). The
-  backtest is **disclosure-lag-aware by construction** — entries are the next open
-  *after* the public disclosure date (30-45d after the trade), never the trade
-  date. Pipeline validated end-to-end on synthetic data; the free House-Clerk index
-  pulls real filings (451 PTRs in 2024). **Drop `QUIVER_API_KEY` and it produces a
-  real result.** Surfaced as a current-state overlay — never folded into the
-  backtested price score.
+  Pluggable adapters (Quiver / free House-Clerk PTR PDFs / synthetic demo). Quiver
+  went paid, so the working source is the **free, no-key House-Clerk filings** — a
+  regex parser over the machine-readable PTR PDFs (partial coverage; scanned/
+  handwritten filings are skipped). The backtest is **disclosure-lag-aware by
+  construction** — entries are the next open *after* the public filing date, never
+  the trade date.
+  **Real-data finding (486 trades, 2022-2024, 80 filings/yr): NO edge.** Following
+  congressional buys with the real lag returns **−0.54%/trade over 21 days, −0.93%
+  alpha vs SPY, beats SPY only 41% of the time.** The naive "copy Congress" thesis
+  does not survive the disclosure lag in this sample — confirming the prior
+  skepticism and saving the spend on paid congress data. (Caveat: capped sample,
+  equal-weight all buys; member-level selection is unexplored but not a priority.)
+  Kept as a current-state overlay only — never folded into the backtested price score.
 
 ## The honesty rules (unchanged, load-bearing)
 

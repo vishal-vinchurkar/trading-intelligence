@@ -1,101 +1,80 @@
 {
   "meta": {
-    "source": "demo-synthetic",
-    "is_real": false,
+    "source": "house-clerk",
+    "is_real": true,
     "what": "Lag-aware congressional-buy backtest + current buying-pressure overlay.",
-    "caveat": "SYNTHETIC demo data \u2014 logic/wiring validation only, NOT a real result. Set QUIVER_API_KEY for real congressional trades."
+    "caveat": "REAL data \u2014 free House-Clerk PTR filings (PARTIAL coverage: capped filings/yr, machine-readable PDFs only). Overlay is current-state context, NOT folded into the backtested price score. Not financial advice."
   },
   "backtest": {
-    "n": 64,
+    "n": 216,
     "horizon_days": 21,
-    "mean_net_return_pct": 2.924,
-    "win_rate_pct": 68.8,
-    "mean_alpha_vs_spy_pct": 1.516,
-    "share_beating_spy_pct": 59.4,
+    "mean_net_return_pct": -0.544,
+    "win_rate_pct": 39.4,
+    "mean_alpha_vs_spy_pct": -0.93,
+    "share_beating_spy_pct": 40.7,
     "note": "Entry = next open AFTER disclosure (lag-aware), net of US cost, vs SPY same window."
   },
   "overlay_top": {
+    "NWN": {
+      "net_buys": 2,
+      "buys": 2,
+      "sells": 0,
+      "distinct_members": 1,
+      "bias": "accumulating"
+    },
+    "YUM": {
+      "net_buys": 1,
+      "buys": 1,
+      "sells": 0,
+      "distinct_members": 1,
+      "bias": "accumulating"
+    },
+    "DE": {
+      "net_buys": -1,
+      "buys": 0,
+      "sells": 1,
+      "distinct_members": 1,
+      "bias": "distributing"
+    },
+    "SCHW": {
+      "net_buys": -1,
+      "buys": 0,
+      "sells": 1,
+      "distinct_members": 1,
+      "bias": "distributing"
+    },
+    "STT": {
+      "net_buys": -1,
+      "buys": 0,
+      "sells": 1,
+      "distinct_members": 1,
+      "bias": "distributing"
+    },
+    "VTR": {
+      "net_buys": -1,
+      "buys": 0,
+      "sells": 1,
+      "distinct_members": 1,
+      "bias": "distributing"
+    },
+    "RY": {
+      "net_buys": -1,
+      "buys": 0,
+      "sells": 1,
+      "distinct_members": 1,
+      "bias": "distributing"
+    },
     "MSFT": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "NVDA": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "CSCO": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "GOOGL": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "NFLX": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "DIS": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "TSLA": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "HD": {
-      "net_buys": 1,
-      "buys": 1,
-      "sells": 0,
-      "distinct_members": 1,
-      "bias": "accumulating"
-    },
-    "AAPL": {
       "net_buys": -1,
       "buys": 0,
       "sells": 1,
       "distinct_members": 1,
       "bias": "distributing"
     },
-    "AMD": {
-      "net_buys": -1,
+    "ILMN": {
+      "net_buys": -2,
       "buys": 0,
-      "sells": 1,
-      "distinct_members": 1,
-      "bias": "distributing"
-    },
-    "META": {
-      "net_buys": -1,
-      "buys": 0,
-      "sells": 1,
-      "distinct_members": 1,
-      "bias": "distributing"
-    },
-    "AMZN": {
-      "net_buys": -1,
-      "buys": 0,
-      "sells": 1,
+      "sells": 2,
       "distinct_members": 1,
       "bias": "distributing"
     }

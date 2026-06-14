@@ -121,16 +121,22 @@ def overlay(trades: list[congress.CongressTrade], lookback_days: int = 120) -> d
 
 def run(prefer_demo: bool = False) -> dict:
     trades, source = congress.fetch_trades(prefer_demo=prefer_demo)
+    is_real = source in ("quiver", "house-clerk")
+    caveats = {
+        "demo-synthetic": "SYNTHETIC demo data — logic/wiring validation only, NOT a real result. "
+                          "No congress data source available.",
+        "house-clerk": "REAL data — free House-Clerk PTR filings (PARTIAL coverage: capped filings/yr, "
+                       "machine-readable PDFs only). Overlay is current-state context, NOT folded into "
+                       "the backtested price score. Not financial advice.",
+        "quiver": "REAL Quiver data. Overlay is current-state context, NOT folded into the backtested "
+                  "price score. Not financial advice.",
+    }
     result = {
         "meta": {
             "source": source,
-            "is_real": source == "quiver",
+            "is_real": is_real,
             "what": "Lag-aware congressional-buy backtest + current buying-pressure overlay.",
-            "caveat": ("SYNTHETIC demo data — logic/wiring validation only, NOT a real result. "
-                       "Set QUIVER_API_KEY for real congressional trades."
-                       if source != "quiver" else
-                       "Real Quiver data. Overlay is current-state context, NOT folded into the "
-                       "backtested price score. Not financial advice."),
+            "caveat": caveats.get(source, ""),
         },
         "backtest": backtest(trades),
         "overlay_top": dict(list(overlay(trades).items())[:15]),

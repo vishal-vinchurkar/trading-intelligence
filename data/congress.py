@@ -128,6 +128,96 @@ def fetch_house_clerk_index(year: int) -> list[dict]:
     return rows
 
 
+_PTR_PAT = __import__("re").compile(
+    r"\(([A-Z]{1,5})\)\s*\[ST\]\s*([PSE])\s*(\d{2}/\d{2}/\d{4})\s*(\d{2}/\d{2}/\d{4})"
+    r"\s*[\$]([\d,]+)\s*-\s*[\$]?([\d,]+)"
+)
+PTR_CACHE = Path(__file__).parent / "cache"
+
+
+def _parse_ptr_text(text: str) -> list[dict]:
+    """Extract stock ([ST]) transactions from a House PTR's text.
+
+    Line shape: `<owner> AssetName (TICKER) [ST] <P|S|E> <txnDate><notifDate><$lo - $hi>`.
+    P = purchase (buy), S = sale (sell), E = exchange (skipped). Options/other asset
+    types are ignored — equities only."""
+    import re
+
+    flat = re.sub(r"\s+", " ", text.replace("\x00", ""))
+    out = []
+    for tk, typ, td, _nd, lo, hi in _PTR_PAT.findall(flat):
+        if typ == "E":
+            continue
+        out.append({
+            "ticker": tk, "txn_type": "buy" if typ == "P" else "sell",
+            "transaction_date": _us_to_iso(td),
+            "amount_low": float(lo.replace(",", "")), "amount_high": float(hi.replace(",", "")),
+        })
+    return out
+
+
+def _us_to_iso(s: str) -> str:
+    from datetime import datetime
+    for fmt in ("%m/%d/%Y", "%m/%d/%y"):
+        try:
+            return datetime.strptime(s.strip(), fmt).date().isoformat()
+        except ValueError:
+            pass
+    return s
+
+
+def fetch_house_clerk(years: list[int], max_filings: int = 80, cache: bool = True) -> list[CongressTrade]:
+    """REAL congressional stock trades from the free, no-key House Clerk PTR PDFs.
+
+    Pulls each year's filing index, keeps periodic transaction reports (type 'P'),
+    fetches + parses each PDF (capped + cached). Disclosure date = the index filing
+    date (when it became PUBLIC — the only date you can act on); transaction date
+    comes from the PDF. Partial coverage by design: handwritten/scanned PTRs won't
+    parse, but that's an unbiased subset for a hypothesis test."""
+    import io
+    from pypdf import PdfReader
+
+    trades: list[CongressTrade] = []
+    for year in years:
+        cache_fp = PTR_CACHE / f"congress_house_{year}.json"
+        if cache and cache_fp.exists():
+            for d in json.loads(cache_fp.read_text()):
+                trades.append(CongressTrade(**d))
+            continue
+
+        year_trades: list[CongressTrade] = []
+        ptrs = [r for r in fetch_house_clerk_index(year)
+                if r["filing_type"] == "P" and r["doc_id"] and r["filing_date"]]
+        for r in ptrs[:max_filings]:
+            try:
+                req = urllib.request.Request(r["ptr_pdf"], headers={"User-Agent": "Mozilla/5.0"})
+                data = urllib.request.urlopen(req, timeout=20).read()
+                text = " ".join((p.extract_text() or "") for p in PdfReader(io.BytesIO(data)).pages)
+            except Exception:  # noqa: BLE001 — skip unfetchable/corrupt PDFs
+                continue
+            disc = _us_to_iso(r["filing_date"])
+            for tx in _parse_ptr_text(text):
+                year_trades.append(CongressTrade(
+                    representative=r["name"], ticker=tx["ticker"],
+                    transaction_date=tx["transaction_date"], disclosure_date=disc,
+                    txn_type=tx["txn_type"], amount_low=tx["amount_low"],
+                    amount_high=tx["amount_high"], source="house-clerk",
+                ))
+        if cache:
+            PTR_CACHE.mkdir(exist_ok=True)
+            cache_fp.write_text(json.dumps([asdict(t) for t in year_trades], indent=2))
+        trades.extend(year_trades)
+    return trades
+
+
+def _house_clerk_available() -> bool:
+    try:
+        import pypdf  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
 # ----------------------------------------------------------- Demo (synthetic)
 def fetch_demo(n_per_name: int = 8) -> list[CongressTrade]:
     """Synthetic trades over the cached US price history so the pipeline is
@@ -158,18 +248,26 @@ def fetch_demo(n_per_name: int = 8) -> list[CongressTrade]:
 
 
 # -------------------------------------------------------------- selector
-def fetch_trades(prefer_demo: bool = False) -> tuple[list[CongressTrade], str]:
-    """Pick the best available adapter. Returns (trades, source_label)."""
+def fetch_trades(prefer_demo: bool = False, years: list[int] | None = None) -> tuple[list[CongressTrade], str]:
+    """Pick the best available adapter. Returns (trades, source_label).
+
+    Priority: Quiver (if key) → free House-Clerk PTR PDFs (real, no key) → demo."""
     if prefer_demo:
         return fetch_demo(), "demo-synthetic"
     if _quiver_available():
         try:
             return fetch_quiver(), "quiver"
         except Exception as e:  # noqa: BLE001
-            print(f"[congress] Quiver fetch failed ({e}); falling back to demo.")
-    else:
-        print("[congress] QUIVER_API_KEY not set — using synthetic demo data. "
-              "Get a free key at quiverquant.com for real trades.")
+            print(f"[congress] Quiver fetch failed ({e}); trying House-Clerk.")
+    if _house_clerk_available():
+        try:
+            yrs = years or [2024, 2023, 2022]
+            trades = fetch_house_clerk(yrs)
+            if trades:
+                return trades, "house-clerk"
+            print("[congress] House-Clerk returned no parseable trades; using demo.")
+        except Exception as e:  # noqa: BLE001
+            print(f"[congress] House-Clerk fetch failed ({e}); using demo.")
     return fetch_demo(), "demo-synthetic"
 
 
