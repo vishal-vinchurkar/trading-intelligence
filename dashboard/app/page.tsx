@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Disclaimer } from "@/components/Disclaimer";
 import { QuantCard } from "@/components/QuantCard";
+import { TickerSearch } from "@/components/TickerSearch";
 import {
   book,
   getSignalsBySymbols,
@@ -43,6 +44,13 @@ export default function Home() {
         <Disclaimer />
       </div>
 
+      {/* Data-freshness guard — never silently serve stale prices */}
+      {scan.freshness?.is_stale && (
+        <div className="rounded-xl border border-bear/40 bg-bear/10 px-4 py-3 text-sm font-medium text-bear">
+          {scan.freshness.message} Prices below are out of date — do not trade off them until refreshed.
+        </div>
+      )}
+
       {/* Evidence — the validated edge, with the survivorship caveat in plain sight */}
       <section className="rounded-xl border border-border bg-panel p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
@@ -68,6 +76,35 @@ export default function Home() {
             draws positive. Bounds the bias — the forward ledger is still the only unbiased test.
           </p>
         )}
+        {ev.attribution?.alpha_survives_vs_momentum && (
+          <p className="mt-2 rounded-md border border-bull/20 bg-bull/5 px-3 py-2 text-[11px] leading-relaxed text-bull">
+            ✓ Factor-neutralised vs momentum: this isn&apos;t just a momentum ETF repackaged.
+            Controlling for the market (SPY) <em>and</em> the momentum factor (MTUM), the book keeps
+            {" "}<span className="font-mono">+{ev.attribution.alpha_annual_pct}%/yr</span> of alpha
+            (t&nbsp;=&nbsp;<span className="font-mono">{ev.attribution.alpha_t}</span>, Newey-West) —
+            statistically significant selection edge beyond smart-beta you could buy for 15bps.
+          </p>
+        )}
+        {ev.slippage?.robust && (
+          <p className="mt-2 rounded-md border border-bull/20 bg-bull/5 px-3 py-2 text-[11px] leading-relaxed text-bull">
+            ✓ Slippage stress-test: the edge isn&apos;t a fill-quality mirage. On top of commission
+            + spread, it survives <span className="font-mono">~{ev.slippage.breakeven_bps} bps</span> of
+            slippage before break-even; at a realistic 10 bps it&apos;s still
+            {" "}<span className="font-mono">+{ev.slippage.expectancy_at_10bps_pct}%/trade</span>
+            {" "}(vs <span className="font-mono">+{ev.slippage.base_expectancy_pct}%</span> frictionless).
+          </p>
+        )}
+        {ev.walkforward?.robust && (
+          <p className="mt-2 rounded-md border border-bull/20 bg-bull/5 px-3 py-2 text-[11px] leading-relaxed text-bull">
+            ✓ Walk-forward: the edge isn&apos;t one lucky regime. Net-positive in
+            {" "}<span className="font-mono">{ev.walkforward.years_positive}/{ev.walkforward.years_total} years</span>
+            {" "}({Math.round((ev.walkforward.share_positive ?? 0) * 100)}%), median
+            {" "}<span className="font-mono">+{ev.walkforward.median_expectancy_pct}%/trade</span>. Worst year was
+            {" "}<span className="font-mono">{ev.walkforward.worst_year}</span> at
+            {" "}<span className="font-mono">{ev.walkforward.worst_expectancy_pct}%</span> — the momentum
+            drawdown, where this style is supposed to bleed.
+          </p>
+        )}
       </section>
 
       {/* Market toggle + book */}
@@ -91,9 +128,27 @@ export default function Home() {
         </div>
       </div>
 
-      {watchSignals.length > 0 && (
-        <Deck title="My Watchlist" subtitle="Your pinned names — click ★ on any card to add or remove." signals={watchSignals} star={star} />
-      )}
+      {/* Watchlist — always shown so the add-ticker box is reachable even when empty. */}
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-lg font-semibold">My Watchlist</h2>
+          <p className="text-sm text-muted">
+            Search any scanned name to pin it, or click ★ on any card. Saved in your browser.
+          </p>
+        </div>
+        <TickerSearch has={has} onToggleStar={toggle} />
+        {watchSignals.length > 0 ? (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {watchSignals.map((s) => (
+              <QuantCard key={s.symbol} s={s} starred={has(s.symbol)} onToggleStar={toggle} />
+            ))}
+          </div>
+        ) : (
+          <p className="rounded-lg border border-dashed border-border px-3 py-4 text-sm text-muted">
+            No pinned names {market !== "All" && `in ${market} `}yet — search above to add one.
+          </p>
+        )}
+      </section>
 
       <Deck
         title="Tradeable now"

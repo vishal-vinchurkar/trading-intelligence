@@ -1,0 +1,325 @@
+{
+  "meta": {
+    "what": "US-long edge across time \u2014 per calendar year and rolling 12-month windows.",
+    "method": "Strategy has no fitted parameters, so this is temporal partitioning, not parameter walk-forward. Trades bucketed by entry date.",
+    "date_range": [
+      "2017-03-30",
+      "2026-05-11"
+    ],
+    "note": "Net of cost. Per-year edge persistence is the regime-robustness test. Not financial advice."
+  },
+  "by_year": [
+    {
+      "period": "2017",
+      "n": 933,
+      "win_rate": 61.5,
+      "expectancy_pct": 1.177,
+      "profit_factor": 1.99
+    },
+    {
+      "period": "2018",
+      "n": 946,
+      "win_rate": 47.8,
+      "expectancy_pct": -0.047,
+      "profit_factor": 0.98
+    },
+    {
+      "period": "2019",
+      "n": 924,
+      "win_rate": 56.6,
+      "expectancy_pct": 0.774,
+      "profit_factor": 1.5
+    },
+    {
+      "period": "2020",
+      "n": 998,
+      "win_rate": 55.0,
+      "expectancy_pct": 1.53,
+      "profit_factor": 1.7
+    },
+    {
+      "period": "2021",
+      "n": 1177,
+      "win_rate": 50.8,
+      "expectancy_pct": 0.293,
+      "profit_factor": 1.13
+    },
+    {
+      "period": "2022",
+      "n": 450,
+      "win_rate": 41.1,
+      "expectancy_pct": -0.935,
+      "profit_factor": 0.69
+    },
+    {
+      "period": "2023",
+      "n": 866,
+      "win_rate": 55.7,
+      "expectancy_pct": 0.921,
+      "profit_factor": 1.47
+    },
+    {
+      "period": "2024",
+      "n": 1087,
+      "win_rate": 54.9,
+      "expectancy_pct": 0.564,
+      "profit_factor": 1.29
+    },
+    {
+      "period": "2025",
+      "n": 978,
+      "win_rate": 52.4,
+      "expectancy_pct": 0.427,
+      "profit_factor": 1.19
+    },
+    {
+      "period": "2026",
+      "n": 300,
+      "win_rate": 49.7,
+      "expectancy_pct": 0.424,
+      "profit_factor": 1.17
+    }
+  ],
+  "rolling_12m": [
+    {
+      "window_start": "2017-03-30",
+      "n": 1198,
+      "win_rate": 57.5,
+      "expectancy_pct": 0.889,
+      "profit_factor": 1.62
+    },
+    {
+      "window_start": "2017-06-30",
+      "n": 1117,
+      "win_rate": 58.8,
+      "expectancy_pct": 0.956,
+      "profit_factor": 1.64
+    },
+    {
+      "window_start": "2017-09-30",
+      "n": 1073,
+      "win_rate": 56.3,
+      "expectancy_pct": 0.77,
+      "profit_factor": 1.47
+    },
+    {
+      "window_start": "2017-12-30",
+      "n": 946,
+      "win_rate": 47.8,
+      "expectancy_pct": -0.047,
+      "profit_factor": 0.98
+    },
+    {
+      "window_start": "2018-03-30",
+      "n": 847,
+      "win_rate": 53.5,
+      "expectancy_pct": 0.381,
+      "profit_factor": 1.2
+    },
+    {
+      "window_start": "2018-06-30",
+      "n": 869,
+      "win_rate": 52.2,
+      "expectancy_pct": 0.222,
+      "profit_factor": 1.11
+    },
+    {
+      "window_start": "2018-09-30",
+      "n": 851,
+      "win_rate": 50.4,
+      "expectancy_pct": -0.015,
+      "profit_factor": 0.99
+    },
+    {
+      "window_start": "2018-12-30",
+      "n": 924,
+      "win_rate": 56.6,
+      "expectancy_pct": 0.774,
+      "profit_factor": 1.5
+    },
+    {
+      "window_start": "2019-03-30",
+      "n": 982,
+      "win_rate": 50.8,
+      "expectancy_pct": 0.241,
+      "profit_factor": 1.12
+    },
+    {
+      "window_start": "2019-06-30",
+      "n": 931,
+      "win_rate": 53.2,
+      "expectancy_pct": 0.961,
+      "profit_factor": 1.5
+    },
+    {
+      "window_start": "2019-09-30",
+      "n": 947,
+      "win_rate": 57.9,
+      "expectancy_pct": 1.711,
+      "profit_factor": 1.92
+    },
+    {
+      "window_start": "2019-12-30",
+      "n": 970,
+      "win_rate": 55.4,
+      "expectancy_pct": 1.544,
+      "profit_factor": 1.71
+    },
+    {
+      "window_start": "2020-03-30",
+      "n": 1073,
+      "win_rate": 57.6,
+      "expectancy_pct": 1.783,
+      "profit_factor": 1.87
+    },
+    {
+      "window_start": "2020-06-30",
+      "n": 1173,
+      "win_rate": 53.3,
+      "expectancy_pct": 0.886,
+      "profit_factor": 1.41
+    },
+    {
+      "window_start": "2020-09-30",
+      "n": 1239,
+      "win_rate": 50.0,
+      "expectancy_pct": 0.301,
+      "profit_factor": 1.14
+    },
+    {
+      "window_start": "2020-12-30",
+      "n": 1204,
+      "win_rate": 50.7,
+      "expectancy_pct": 0.319,
+      "profit_factor": 1.15
+    },
+    {
+      "window_start": "2021-03-30",
+      "n": 1035,
+      "win_rate": 47.9,
+      "expectancy_pct": -0.203,
+      "profit_factor": 0.92
+    },
+    {
+      "window_start": "2021-06-30",
+      "n": 844,
+      "win_rate": 46.7,
+      "expectancy_pct": -0.331,
+      "profit_factor": 0.87
+    },
+    {
+      "window_start": "2021-09-30",
+      "n": 598,
+      "win_rate": 45.2,
+      "expectancy_pct": -0.451,
+      "profit_factor": 0.84
+    },
+    {
+      "window_start": "2021-12-30",
+      "n": 451,
+      "win_rate": 41.0,
+      "expectancy_pct": -0.957,
+      "profit_factor": 0.69
+    },
+    {
+      "window_start": "2022-03-30",
+      "n": 473,
+      "win_rate": 47.1,
+      "expectancy_pct": 0.147,
+      "profit_factor": 1.06
+    },
+    {
+      "window_start": "2022-06-30",
+      "n": 594,
+      "win_rate": 55.9,
+      "expectancy_pct": 1.197,
+      "profit_factor": 1.63
+    },
+    {
+      "window_start": "2022-09-30",
+      "n": 768,
+      "win_rate": 53.6,
+      "expectancy_pct": 0.821,
+      "profit_factor": 1.41
+    },
+    {
+      "window_start": "2022-12-30",
+      "n": 866,
+      "win_rate": 55.7,
+      "expectancy_pct": 0.921,
+      "profit_factor": 1.47
+    },
+    {
+      "window_start": "2023-03-30",
+      "n": 972,
+      "win_rate": 57.6,
+      "expectancy_pct": 0.992,
+      "profit_factor": 1.54
+    },
+    {
+      "window_start": "2023-06-30",
+      "n": 981,
+      "win_rate": 54.6,
+      "expectancy_pct": 0.565,
+      "profit_factor": 1.29
+    },
+    {
+      "window_start": "2023-09-30",
+      "n": 1016,
+      "win_rate": 57.2,
+      "expectancy_pct": 0.803,
+      "profit_factor": 1.44
+    },
+    {
+      "window_start": "2023-12-30",
+      "n": 1068,
+      "win_rate": 54.8,
+      "expectancy_pct": 0.544,
+      "profit_factor": 1.28
+    },
+    {
+      "window_start": "2024-03-30",
+      "n": 1048,
+      "win_rate": 48.5,
+      "expectancy_pct": -0.163,
+      "profit_factor": 0.93
+    },
+    {
+      "window_start": "2024-06-30",
+      "n": 995,
+      "win_rate": 51.5,
+      "expectancy_pct": 0.23,
+      "profit_factor": 1.1
+    },
+    {
+      "window_start": "2024-09-30",
+      "n": 1003,
+      "win_rate": 51.0,
+      "expectancy_pct": 0.286,
+      "profit_factor": 1.13
+    },
+    {
+      "window_start": "2024-12-30",
+      "n": 978,
+      "win_rate": 52.5,
+      "expectancy_pct": 0.436,
+      "profit_factor": 1.2
+    },
+    {
+      "window_start": "2025-03-30",
+      "n": 940,
+      "win_rate": 54.6,
+      "expectancy_pct": 0.741,
+      "profit_factor": 1.36
+    }
+  ],
+  "year_consistency": {
+    "periods": 10,
+    "positive": 8,
+    "share_positive": 0.8,
+    "median_expectancy_pct": 0.495,
+    "worst_period": "2022",
+    "worst_expectancy_pct": -0.935
+  },
+  "robust": true
+}

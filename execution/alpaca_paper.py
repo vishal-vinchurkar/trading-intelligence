@@ -29,7 +29,7 @@ import urllib.request
 from pathlib import Path
 
 SCAN_PATH = Path(__file__).parent.parent / "quant" / "latest_scan.json"
-RISK_FRACTION = 0.02   # risk ~2% of equity per trade (distance entry→stop)
+RISK_FRACTION = 0.02   # legacy risk-based sizing (distance entry→stop); kept as fallback
 
 
 def _cfg():
@@ -71,26 +71,40 @@ def place(live: bool = False) -> None:
         print("No actionable US-long setups today (R:R≥1.5). Nothing to place — that's discipline, not a bug.")
         return
 
+    # Autonomous sizing: the agent's inverse-vol / capped weights (quant.agent_book),
+    # the SAME rule the backtest uses — so the paper book reflects the agent, not an
+    # ad-hoc 2%-risk rule. Capital allocated by weight; stop/target still attach as
+    # bracket legs for risk control.
+    from quant import agent_book
+    weights = agent_book.live_target_weights([s["symbol"] for s in picks])
+    print(f"Agent sizing (inverse-vol, ≤{int(agent_book.MAX_WEIGHT*100)}%/name, gross ≤100%): "
+          f"{ {k: round(v,3) for k,v in weights.items()} }")
+
+    placed = 0
     for s in picks:
         t = s["trade"]
-        risk_per_share = t["entry"] - t["stop"]
-        if risk_per_share <= 0:
+        w = weights.get(s["symbol"], 0.0)
+        price = float(s.get("last_close") or t["entry"])
+        if w <= 0 or price <= 0:
             continue
-        qty = max(1, int((equity * RISK_FRACTION) / risk_per_share))
+        qty = max(1, int((equity * w) / price))
         order = {
             "symbol": s["symbol"], "qty": qty, "side": "buy", "type": "market",
             "time_in_force": "gtc", "order_class": "bracket",
             "take_profit": {"limit_price": round(t["target"], 2)},
             "stop_loss": {"stop_price": round(t["stop"], 2)},
         }
-        print(f"  {'PLACE' if live else 'DRY-RUN'} {s['symbol']}: {qty} sh @mkt, "
-              f"target {t['target']}, stop {t['stop']} (risk ${risk_per_share*qty:,.0f})")
+        print(f"  {'PLACE' if live else 'DRY-RUN'} {s['symbol']}: {qty} sh @mkt "
+              f"(w={w:.0%}, ${qty*price:,.0f}), target {t['target']}, stop {t['stop']}")
         if live:
             try:
                 resp = _req("/v2/orders", "POST", order)
                 print(f"    → order {resp.get('id')} status {resp.get('status')}")
+                placed += 1
             except Exception as e:  # noqa: BLE001
                 print(f"    → FAILED: {e}")
+    if live:
+        print(f"\nPlaced {placed}/{len(picks)} bracket orders on Alpaca paper.")
 
 
 if __name__ == "__main__":

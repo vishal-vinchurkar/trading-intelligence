@@ -103,6 +103,7 @@ export interface PricePoint {
 export interface Scan {
   as_of: string;
   universe_size: number;
+  freshness: Freshness | null;
   evidence: {
     us_long_oos: {
       win_rate: number | null;
@@ -115,11 +116,23 @@ export interface Scan {
     rule: string | null;
     date_range: [string, string] | null;
     robustness: Robustness | null;
+    attribution: Attribution | null;
+    slippage: Slippage | null;
+    walkforward: WalkForward | null;
     caveats: string;
   };
   macro: Record<string, Macro | null>;
   favourites: string[];
   signals: Signal[];
+}
+
+export interface Freshness {
+  is_stale: boolean;
+  data_date: string | null;
+  expected_date: string;
+  business_days_stale: number | null;
+  symbols_behind: number;
+  message: string;
 }
 
 export interface Robustness {
@@ -129,6 +142,31 @@ export interface Robustness {
   robust: boolean | null;
   drop_top5_expectancy_pct: number | null;
   drop_top5_removed: string[] | null;
+}
+
+export interface Attribution {
+  alpha_survives_vs_momentum: boolean | null;  // alpha left after SPY + MTUM control
+  alpha_annual_pct: number | null;             // annualised, net of momentum
+  alpha_t: number | null;                       // Newey-West t-stat
+  corr_vs_mtum: number | null;
+  summary: string | null;
+}
+
+export interface Slippage {
+  breakeven_bps: number | string | null;   // slippage where net expectancy hits 0
+  base_expectancy_pct: number | null;       // expectancy at 0 bps slippage
+  expectancy_at_10bps_pct: number | null;   // expectancy at a realistic 10 bps
+  robust: boolean | null;
+}
+
+export interface WalkForward {
+  years_positive: number | null;
+  years_total: number | null;
+  share_positive: number | null;
+  median_expectancy_pct: number | null;
+  worst_year: string | null;
+  worst_expectancy_pct: number | null;
+  robust: boolean | null;
 }
 
 export interface CurveStats {

@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "what": "US-long out-of-sample edge vs slippage (bps applied to entry AND exit, on top of cost).",
+    "levels_bps": [
+      0.0,
+      2.5,
+      5.0,
+      10.0,
+      25.0,
+      50.0
+    ],
+    "oos_months": 12,
+    "note": "Slippage is additive to per-market commission/spread (COST_BPS). Break-even = slippage at which net expectancy hits zero. Not financial advice."
+  },
+  "rungs": [
+    {
+      "slip_bps": 0.0,
+      "win_rate": 55.5,
+      "expectancy_pct": 0.839,
+      "profit_factor": 1.42,
+      "n": 966
+    },
+    {
+      "slip_bps": 2.5,
+      "win_rate": 55.3,
+      "expectancy_pct": 0.788,
+      "profit_factor": 1.39,
+      "n": 966
+    },
+    {
+      "slip_bps": 5.0,
+      "win_rate": 55.2,
+      "expectancy_pct": 0.738,
+      "profit_factor": 1.36,
+      "n": 966
+    },
+    {
+      "slip_bps": 10.0,
+      "win_rate": 54.7,
+      "expectancy_pct": 0.637,
+      "profit_factor": 1.31,
+      "n": 966
+    },
+    {
+      "slip_bps": 25.0,
+      "win_rate": 54.1,
+      "expectancy_pct": 0.335,
+      "profit_factor": 1.15,
+      "n": 966
+    },
+    {
+      "slip_bps": 50.0,
+      "win_rate": 52.7,
+      "expectancy_pct": -0.166,
+      "profit_factor": 0.93,
+      "n": 966
+    }
+  ],
+  "breakeven_bps": 41.7,
+  "base_expectancy_pct": 0.839,
+  "expectancy_at_10bps_pct": 0.637,
+  "robust": true
+}

@@ -62,6 +62,30 @@ Free price data (yfinance) **purges delisted tickers** (empirically confirmed: S
 - Writes `quant/robustness_results.json`; `quant/scan.py` folds a summary into `evidence.robustness`; surfaced as a green ✓ stress-test line under the caveat on the dashboard home. Runs in `scripts/weekly.sh`.
 - **Honesty:** this BOUNDS, does not ELIMINATE, survivorship bias. The forward paper ledger is still the only unbiased test.
 
+## Session 2026-06-14 — validation hardening + new strategy builds
+Reframed by owner: this is a **serious product** (eventual subscription), not a portfolio piece.
+Posture decided: **private validation first → RIA registration before any public launch.** No
+public customers yet. Independent AI review (in `Claude Just Changed...md` chat) called it "not
+investable as-is"; its 5 critiques are now tracked in **`docs/VALIDATION.md`**. Built this session:
+- **`quant/attribution.py`** — MTUM factor-neutralisation (the sharpest critique). **+10.2%/yr alpha
+  survives, t=4.0** (Newey-West) after controlling for SPY + MTUM. Edge is NOT repackaged smart-beta.
+- **`quant/slippage.py`** — slippage stress; US-long edge survives **~42 bps** before break-even.
+- **`quant/walkforward.py`** — temporal stability; net-positive in **8/10 years**. (No fitted params,
+  so it's temporal partitioning, not parameter walk-forward — stated in the module.)
+- All three folded into `quant/scan.py` `evidence.{attribution,slippage,walkforward}` and surfaced as
+  green stress-test banners on the dashboard home (`dashboard/app/page.tsx` + types in `lib/scan.ts`).
+  `scan.json` patched in place (preserving narration); dashboard typechecks clean.
+- **`quant/wheel.py`** — options wheel backtest via Black-Scholes @ realised vol on free price data.
+  Finding: income/low-vol play, ~matches buy&hold (~7.8% ROC), NOT alpha. Hypothesis-grade; needs real
+  option chains + Alpaca to confirm (realised-vol pricing is conservative vs the vol-risk-premium).
+- **`data/congress.py` + `quant/congress_signal.py`** — congressional alt-data overlay, SCAFFOLDED &
+  key-ready. Pluggable adapters: Quiver (needs `QUIVER_API_KEY`), free House-Clerk XML index (real, no
+  key, transaction detail needs PDF parsing — future), synthetic demo (logic validated solo). Backtest
+  is **disclosure-lag-aware by construction** (enter next open AFTER disclosure, not the trade date).
+- **`execution/telegram_bridge.py`** — two-way Telegram control channel (send + poll, offset-stated).
+  Used for async Q&A while owner is away. State file gitignored.
+- All session work is **uncommitted on `main`** (owner hasn't asked to commit).
+
 ## What's next (priority order)
 1. **Blocked on user creds — Alpaca paper keys:** `.env` `ALPACA_API_KEY`/`ALPACA_SECRET_KEY` are empty. Code (`execution/alpaca_paper.py`) is ready; once keys are in, `python -m execution.alpaca_paper` places paper orders. Steps in chat 2026-06-12.
 2. **Blocked on user creds — Telegram push:** `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID` not yet in `.env` (BotFather + getUpdates). Code (`execution/telegram_push.py`) is ready; `daily.sh` already calls it (no-op print until tokens present).

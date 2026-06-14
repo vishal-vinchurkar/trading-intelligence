@@ -35,6 +35,9 @@ OUT_PATH = Path(__file__).parent / "latest_scan.json"
 RULES_PATH = Path(__file__).parent / "backtest_rules_results.json"
 PORTFOLIO_PATH = Path(__file__).parent / "portfolio_results.json"
 ROBUSTNESS_PATH = Path(__file__).parent / "robustness_results.json"
+ATTRIBUTION_PATH = Path(__file__).parent / "attribution_results.json"
+SLIPPAGE_PATH = Path(__file__).parent / "slippage_results.json"
+WALKFORWARD_PATH = Path(__file__).parent / "walkforward_results.json"
 
 # The user's pinned watchlist — always shown front-and-centre regardless of score.
 # Edit freely; these must exist in data/universe.py.
@@ -185,6 +188,41 @@ def run(enrich: bool = True) -> dict:
         "drop_top5_removed": drop5.get("removed"),
     } if rob_full else None
 
+    # Factor attribution — is the edge real alpha, or repackaged momentum smart-beta?
+    # Answers the "factor-neutralise vs MTUM" critique: the alpha that SURVIVES
+    # controlling for the market (SPY) + the momentum ETF (MTUM).
+    attr_full = json.loads(ATTRIBUTION_PATH.read_text()) if ATTRIBUTION_PATH.exists() else {}
+    attr_v = attr_full.get("verdict", {}) if attr_full else {}
+    attribution = {
+        "alpha_survives_vs_momentum": attr_v.get("alpha_survives_momentum_neutralization"),
+        "alpha_annual_pct": attr_v.get("alpha_annual_pct_net_of_momentum"),
+        "alpha_t": (attr_full.get("capm_plus_momentum", {}) or {}).get("alpha_t"),
+        "corr_vs_mtum": (attr_full.get("correlations", {}) or {}).get("strat_vs_MTUM"),
+        "summary": attr_v.get("plain_english"),
+    } if attr_full else None
+
+    # Slippage stress — how much execution shortfall before the edge breaks even.
+    slip_full = json.loads(SLIPPAGE_PATH.read_text()) if SLIPPAGE_PATH.exists() else {}
+    slippage = {
+        "breakeven_bps": slip_full.get("breakeven_bps"),
+        "base_expectancy_pct": slip_full.get("base_expectancy_pct"),
+        "expectancy_at_10bps_pct": slip_full.get("expectancy_at_10bps_pct"),
+        "robust": slip_full.get("robust"),
+    } if slip_full else None
+
+    # Walk-forward — does the edge persist year-by-year, or is it one regime?
+    wf_full = json.loads(WALKFORWARD_PATH.read_text()) if WALKFORWARD_PATH.exists() else {}
+    wf_yc = wf_full.get("year_consistency", {}) if wf_full else {}
+    walkforward = {
+        "years_positive": wf_yc.get("positive"),
+        "years_total": wf_yc.get("periods"),
+        "share_positive": wf_yc.get("share_positive"),
+        "median_expectancy_pct": wf_yc.get("median_expectancy_pct"),
+        "worst_year": wf_yc.get("worst_period"),
+        "worst_expectancy_pct": wf_yc.get("worst_expectancy_pct"),
+        "robust": wf_full.get("robust"),
+    } if wf_full else None
+
     # Macro regime once per market present (Phase B overlay — context, not a signal).
     macro = {}
     for mkt in sorted({s["market"] for s in signals if s["market"]}):
@@ -193,9 +231,17 @@ def run(enrich: bool = True) -> dict:
         except Exception:  # noqa: BLE001
             macro[mkt] = None
 
+    # Data-freshness guard — surface stale data loudly instead of serving it silently.
+    from quant import freshness as _freshness
+    try:
+        fresh = _freshness.check()
+    except Exception:  # noqa: BLE001 — never let the guard break the scan
+        fresh = None
+
     result = {
         "as_of": as_of,
         "universe_size": len(signals),
+        "freshness": fresh,
         "macro": macro,
         # The honest, validated headline: the rule-based US-long result + the
         # portfolio curve, with the survivorship caveat travelling alongside.
@@ -211,6 +257,9 @@ def run(enrich: bool = True) -> dict:
             "rule": rules.get("meta", {}).get("rule"),
             "date_range": rules.get("meta", {}).get("date_range"),
             "robustness": robustness,
+            "attribution": attribution,
+            "slippage": slippage,
+            "walkforward": walkforward,
             "caveats": "Backtested on TODAY's universe (survivorship bias) — treat returns as an "
                        "upper bound, not a forward expectation. Perfect stop fills assumed. The "
                        "forward Alpaca paper ledger is the unbiased test. Not financial advice.",

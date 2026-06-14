@@ -32,3 +32,4 @@ dist/
 # Forward paper-trading ledger — runtime state, accrues locally / via cron.
 execution/ledger.json
 logs/
+execution/telegram_bridge_state.json
