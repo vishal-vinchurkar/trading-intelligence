@@ -69,6 +69,35 @@ export default function Home() {
             draws positive. Bounds the bias — the forward ledger is still the only unbiased test.
           </p>
         )}
+        {ev.attribution?.alpha_survives_vs_momentum && (
+          <p className="mt-2 rounded-md border border-bull/20 bg-bull/5 px-3 py-2 text-[11px] leading-relaxed text-bull">
+            ✓ Factor-neutralised vs momentum: this isn&apos;t just a momentum ETF repackaged.
+            Controlling for the market (SPY) <em>and</em> the momentum factor (MTUM), the book keeps
+            {" "}<span className="font-mono">+{ev.attribution.alpha_annual_pct}%/yr</span> of alpha
+            (t&nbsp;=&nbsp;<span className="font-mono">{ev.attribution.alpha_t}</span>, Newey-West) —
+            statistically significant selection edge beyond smart-beta you could buy for 15bps.
+          </p>
+        )}
+        {ev.slippage?.robust && (
+          <p className="mt-2 rounded-md border border-bull/20 bg-bull/5 px-3 py-2 text-[11px] leading-relaxed text-bull">
+            ✓ Slippage stress-test: the edge isn&apos;t a fill-quality mirage. On top of commission
+            + spread, it survives <span className="font-mono">~{ev.slippage.breakeven_bps} bps</span> of
+            slippage before break-even; at a realistic 10 bps it&apos;s still
+            {" "}<span className="font-mono">+{ev.slippage.expectancy_at_10bps_pct}%/trade</span>
+            {" "}(vs <span className="font-mono">+{ev.slippage.base_expectancy_pct}%</span> frictionless).
+          </p>
+        )}
+        {ev.walkforward?.robust && (
+          <p className="mt-2 rounded-md border border-bull/20 bg-bull/5 px-3 py-2 text-[11px] leading-relaxed text-bull">
+            ✓ Walk-forward: the edge isn&apos;t one lucky regime. Net-positive in
+            {" "}<span className="font-mono">{ev.walkforward.years_positive}/{ev.walkforward.years_total} years</span>
+            {" "}({Math.round((ev.walkforward.share_positive ?? 0) * 100)}%), median
+            {" "}<span className="font-mono">+{ev.walkforward.median_expectancy_pct}%/trade</span>. Worst year was
+            {" "}<span className="font-mono">{ev.walkforward.worst_year}</span> at
+            {" "}<span className="font-mono">{ev.walkforward.worst_expectancy_pct}%</span> — the momentum
+            drawdown, where this style is supposed to bleed.
+          </p>
+        )}
       </section>
 
       {/* Market toggle + book */}

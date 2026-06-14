@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "what": "Factor attribution of the US-long book vs SPY (market) + MTUM (momentum).",
+    "date_range": [
+      "2017-03-30",
+      "2026-06-05"
+    ],
+    "active_days": 2307,
+    "se": "Newey-West HAC, 8 lags",
+    "factors": {
+      "MKT": "SPY daily return",
+      "MOM": "MTUM return \u2212 SPY return"
+    },
+    "note": "Active (invested) days only. Significance: * |t|\u22651.64, ** \u22651.96, *** \u22652.58. Not financial advice."
+  },
+  "correlations": {
+    "strat_vs_MTUM": 0.786,
+    "strat_vs_SPY": 0.843
+  },
+  "capm": {
+    "alpha_daily": 0.0004140501115481389,
+    "alpha_annual_pct": 10.43,
+    "alpha_t": 4.04,
+    "beta_mkt": 0.843,
+    "beta_mkt_t": 18.89,
+    "r2": 0.711
+  },
+  "capm_plus_momentum": {
+    "alpha_daily": 0.0004037707454875723,
+    "alpha_annual_pct": 10.18,
+    "alpha_t": 3.96,
+    "beta_mkt": 0.835,
+    "beta_mkt_t": 18.3,
+    "beta_mom": 0.149,
+    "beta_mom_t": 3.08,
+    "r2": 0.717
+  },
+  "verdict": {
+    "alpha_survives_momentum_neutralization": true,
+    "alpha_annual_pct_net_of_momentum": 10.18,
+    "plain_english": "After controlling for the momentum ETF, the book retains +10.2%/yr of alpha at t=+4.0 \u2014 statistically significant: there is selection edge beyond smart-beta."
+  }
+}

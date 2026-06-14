@@ -40,12 +40,13 @@ RESULTS_PATH = Path(__file__).parent / "backtest_rules_results.json"
 TRADEABLE = ("STRONG_BUY", "BUY", "STRONG_SELL", "SELL")
 
 
-def _simulate_symbol(sym: str) -> list[dict]:
+def _simulate_symbol(sym: str, slip_bps: float = 0.0) -> list[dict]:
     df = load_cached(sym)
     if df is None or len(df) < 260:
         return []
     market = universe.market_of(sym)
     cost = COST_BPS.get(market, DEFAULT_COST_BPS) / 1e4
+    slip = slip_bps / 1e4  # execution shortfall applied to BOTH legs, on top of cost
     bench = load_cached(universe.benchmark_for(sym))
     bc = bench["close"] if bench is not None else None
     ss = score_series(df, bc)
@@ -88,7 +89,15 @@ def _simulate_symbol(sym: str) -> list[dict]:
         if exit_px is None:
             exit_px = float(c[exit_bar])
 
-        gross = (exit_px / entry - 1.0) if direction == "long" else (entry / exit_px - 1.0)
+        # Slippage: you fill WORSE than the trigger level on both legs — pay up on
+        # entry, give up on exit. Levels still trigger off the raw tape; only the
+        # realised fill price degrades. Applied on top of the per-market cost.
+        if direction == "long":
+            entry_fill, exit_fill = entry * (1 + slip), exit_px * (1 - slip)
+            gross = exit_fill / entry_fill - 1.0
+        else:
+            entry_fill, exit_fill = entry * (1 - slip), exit_px * (1 + slip)
+            gross = entry_fill / exit_fill - 1.0
         net = gross - cost
         trades.append({
             "symbol": sym, "market": market, "date": ss.index[i], "band": band,

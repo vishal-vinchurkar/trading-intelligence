@@ -58,8 +58,15 @@ def _curve_stats(equity: pd.Series, label: str) -> dict:
     }
 
 
-def run() -> dict:
-    # US long trades only — the tradeable strategy.
+def strategy_daily_returns() -> tuple[pd.Series, pd.DataFrame, pd.Series]:
+    """The US-long book's daily return series — the honest equity-curve input.
+
+    Returns (strat, tdf, spy_close): `strat` is the daily portfolio return on the
+    master (SPY) calendar, net of entry-day cost; `tdf` the underlying trades;
+    `spy_close` SPY's close over the same span. Factored out so the factor-
+    attribution (quant.attribution) regresses the EXACT series this curve is built
+    from, not a re-derived proxy.
+    """
     trades = [t for s in __import__("data.universe", fromlist=["symbols"]).symbols("US")
               for t in _simulate_symbol(s) if t["direction"] == "long"]
     tdf = pd.DataFrame(trades)
@@ -89,6 +96,12 @@ def run() -> dict:
                 r -= cost  # entry-day cost drag
             day_rets.append(r)
         strat.loc[day] = float(np.mean(day_rets))
+    return strat, tdf, spy
+
+
+def run() -> dict:
+    strat, tdf, spy = strategy_daily_returns()
+    cal = strat.index
 
     strat_equity = (1 + strat).cumprod()
     spy_aligned = spy.reindex(cal).ffill()

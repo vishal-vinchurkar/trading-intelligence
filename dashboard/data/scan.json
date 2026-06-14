@@ -69,7 +69,29 @@
         "MSFT"
       ]
     },
-    "caveats": "Backtested on TODAY's universe (survivorship bias) \u2014 treat returns as an upper bound, not a forward expectation. Perfect stop fills assumed. The forward Alpaca paper ledger is the unbiased test. Not financial advice."
+    "caveats": "Backtested on TODAY's universe (survivorship bias) \u2014 treat returns as an upper bound, not a forward expectation. Perfect stop fills assumed. The forward Alpaca paper ledger is the unbiased test. Not financial advice.",
+    "attribution": {
+      "alpha_survives_vs_momentum": true,
+      "alpha_annual_pct": 10.18,
+      "alpha_t": 3.96,
+      "corr_vs_mtum": 0.786,
+      "summary": "After controlling for the momentum ETF, the book retains +10.2%/yr of alpha at t=+4.0 \u2014 statistically significant: there is selection edge beyond smart-beta."
+    },
+    "slippage": {
+      "breakeven_bps": 41.7,
+      "base_expectancy_pct": 0.839,
+      "expectancy_at_10bps_pct": 0.637,
+      "robust": true
+    },
+    "walkforward": {
+      "years_positive": 8,
+      "years_total": 10,
+      "share_positive": 0.8,
+      "median_expectancy_pct": 0.495,
+      "worst_year": "2022",
+      "worst_expectancy_pct": -0.935,
+      "robust": true
+    }
   },
   "favourites": [
     "AAPL",
